@@ -5,8 +5,8 @@
 }
 #others img{
 	position:fixed;
-	width:40px;
-	height:40px;
+	width:101px;
+	height:101px;
 	top:5px;
 	right:5px;
 }
@@ -18,5 +18,5 @@
 	top:-12px;
 	right:50px;
 	font-size:24px;
-	border:2px solid #ccc; 
+
 }
