@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+#others{
+	float:right;
+}
+#others img{
+	position:fixed;
+	width:40px;
+	height:40px;
+	top:5px;
+	right:5px;
+}
+#info{
+	display:none;
+}
+#others p{
+	position:fixed;
+	top:-12px;
+	right:50px;
+	font-size:24px;
+	border:2px solid #ccc; 
+}
