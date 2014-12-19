@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "Running Dreamer": {
+            "applicationId": "XhswR68mEhMwVnswmQd5Tpkc09XSc6n6snwFm2Rn", 
+            "masterKey": "On9j8qGlAFUUEm3lsM24TIXyiamJaYTmmm5npwZ7"
+        }, 
+        "_default": {
+            "link": "Running Dreamer"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.3.2"
+    }
+}
