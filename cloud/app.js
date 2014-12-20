@@ -9,6 +9,9 @@ app.set('views', 'views'); // 測試用 deploy前須改回上面那個
 app.set('view engine', 'ejs');    // Set the template engine
 app.use(express.bodyParser());    // Middleware for reading request body
 
+app.use("/css",express.static(__dirname + "/css")); // 宣告static path來取得css檔案
+app.use("/js",express.static(__dirname + "/js")); // 宣告static path來取得js檔案
+
 // This is an example of hooking up a request handler with a specific request
 // path and HTTP verb using the Express routing API.
 app.get('/hello', function(req, res) {
