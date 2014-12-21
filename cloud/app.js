@@ -1,42 +1,43 @@
+// 開發模式
+var dvm = false;
 
-// These two lines are required to initialize Express in Cloud Code.
+// -------------------引入所需的檔案-------------------
 var express = require('express');
+// 引入ejs layout
+var expressLayouts = require(dvm?'express-ejs-layouts':'cloud/node_modules/express-ejs-layouts/lib/express-layouts.js');
+// -------------------引入所需的檔案-------------------
+
+// -------------------設定app-------------------
 var app = express();
+// 監聽的port
+var port = 8080;
+// Specify the folder to find templates
+app.set('views', (dvm?'':'cloud/')+'views');
+// Set the template engine
+app.set('view engine', 'ejs');
+// Middleware for reading request body
+app.use(express.bodyParser());
+// 設定layout為index.ejs
+app.set('layout', 'index');
+// 使用ejs layout
+app.use(expressLayouts);
+// 宣告static path來取得css檔案
+if(dvm) app.use("/css",express.static(__dirname + "/../public/css"));
+// 宣告static path來取得js檔案
+if(dvm) app.use("/js",express.static(__dirname + "/../public/js"));
+// -------------------設定app-------------------
 
-// Global app configuration section
-//app.set('views', 'cloud/views');  // Specify the folder to find templates
-app.set('views', 'views'); // 測試用 deploy前須改回上面那個
-app.set('view engine', 'ejs');    // Set the template engine
-app.use(express.bodyParser());    // Middleware for reading request body
-
-app.use("/css",express.static(__dirname + "/css")); // 宣告static path來取得css檔案
-app.use("/js",express.static(__dirname + "/js")); // 宣告static path來取得js檔案
-
-// This is an example of hooking up a request handler with a specific request
-// path and HTTP verb using the Express routing API.
-app.get('/hello', function(req, res) {
-  res.render('hello', { message: 'Congrats, you just set up your app!' });
+// -------------------routing-------------------
+// home
+app.get('/', function(req, res){
+  res.render('./pages/home', {title: "HOME"})
 });
-app.get('/', function(req, res) {
-  res.render('./pages/index', { message: 'Congrats, you just set up your app!' });
+app.get('/list', function(req, res){
+  res.render('./pages/list', {title: "LIST"})
 });
-app.get('/about', function(req, res) {
-  res.render('./pages/about', { message: 'Congrats, you just set up your app!' });
-});
+// -------------------routing-------------------
 
-// // Example reading from the request query string of an HTTP get request.
-// app.get('/test', function(req, res) {
-//   // GET http://example.parseapp.com/test?message=hello
-//   res.send(req.query.message);
-// });
-
-// // Example reading from the request body of an HTTP post request.
-// app.post('/test', function(req, res) {
-//   // POST http://example.parseapp.com/test (with request body "message=hello")
-//   res.send(req.body.message);
-// });
-
-// Attach the Express app to Cloud Code.
-//app.listen();
-app.listen(8080); // 測試用 deploy前須改回上面那個
-console.log("Server is up!");
+// -------------------建立server-------------------
+var server = (dvm?app.listen(port):app.listen());
+console.log("Server is up on port " + (dvm?server.address().port:"") + "!");
+// -------------------建立server-------------------
