@@ -1,5 +1,5 @@
 // 開發模式
-var dvm = false;
+var dvm = true;
 
 // -------------------引入所需的檔案-------------------
 var express = require('express');
