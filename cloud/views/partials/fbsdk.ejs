@@ -1,10 +1,17 @@
 <div id="fb-root"></div>
 <script>
 	window.fbAsyncInit = function () {
-		FB.init({
-			appId: '907301779281896',
-			xfbml: true,
-			version: 'v2.2'
+//		FB.init({
+//			appId: '907301779281896',
+//			xfbml: true,
+//			version: 'v2.2'
+//		});
+		Parse.FacebookUtils.init({ // this line replaces FB.init({
+			appId: '907301779281896', // Facebook App ID
+			status: true, // check Facebook Login status
+			cookie: true, // enable cookies to allow Parse to access the session
+			xfbml: true, // initialize Facebook social plugins on the page
+			version: 'v2.2' // point to the latest Facebook Graph API version
 		});
 	};
 
