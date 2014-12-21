@@ -30,10 +30,10 @@ if(dvm) app.use("/js",express.static(__dirname + "/../public/js"));
 // -------------------routing-------------------
 // home
 app.get('/', function(req, res){
-  res.render('./pages/home', {title: "HOME"})
+  res.render('./pages/home', {title: "HOME"});
 });
 app.get('/list', function(req, res){
-  res.render('./pages/list', {title: "LIST"})
+  res.render('./pages/list', {title: "LIST"});
 });
 // -------------------routing-------------------
 

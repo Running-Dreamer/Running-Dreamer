@@ -64,6 +64,12 @@
 	-ms-justify-content: flex-end;
 	justify-content: flex-end;
 }
+.flex-D5 {
+	-webkit-flex: .5;
+	-moz-box-flex: .5;
+	-ms-flex: .5;
+	flex: .5;
+}
 .flex-1 {
 	-webkit-flex: 1;
 	-moz-box-flex: 1;
@@ -99,4 +105,10 @@
 	-moz-box-flex: 6;
 	-ms-flex: 6;
 	flex: 6;
+}
+.flex-7 {
+	-webkit-flex: 7;
+	-moz-box-flex: 7;
+	-ms-flex: 7;
+	flex: 7;
 }
