@@ -2,7 +2,8 @@
     "applications": {
         "Running Dreamer": {
             "applicationId": "XhswR68mEhMwVnswmQd5Tpkc09XSc6n6snwFm2Rn", 
-            "masterKey": "On9j8qGlAFUUEm3lsM24TIXyiamJaYTmmm5npwZ7"
+            "masterKey": "On9j8qGlAFUUEm3lsM24TIXyiamJaYTmmm5npwZ7",
+			"javascriptKey": "7jF1txHJlMP9bRT9wIUC2qiFwh6jB1ITYQDVoslt"
         }, 
         "_default": {
             "link": "Running Dreamer"
