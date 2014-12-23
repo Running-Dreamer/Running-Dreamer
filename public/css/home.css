@@ -1,0 +1,26 @@
+.eraser{
+	display: block;
+	width: 50px;
+	height: 50px;
+	background-image: url("../images/aaa.PNG");
+}
+.pencil{
+	display: block;
+	width: 50px;
+	height: 80px;
+	background-image: url("../images/aaa.PNG");
+}
+.notebook{
+	width: 80%;
+	height: 40px;
+	border-bottom: 1px solid black;
+}
+.photo-outer{
+
+	border: 1px solid black;
+	width: 100%;
+}
+.photo-inner{
+	margin: 20px;
+	border: 1px solid black;
+}
