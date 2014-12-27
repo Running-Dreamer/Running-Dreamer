@@ -94,7 +94,8 @@ app.get('/hello', function (req, res) {
 });
 app.get('/list', function (req, res) {
 	res.render('./pages/list', {
-		title: "LIST"
+		title: "LIST",
+		page: 'list-page'
 	});
 });
 // -------------------routing-------------------

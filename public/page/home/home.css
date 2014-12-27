@@ -1,10 +1,12 @@
 .eraser{
+    margin: auto;
 	display: block;
 	width: 50px;
 	height: 50px;
 	background-image: url("./images/aaa.PNG");
 }
 .pencil{
+    margin: auto;
 	display: block;
 	width: 50px;
 	height: 80px;
@@ -16,11 +18,15 @@
 	border-bottom: 1px solid black;
 }
 .photo-outer{
-
 	border: 1px solid black;
-	width: 100%;
+	width: 80%;
+    margin: 10px;
 }
 .photo-inner{
 	margin: 20px;
 	border: 1px solid black;
+}
+.pic-notebook{
+    margin: 20px 20px 0;
+    background-image: url("../images/fzm-seamless.notebook.texture-18.jpg");
 }
