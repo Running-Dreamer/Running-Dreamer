@@ -33,34 +33,64 @@ app.set('layout', 'index');
 app.use(expressLayouts);
 // -------------------設定app-------------------
 
-// 全域user
-var USER = null;
 // -------------------routing-------------------
-// 處理fb登入session
-app.post('/fblogin', function (req, res) {
-	var sessionToken = req.body.sessionToken;
-	Parse.User.become(sessionToken).then(function (user) {
-		console.log("fblogin -- become -- success");
-		// The current user is now set to user.
-		Parse.User.current().fetch().then(function (user) {
-			USER = user;
-			console.log(user.get('email'));
-			res.redirect('/');
+// 管理者
+app.get('/admin', function (req, res) {
+	CLOUD.getAllUser().then(function(result){
+		res.render('./pages/admin', {
+			page: 'admin-page',
+			result: result
 		});
-	}, function (error) {
-		// The token could not be validated.
-		console.log("fblogin -- become -- error = " + error);
+	});
+});
+// facebook 登入設定server session
+app.get('/fblogin', function (req, res) {
+	var sessionToken = req.query.session;
+	Parse.User.become(sessionToken).then(function (user) {
 		res.redirect('/');
 	});
 });
-// home
+// 登入畫面
+app.get('/login', function (req, res) {
+	res.render('./pages/login', {page: 'login-page'});
+});
+// 主頁面home
 app.get('/', function (req, res) {
-	CLOUD.sayHello().always(function (result) {
-		var email = USER ? USER.getEmail() : "";
-		res.render('./pages/home', {
-			title: email
+	if(Parse.User.current())
+		CLOUD.getMyList().then(function(result) {
+			res.render('./pages/home', {
+				page: 'home-page',
+				result: result
+			});
 		});
-	});
+	else
+		res.redirect('/login');
+});
+// 
+app.get('/mylist', function (req, res) {
+	if(Parse.User.current())
+		CLOUD.getAllUser().then(function (result) {
+			res.render('./pages/home', {
+				page: 'mylist-page',
+				result: result
+			});
+		});
+	else
+		res.redirect('/login');
+});
+// 
+app.get('/hello', function (req, res) {
+	if(Parse.User.current())
+		CLOUD.sayHello().always(function (result) {
+			res.render('./pages/home', {
+				page: 'hello-page',
+				result: []
+			});
+		});
+	else
+		res.render('./pages/home', {
+			title: "請登入"
+		});
 });
 app.get('/list', function (req, res) {
 	res.render('./pages/list', {

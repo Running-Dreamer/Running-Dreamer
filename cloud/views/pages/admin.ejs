@@ -1,0 +1,93 @@
+<%- contentFor( 'style') %>
+<link rel="stylesheet" href="page/home/home.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<%- contentFor( 'script') %>
+<script src="page/home/home.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+<%- contentFor( 'body') %>
+	<div class="flex-center flex-wrap <%= page%>">
+		<% for(var i=0 ; i < result.length; i ++) {%>
+			<button user-id="<%= result[i].id %>" type="button" class="user-btn btn btn-default"><%=result[i].get( 'displayName') %></button>
+		<% }%>
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+							</button>
+							<h4 class="modal-title" id="myModalLabel"></h4>
+						</div>
+						<div class="modal-body">
+							<form>
+								<div class="form-group">
+									<label for="title">標題</label>
+									<input type="text" class="form-control" id="title" placeholder="賺大錢">
+								</div>
+								<div class="form-group">
+									<label for="description">敘述</label>
+									<input type="text" class="form-control" id="description" placeholder="想賺人生第一桶金">
+								</div>
+								<div class="form-group">
+									<label for="photo">圖片</label>
+									<input type="file" id="photo">
+									<p class="help-block">請附上與夢想相符的圖片</p>
+								</div>
+								<div class="form-group">
+									<label for="type">類型</label>
+									<select id="type">
+										<option>類型一</option>
+										<option>類型二</option>
+										<option>類型三</option>
+										<option>類型四</option>
+										<option>類型五</option>
+									</select>
+								</div>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">關閉</button>
+							<button type="button" class="btn btn-primary" id="upload">儲存</button>
+						</div>
+					</div>
+				</div>
+			</div>
+	</div>
+<script>
+	(function () {
+		$(document).ready(function () {
+			var btns = $('main').find('button.user-btn');
+			$('#photo').on("change", function(e) {
+				var files = e.target.files || e.dataTransfer.files;
+				$(this).data('file', files[0]);
+			});
+			var i, max = btns.length;
+			for (i = 0; i < max; i += 1) {
+				var $btn = $(btns[i]);
+				$btn.on('click', function () {
+					var $self = $(this);
+					$('#myModal').find('input').each(function(){$(this).val('')});
+					$('#myModal').data('user-id', $self.attr('user-id'));
+					$('#myModalLabel').text($self.text()+"的夢想");
+					$('#upload').off('click').on('click', function() {
+						var parseFile = new Parse.File("photo", $('#photo').data('file'));
+						parseFile.save().then(function(file){
+							var data = {};
+							data.ownerID = $('#myModal').data('user-id');
+							data.title = $('#title').val();
+							data.description = $('#description').val();
+							data.photo = file
+							data.type = $('#type').val();
+							Parse.Cloud.run('adminNewDream', data).then(function(result){
+								console.log(result);
+								$("#myModal").modal('hide');
+							});
+						});
+					});
+					$("#myModal").modal('show');
+				});
+			}
+		});
+	})()
+</script>

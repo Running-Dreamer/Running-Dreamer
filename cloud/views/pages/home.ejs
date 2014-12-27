@@ -1,32 +1,40 @@
+<%- contentFor( 'style') %>
+<link rel="stylesheet" href="page/home/home.css">
+
+<%- contentFor( 'script') %>
+<script src="page/home/home.js"></script>
+
 <%- contentFor( 'body') %>
-	<div class="ABS-FULL flex-row">
-		<div class="flex-3 flex-center flex-column">
-			<div class="notebook"></div>
-			<div class="notebook"></div>
-			<div class="notebook"></div>
-			<div class="notebook"></div>
-			<div class="notebook"></div>
-			<div class="notebook"></div>
-			<div class="notebook"></div>
-			<div class="notebook"></div>
-			<div class="notebook"></div>
-			<div class="notebook"></div>
-		</div>
-		<div class="flex-1 flex-column">
-			<div class="flex-1 flex-center flex-column">
-				<div class="photo-outer flex-1 flex-column">
-					<div class="photo-inner flex-1">
-						<%= title%>
-					</div>
+<div class="ABS-FULL flex-row <%= page%>">
+	<div class="flex-3 flex-center flex-column">
+		<div class="notebook"></div>
+		<div class="notebook"></div>
+		<div class="notebook"></div>
+		<div class="notebook"></div>
+		<div class="notebook"></div>
+		<div class="notebook"></div>
+		<div class="notebook"></div>
+		<div class="notebook"></div>
+		<div class="notebook"></div>
+		<div class="notebook"></div>
+	</div>
+	<div class="flex-1 flex-column">
+		<div class="flex-1 flex-center flex-column">
+			<div class="photo-outer flex-1 flex-column">
+				<div class="photo-inner flex-1">
+					<% for(var i = 0; i < result.length; i ++) {%>
+						<span><%= result[i].get('displayName') %></span>
+					<% }%>
 				</div>
 			</div>
-			<div class="flex-1 flex-row flex-center">
-				<div class="flex-1 flex-center">
-					<span class="eraser"></span>
-				</div>
-				<div class="flex-1 flex-center">
-					<span class="pencil"></span>
-				</div>
+		</div>
+		<div class="flex-1 flex-row flex-center">
+			<div class="flex-1 flex-center">
+				<span class="eraser"></span>
+			</div>
+			<div class="flex-1 flex-center">
+				<span class="pencil"></span>
 			</div>
 		</div>
 	</div>
+</div>
