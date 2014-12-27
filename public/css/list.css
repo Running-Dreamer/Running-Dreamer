@@ -1,0 +1,177 @@
+.pin {
+    background: none repeat scroll 0 0 #f00;
+    border: 30px solid #f00;
+    border-radius: 50%;
+    box-shadow: 10px 10px 10px #888888;
+    display: block;
+    height: 50px;
+    left: 0;
+    margin: 0px auto;
+    position: absolute;
+    right: 0;
+    top:26px;
+    width: 50px;
+    z-index: 1;
+}
+.pin:after {
+    background: none repeat scroll 0 0 #c00;
+    border: 30px solid #c00;
+    border-radius: 50%;
+    content: "";
+    height: 5px;
+    position: absolute;
+    right: 5px;
+    top: -10px;
+    width: 5px;
+    z-index: 2;
+}
+.pin:before {
+    background: none repeat scroll 0 0 #f00;
+    border: 30px solid #f00;
+    border-radius: 50%;
+    content: "";
+    height: 30px;
+    position: absolute;
+    right: 30px;
+    top: -35px;
+    width: 30px;
+    z-index: 4;
+}
+.rope{
+	position:absolute;
+	top:-50px;
+	right:-10px;
+	height:200px;
+	width:0px;
+	border-right:10px solid #666;
+	transform:rotateZ(-40deg);
+	z-index:3;
+}
+.rope:after{
+	content:"";
+	position:absolute;
+	top:-75px;
+	right:90px;
+	height:200px;
+	width:0px;
+	border-left:10px solid #666;
+	transform:rotateZ(80deg);
+	z-index:3;
+}
+.board {
+    background-color: #993300;
+    height: 360px;
+    position: absolute;
+    right: 100px;
+    top: 155px;
+    width: 1000px;
+    margin: 0px auto;
+    left: 0px;
+    border: 20px solid #663300;
+    z-index: 5;
+}
+.pinlebel1{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left:10px;
+    background-color: #f00;
+    border-radius: 50%;
+}
+.pinlebel2{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left:40px;
+    background-color: #ff9900;
+    border-radius: 50%;
+}
+.pinlebel3{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left:70px;
+    background-color: #ffff00;
+    border-radius: 50%;
+}
+.pinlebel4{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left:100px;
+    background-color: #0f0;
+    border-radius: 50%;
+}
+.pinlebel5{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left:130px;
+    background-color: #00f;
+    border-radius: 50%;
+}
+.pinlebel6{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left:160px;
+    background-color: #330099;
+    border-radius: 50%;
+}
+.pinlebel7{
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    left:190px;
+    background-color: #660066;
+    border-radius: 50%;
+}
+.paper1 {
+    background-color: #ff0;
+    height: 150px;
+    left: 40px;
+    position: absolute;
+    width: 120px;
+}
+.paper2 {
+    background-color: #ff0;
+    height: 150px;
+    left: 320px;
+    position: absolute;
+    width: 120px;
+}
+.paper3 {
+    background-color: #ff0;
+    height: 150px;
+    left: 580px;
+    position: absolute;
+    width: 120px;
+}
+.paper4 {
+    background-color: #ff0;
+    height: 150px;
+    left: 850px;
+    position: absolute;
+    width: 120px;
+}
+.paper5 {
+    background-color: #ff0;
+    height: 150px;
+    left: 180px;
+    position: absolute;
+    width: 120px;
+}
+.paper6 {
+    background-color: #ff0;
+    height: 150px;
+    left: 450px;
+    position: absolute;
+    width: 120px;
+}
+.paper7 {
+    background-color: #ff0;
+    height: 150px;
+    left: 700px;
+    position: absolute;
+    width: 120px;
+}
