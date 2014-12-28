@@ -1,89 +1,184 @@
-.pin {
-    background: #f00;
-    border: 30px solid #f00;
-    border-radius: 50%;
-    box-shadow: 10px 10px 10px #888888;
-    position: relative;
-    z-index: 1;
+.upper {
+	position: relative;
 }
-.pin:after {
-    background: #c00;
-    border: 30px solid #c00;
-    border-radius: 50%;
-    content: "";
-    height: 50%;
-    position: absolute;
-    right: 20%;
-    top:15%;
-    width: 50%;
-    z-index: 2;
+.pin-foot > div {
+	position: absolute;
+	margin: auto;
 }
-.pin:before {
-    background: #f00;
-    border: 30px solid #f00;
-    border-radius: 50%;
-    content: "";
-    height: 60%;
-    position: absolute;
-    right: 40%;
-    top: 5%;
-    width: 75%;
-    z-index: 4;
+.pin-foot {
+	position: relative;
+	background: #f00;
+	border-radius: 50%;
+	border: 1px solid #890000;
+	box-shadow: 5px 5px 5px #888888;
+	width: 32px;
+	height: 32px;
+	z-index: 1;
 }
-.rope{
-	position:absolute;
-	top:10%;
-	right:15%;
-	height:200%;
-	border-right:20px solid #666;
-	transform:rotateZ(-40deg);
-	z-index:3;
+.pin-body {
+	background: #c00;
+	border-radius: 50%;
+	content: "";
+	height: 65%;
+	width: 65%;
+	right: 20%;
+	top: 15%;
+	z-index: 2;
 }
-.rope1{
-	position:absolute;
-	top:20%;
-	right:110%;
-	height:200%;
-	width:0px;
-	border-left:20px solid #666;
-	transform:rotateZ(40deg);
-	z-index:3;
+.pin-head {
+	background: #f00;
+	border: 1px solid #890000;
+	border-radius: 50%;
+	height: 75%;
+	width: 75%;
+	left: -15%;
+	top: -15%;
+	z-index: 4;
+}
+.rope-left {
+	position: absolute;
+	width: 8px;
+	margin-left: 0px;
+	height: 200px;
+	background: #666;
+	top: 4px;
+	left: 12px;
+	z-index: 3;
+	-webkit-transform-origin: 50% 0%;
+	-ms-transform-origin: 50% 0%;
+	transform-origin: 50% 0%;
+	-webkit-transform: rotate(50deg);
+	-ms-transform: rotate(50deg);
+	transform: rotate(50deg);
+}
+.rope-right {
+	position: absolute;
+	width: 8px;
+	margin-left: 0px;
+	height: 200px;
+	background: #666;
+	top: 4px;
+	left: 12px;
+	z-index: 3;
+	-webkit-transform-origin: 50% 0%;
+	-ms-transform-origin: 50% 0%;
+	transform-origin: 50% 0%;
+	-webkit-transform: rotate(-50deg);
+	-ms-transform: rotate(-50deg);
+	transform: rotate(-50deg);
+}
+.rope-left:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent), to(transparent));
+	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	z-index: 1;
+	-webkit-background-size: 8px 8px;
+	-moz-background-size: 8px 8px;
+	background-size: 8px 8px;
+	-webkit-animation: move 2s linear infinite;
+	-webkit-border-top-right-radius: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	-moz-border-radius-topright: 8px;
+	-moz-border-radius-bottomright: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	-webkit-border-top-left-radius: 20px;
+	-webkit-border-bottom-left-radius: 20px;
+	-moz-border-radius-topleft: 20px;
+	-moz-border-radius-bottomleft: 20px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	overflow: hidden;
+}
+.rope-right:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255, 255, .2)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .2)), color-stop(.75, rgba(255, 255, 255, .2)), color-stop(.75, transparent), to(transparent));
+	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	background-image: -ms-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	background-image: -o-linear-gradient(-45deg, rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+	z-index: 1;
+	-webkit-background-size: 8px 8px;
+	-moz-background-size: 8px 8px;
+	background-size: 8px 8px;
+	-webkit-animation: move 2s linear infinite;
+	-webkit-border-top-right-radius: 8px;
+	-webkit-border-bottom-right-radius: 8px;
+	-moz-border-radius-topright: 8px;
+	-moz-border-radius-bottomright: 8px;
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+	-webkit-border-top-left-radius: 20px;
+	-webkit-border-bottom-left-radius: 20px;
+	-moz-border-radius-topleft: 20px;
+	-moz-border-radius-bottomleft: 20px;
+	border-top-left-radius: 20px;
+	border-bottom-left-radius: 20px;
+	overflow: hidden;
 }
 .board {
-    background-color: #993300;
-    height: 100%;
-    width: 100%;
-    border: 20px solid #663300;
-    z-index: 5;
+	width: 90%;
+	margin: 0 20px;
+	z-index: 5;
+	background-image: url(images/board.jpg);
+	background-repeat: repeat;
 }
-.pinlebel1 {
-    background-color: #f00;
-    border-radius: 50%;
+.board-border {
+	background-image: url(images/border.jpg);
+	background-repeat: repeat;
 }
-.pinlebel2 {
-    background-color: #ff9900;
-    border-radius: 50%;
+.pin-label-area > div {
+	width: 32px;
+	height: 32px;
+	margin: 2px;
 }
-.pinlebel3 {
-    background-color: #ffff00;
-    border-radius: 50%;
+.pin-label-1 {
+	background-color: #f00;
+	border-radius: 50%;
 }
-.pinlebel4 {
-    background-color: #0f0;
-    border-radius: 50%;
+.pin-label-2 {
+	background-color: #ff9900;
+	border-radius: 50%;
 }
-.pinlebel5 {
-    background-color: #00f;
-    border-radius: 50%;
+.pin-label-3 {
+	background-color: #ffff00;
+	border-radius: 50%;
 }
-.pinlebel6 {
-    background-color: #330099;
-    border-radius: 50%;
+.pin-label-4 {
+	background-color: #0f0;
+	border-radius: 50%;
 }
-.pinlebel7 {
-    background-color: #660066;
-    border-radius: 100%;
+.pin-label-5 {
+	background-color: #00f;
+	border-radius: 50%;
+}
+.pin-label-6 {
+	background-color: #330099;
+	border-radius: 50%;
+}
+.pin-label-7 {
+	background-color: #660066;
+	border-radius: 100%;
+}
+.paper-area {
+	position: relative;
 }
 .paper {
-    background-color: #ff0;
+	position: absolute;
+	background-color: #ff0;
+	width: 60px;
+	height: 100px;
 }
