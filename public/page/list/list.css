@@ -3,9 +3,7 @@
     border: 30px solid #f00;
     border-radius: 50%;
     box-shadow: 10px 10px 10px #888888;
-    height: 50%;
     position: relative;
-    width: 100%;
     z-index: 1;
 }
 .pin:after {
@@ -13,10 +11,11 @@
     border: 30px solid #c00;
     border-radius: 50%;
     content: "";
-    height: 5%;
+    height: 50%;
     position: absolute;
-    right: 5%;
-    width: 10%;
+    right: 20%;
+    top:15%;
+    width: 50%;
     z-index: 2;
 }
 .pin:before {
@@ -26,30 +25,28 @@
     content: "";
     height: 60%;
     position: absolute;
-    right: 28%;
-    top: -48%;
+    right: 40%;
+    top: 5%;
     width: 75%;
     z-index: 4;
 }
 .rope{
 	position:absolute;
-	top:-50px;
-	right:-10px;
-	height:200px;
-	width:0px;
-	border-right:10px solid #666;
+	top:10%;
+	right:15%;
+	height:200%;
+	border-right:20px solid #666;
 	transform:rotateZ(-40deg);
 	z-index:3;
 }
-.rope:after{
-	content:"";
+.rope1{
 	position:absolute;
-	top:-75px;
-	right:90px;
-	height:200px;
+	top:20%;
+	right:110%;
+	height:200%;
 	width:0px;
-	border-left:10px solid #666;
-	transform:rotateZ(80deg);
+	border-left:20px solid #666;
+	transform:rotateZ(40deg);
 	z-index:3;
 }
 .board {
