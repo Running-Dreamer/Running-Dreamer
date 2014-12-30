@@ -8,7 +8,18 @@
 	fn.fbInitDone = fbInitDone;
 	
 	function fbInitDone () {
+		// 設定menu
+		setupMenu();
 		// 開始執行主要程式
 		fn.start();
+		
+		
+		function setupMenu () {
+			var $menu = $('.menu-menu');
+			var $submenu = $('.menu-submenu');
+			$menu.on('mouseenter',function(){
+				$submenu.toggleClass('SHOW');
+			});
+		}
 	}
 })()
