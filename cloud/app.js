@@ -66,6 +66,12 @@ app.get('/', function (req, res) {
 	else
 		res.redirect('/login');
 });
+// 瀏覽夢想browse
+app.get('/browse', function (req, res) {
+	res.render('./pages/browse', {
+		page: 'browse-page'
+	});
+});
 // 
 app.get('/mylist', function (req, res) {
 	if(Parse.User.current())
@@ -91,12 +97,6 @@ app.get('/hello', function (req, res) {
 		res.render('./pages/home', {
 			title: "請登入"
 		});
-});
-app.get('/list', function (req, res) {
-	res.render('./pages/list', {
-		title: "LIST",
-		page: 'list-page'
-	});
 });
 // -------------------routing-------------------
 
