@@ -1,26 +1,33 @@
+.desktop{
+    background-image: url("./images/desktop.jpg");
+    background-size: 50% 100%;
+}
 .eraser{
     margin: auto;
 	display: block;
 	width: 50px;
-	height: 50px;
-	background-image: url("./images/aaa.PNG");
+	height: 100px;
+	background-image: url("./images/eraser.png");
+    background-size: 100% auto;
 }
 .pencil{
     margin: auto;
 	display: block;
 	width: 50px;
-	height: 80px;
-	background-image: url("./images/aaa.PNG");
+	height: 260px;
+	background-image: url("./images/pencil.png");
+    background-size: contain;
 }
 .notebook{
 	width: 80%;
-	height: 40px;
+	height: 40px;  
 	border-bottom: 1px solid black;
 }
 .photo-outer{
 	border: 1px solid black;
 	width: 80%;
     margin: 10px;
+    background-color: white;
 }
 .photo-inner{
 	margin: 20px;
