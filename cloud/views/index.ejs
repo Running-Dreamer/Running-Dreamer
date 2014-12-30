@@ -12,11 +12,12 @@
 	</header>
 
 	<main class="flex-1 flex-center flex-column <%= page%>">
+		<% include ./partials/menu %>
 		<%-body%>
 	</main>
 
 	<footer>
-		<% include ./partials/footer %>
+<!--		<% include ./partials/footer %>-->
 	</footer>
 	<% include ./partials/fbsdk %>
 </body>
