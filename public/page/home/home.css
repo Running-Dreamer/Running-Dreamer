@@ -1,6 +1,6 @@
 .desktop{
-    background-image: url("./images/desktop.jpg");
-    background-size: 50% 100%;
+    background-image: url("./images/bg.png");
+    background-size: cover;
 }
 .eraser{
     margin: auto;
@@ -8,7 +8,7 @@
 	width: 50px;
 	height: 100px;
 	background-image: url("./images/eraser.png");
-    background-size: 100% auto;
+    background-size: 100% 100%;
 }
 .pencil{
     margin: auto;
@@ -16,7 +16,7 @@
 	width: 50px;
 	height: 260px;
 	background-image: url("./images/pencil.png");
-    background-size: contain;
+    background-size: 100% 100%;
 }
 .notebook{
 	width: 80%;
@@ -36,6 +36,6 @@
 	background-size: 100% 100%;
 }
 .pic-notebook{
-    margin: 20px 20px 0;
+    margin: 50px 50px 0;
     background-image: url("./images/fzm-seamless.notebook.texture-18.jpg");
 }
