@@ -73,7 +73,36 @@
 					$('#upload').off('click').on('click', function() {
 						var parseFile = new Parse.File("photo", $('#photo').data('file'));
 						parseFile.save().then(function(file){
-							var data = {};
+
+							var Dream = Parse.Object.extend("Dream");
+							var dream = new Dream();
+							var User = Parse.Object.extend("User");
+							var owner = new User();
+							owner.id = $('#myModal').data('user-id');
+							dream.set("owner",owner);
+							dream.set("title",$('#title').val());
+							dream.set("description",$('#description').val());
+							dream.set("photo",file);
+							//dream.set("type",$('#type').val());
+							dream.save().then(function(){
+								//user那邊的Dreams關聯要更新
+								var query = new Parse.Query(User);
+								query.get(owner.id, {
+								  success: function(user) {						    
+									var relation = user.relation("Dreams");
+									relation.add(dream);
+									user.save().then(function(){
+										console.log("relation success");
+										$("#myModal").modal('hide');
+									});								
+								  },
+								  error: function(object, error) {
+								    // error is a Parse.Error with an error code and description.
+								    console.log(error);
+								  }
+								});
+							});				
+							/*var data = {};
 							data.ownerID = $('#myModal').data('user-id');
 							data.title = $('#title').val();
 							data.description = $('#description').val();
@@ -82,7 +111,7 @@
 							Parse.Cloud.run('adminNewDream', data).then(function(result){
 								console.log(result);
 								$("#myModal").modal('hide');
-							});
+							});*/
 						});
 					});
 					$("#myModal").modal('show');
