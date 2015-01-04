@@ -7,7 +7,7 @@ cloud.getMyList = function () {
 	var userID = Parse.User.current().id;
 	var query = new Parse.Query("User");
 	query.equalTo("objectId", userID);
-	return query.find();
+	return query.first();
 };
 cloud.getUserList = function (id) {
 	var query = new Parse.Query("User");

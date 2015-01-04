@@ -58,10 +58,18 @@ app.get('/login', function (req, res) {
 app.get('/', function (req, res) {
 	if(Parse.User.current())
 		CLOUD.getMyList().then(function(result) {
-			res.render('./pages/home', {
-				page: 'home-page',
-				result: result
-			});
+			//搜尋此人的夢想
+			var relation = result.relation("Dreams");
+		    relation.query().find({
+				success:function(dream){
+					result.set('Dreams',dream);
+					res.render('./pages/home', {
+						page: 'home-page',
+						result: result
+					});
+				}
+			});			
+			
 		});
 	else
 		res.redirect('/login');

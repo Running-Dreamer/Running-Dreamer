@@ -7,25 +7,18 @@
 <%- contentFor('body') %>
 <div class="flex-1 desktop flex-row <%= page%>">
 	<div class="flex-1 flex-center flex-column pic-notebook">
-		<div class="notebook"></div>
-		<div class="notebook"></div>
-		<div class="notebook"></div>
-		<div class="notebook"></div>
-		<div class="notebook"></div>
-		<div class="notebook"></div>
-		<div class="notebook"></div>
-		<div class="notebook"></div>
-		<div class="notebook"></div>
-		<div class="notebook"></div>
+        <% for(var i = 0; i < result.get('Dreams').length; i ++) {%>
+        	<div class="notebook"><%= result.get('Dreams')[i].get('title') %></div>
+        <% }%>
+        <div class="notebook"></div>
 	</div>
 	<div class="flex-column right-part">
 		<div class="flex-1 flex-center flex-column">
 			<div class="photo-outer flex-1 flex-column flex-center">
 				<div class="photo-inner flex-1">
 				</div>
-				<% for(var i = 0; i < result.length; i ++) {%>
-					<div class="flex-center"><%= result[i].get('displayName') %></div>
-				<% }%>
+				<div class="flex-center"><%= result.get('displayName') %></div>
+				
 			</div>
 		</div>
 		<div class="flex-3 flex-row flex-center">
