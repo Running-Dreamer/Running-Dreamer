@@ -9,6 +9,11 @@ cloud.getMyList = function () {
 	query.equalTo("objectId", userID);
 	return query.find();
 };
+cloud.getUserList = function (id) {
+	var query = new Parse.Query("User");
+	query.equalTo("objectId", id);
+	return query.find();
+};
 cloud.getAllUser = function () {
 	var query = new Parse.Query("User");
 	return query.find();
