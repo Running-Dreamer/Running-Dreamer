@@ -1,1 +1,59 @@
-<span>© Copyright 2014 Running Dreamer</span>
+<!--<span>© Copyright 2014 Running Dreamer</span>-->
+
+<div class="modal fade" id="DreamModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<!--
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+				</button>
+				<h4 class="modal-title" id="myModalLabel"></h4>
+			</div>
+			-->
+			<div class="modal-body">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+				</button>
+				<!--內容-->
+				123123132
+				<br>
+				3321546
+				<br>
+				<br>
+				<br>
+				<br>
+			</div>
+			<!--
+			<div class="modal-footer">
+			</div>
+			-->
+		</div>
+	</div>
+</div>
+
+<script>
+	(function () {
+		$(document).ready(function () {
+			/*
+			var data = {};
+			data.objectId = "rfgLm78icl";
+			Parse.Cloud.run('adminNewDream', data).then(function(result){
+				console.log(result);
+				$("#DreamModal").modal('hide');
+			});*/
+			var Dream = Parse.Object.extend("Dream");
+			var dream = new Dream();
+			var query = new Parse.Query(Dream);
+			query.get("rfgLm78icl", {
+			  success: function(onedream) {						    
+				console.log(onedream.get("title"));
+				$("#DreamModal").modal('show');						
+			  },
+			  error: function(object, error) {
+			    // error is a Parse.Error with an error code and description.
+			    console.log(error);
+			  }
+			});
+
+		});
+	})()
+</script>
