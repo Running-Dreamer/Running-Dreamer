@@ -100,6 +100,16 @@ app.get('/hello', function (req, res) {
 });
 // -------------------routing-------------------
 
+// -------------------API-------------------
+app.post('/api/getAllBrowseList', function(req, res){
+	var type = req.body.type;
+	var skip = req.body.skip;
+	CLOUD.getAllBrowseList(type, skip).then(function (result) {
+		res.send(result);
+	});
+});
+// -------------------API-------------------
+
 // -------------------建立server-------------------
 
 if (dvm) {

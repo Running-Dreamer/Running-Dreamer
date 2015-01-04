@@ -21,6 +21,18 @@ cloud.getAllUser = function () {
 cloud.sayHello = function () {
 	return Parse.Cloud.run('hello', {});
 };
+// browse
+cloud.getAllBrowseList = function (type, skip) {
+	var Dream = Parse.Object.extend("Dream");
+	var query = new Parse.Query(Dream);
+
+	//如果type不為空 or all 只搜尋那個型別
+	if(type != null && type != "all") query.equalTo("type" , type);
+	if(skip != null) query.skip(skip);
+
+	return query.find();
+};
+
 
 // 讓整個app可以用到
 exports.getCLOUD = function () {
