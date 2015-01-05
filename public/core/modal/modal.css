@@ -1,0 +1,38 @@
+.modal {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	visibility: hidden;
+}
+.modal.SHOW {
+	visibility: visible;
+}
+.modal .modal-mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 9998;
+	background-color: rgba(0,0,0,0.7);
+}
+.modal .modal-container {
+	position: relative;
+	background: #212121;
+	box-shadow: 4px 4px 5px 0 rgba(50,50,50,0.75);
+	border-radius: 10px;
+	border: 1px solid #777;
+	color: white;
+	overflow: hidden;
+	opacity: 0;
+	-webkit-transition: opacity .5s linear;
+	transition: opacity .5s linear;
+	z-index: 9999;
+	min-height: 200px;
+	min-width: 200px;
+}
+.modal.SHOW .modal-container {
+	opacity: 1;
+}

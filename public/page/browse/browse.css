@@ -161,3 +161,6 @@
 	height: 160px;
 	word-break: break-all;
 }
+.modal .modal-header {
+	width: 100%;
+}
