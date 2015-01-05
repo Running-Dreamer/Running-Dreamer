@@ -56,20 +56,15 @@ app.get('/login', function (req, res) {
 });
 // 主頁面home
 app.get('/', function (req, res) {
-	if(Parse.User.current())
-		CLOUD.getMyList().then(function(result) {
-			//搜尋此人的夢想
-			var relation = result.relation("Dreams");
-		    relation.query().find({
-				success:function(dream){
-					result.set('Dreams',dream);
-					res.render('./pages/home', {
-						page: 'home-page',
-						result: result
-					});
-				}
-			});			
-			
+	if (Parse.User.current())
+		CLOUD.getMe().then(function (user) {
+			CLOUD.getUserDreams(user).then(function (dream) {
+				user.set('Dreams', dream);
+				res.render('./pages/home', {
+					page: 'home-page',
+					result: user
+				});
+			});
 		});
 	else
 		res.redirect('/login');
