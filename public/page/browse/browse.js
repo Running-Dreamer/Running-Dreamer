@@ -17,7 +17,7 @@ function getDream(type, skip) {
 		var i, max = 7;
 		if (results.length < max) {
 			max = results.length;
-		} //如果不到最大筆數 就印他的比數
+		} //如果不到最大筆數 就印他的比數 測
 
 		for (i = 0; i < max; i += 1) {
 			var result = results[i];
