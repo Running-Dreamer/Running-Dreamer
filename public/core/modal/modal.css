@@ -20,18 +20,11 @@
 }
 .modal .modal-container {
 	position: relative;
-	background: #212121;
-	box-shadow: 4px 4px 5px 0 rgba(50,50,50,0.75);
-	border-radius: 10px;
-	border: 1px solid #777;
-	color: white;
 	overflow: hidden;
 	opacity: 0;
 	-webkit-transition: opacity .5s linear;
 	transition: opacity .5s linear;
 	z-index: 9999;
-	min-height: 200px;
-	min-width: 200px;
 }
 .modal.SHOW .modal-container {
 	opacity: 1;

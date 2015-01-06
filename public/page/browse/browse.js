@@ -35,7 +35,10 @@
 						$paper.on("click", function(){
 							var $self = $(this);
 							var result = $self.data('result');
-							Modal.setTextByClass('title', result.title).setTextByClass('description', result.description).show();
+							Modal
+							.setImgSrcBySelector('.picture img', result.photo.url)
+							.setTextByClass('title', result.title)
+							.setTextByClass('description', result.description).show();
 						});
 						$paperArea.append($paper);
 					}

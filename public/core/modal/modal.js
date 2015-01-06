@@ -39,15 +39,26 @@
 		// 設定有某class元素的text
 		setTextByClass: function (className, text) {
 			var self = this;
-			var eles = self.cacheEle[className] || self.cacheEle.content.find("."+className);
+			var eles = self.cacheEle[className] || self.cacheEle.content.find("." + className);
 			self.cacheEle[className] = eles;
 			var typeOfText = typeof text === "object" ? "array" : "string";
 			var i, max = eles.length;
-			for(var i = 0; i < max; i += 1) {
-				if(typeOfText === "array")
+			for (var i = 0; i < max; i += 1) {
+				if (typeOfText === "array")
 					$(eles[i]).text(text[i]);
 				else
 					$(eles[i]).text(text);
+			}
+			return self;
+		},
+		// 以selector設定img src
+		setImgSrcBySelector: function (selector, src) {
+			var self = this;
+			var eles = self.cacheEle.content.find(selector);
+			var i, max = eles.length;
+			for (var i = 0; i < max; i += 1) {
+				$(eles[i]).attr('src','');
+				$(eles[i]).attr('src',src);
 			}
 			return self;
 		}
