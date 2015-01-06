@@ -4,18 +4,19 @@
 
 	function start() {
 		$(document).ready(function () {
+			var $paperSample = $('.paper').clone();
 			getDream("all", 0);
 			Modal.init();
 
 			function getDream(type, skip) {
-				$.ajax({
-					url: '/api/getAllBrowseList',
-					type: 'POST',
-					data: {
-						type: type,
-						skip: skip
-					}
-				}).then(function (results) {
+				var Dream = Parse.Object.extend("Dream");
+				var query = new Parse.Query(Dream);
+				query.include('owner');
+				//如果type不為空 or all 只搜尋那個型別
+				if (type != null && type != "all") query.equalTo("type", type);
+				if (skip != null) query.skip(skip);
+
+				query.find().then(function (results) {
 					var $paperArea = $('.paper-area');
 					$paperArea.empty(); //先清空
 					var i, max = 7;
@@ -25,22 +26,25 @@
 
 					for (i = 0; i < max; i += 1) {
 						var result = results[i];
-						var $paper = $('<div class="paper">標題:' + result.title + '<br/>內容:' +
-							result.description + '</div>');
+						var $paper = $paperSample.clone();
+						$paper.find('.title').text(result.get("title"));
+						$paper.find('.description').text(result.get("description"));
+						$paper.find('img').attr('src', result.get("photo").url());
+						$paper.find('.author').text(result.get('owner').get('displayName'));
 						$paper.data("result", result);
 						$paper.css({
 							'left': Math.random() * 80 + "%",
 							'top': Math.random() * 80 + "%"
 						});
-						$paper.on("click", function(){
+						$paper.on("click", function () {
 							var $self = $(this);
 							var result = $self.data('result');
 							Modal
-							.setImgSrcBySelector('.picture img', result.photo.url)
-							.setTextByClass('title', result.title)
-							.setTextByClass('description', result.description).show();
+								.setImgSrcBySelector('.picture img', result.get("photo").url())
+								.setTextByClass('title', result.get("title"))
+								.setTextByClass('description', result.get("description")).show();
 						});
-						$paperArea.append($paper);
+						$paperArea.append($paper.show());
 					}
 				});
 			}

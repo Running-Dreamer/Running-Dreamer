@@ -31,7 +31,7 @@ cloud.sayHello = function () {
 cloud.getAllBrowseList = function (type, skip) {
 	var Dream = Parse.Object.extend("Dream");
 	var query = new Parse.Query(Dream);
-
+	query.include('owner');
 	//如果type不為空 or all 只搜尋那個型別
 	if(type != null && type != "all") query.equalTo("type" , type);
 	if(skip != null) query.skip(skip);
