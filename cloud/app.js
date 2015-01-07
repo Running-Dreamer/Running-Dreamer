@@ -104,9 +104,14 @@ app.post('/api/createComment', function(req, res){
 	var CreatorId = Parse.User.current().id;
 	var Content = req.body.Content;
 	
-	CLOUD.createComment(DreamId, CreatorId, Content).then(function (user) {
-		console.log(user);
-	});
+	CLOUD.createComment(DreamId, CreatorId, Content).then(
+		function () {
+			res.send("success");
+		},
+		function () {
+			res.send("error");
+		}
+	);
 });
 app.post('/api/delDream', function(req, res){
 	var DreamId = req.body.DreamId;

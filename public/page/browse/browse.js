@@ -1,3 +1,7 @@
+//存放位置點
+var papers = [];
+
+
 (function () {
 	var fn = funcs;
 	fn.start = start;
@@ -28,6 +32,8 @@
 			
 
 			function getDream(type, skip) {
+				//清空夢想
+				papers.length = 0;
 				var max_now = max; //當次迴圈要顯示的筆數
 
 				var Dream = Parse.Object.extend("Dream");
@@ -51,18 +57,39 @@
 						skip_count = skip_count + max; //將下次要skip的筆數增加
 					}
 
-					for (i = 0; i < results.length; i += 1) {
+					for (i = 0; i < max_now; i += 1) {
 						var result = results[i];
 						var $paper = $paperSample.clone();
+						var checkPaper = true;
 						$paper.find('.title').text(result.get("title"));
 						$paper.find('.description').text(result.get("description"));
 						$paper.find('img').attr('src', result.get("photo").url());
 						$paper.find('.author').text(result.get('owner').get('displayName'));
 						$paper.data("result", result);
+						//判斷有沒有相碰
+						while(checkPaper){
+							if(papers.length<1){checkPaper = false;}
+
+							var randomNumX = Math.random() * 80;
+							var randomNumY = Math.random() * 80;
+							var j = 0;
+							for(var i=0; i<papers.length; i++){
+								//測有沒有相撞
+								if (!isTouch(papers[i]['x'] , papers[i]['y'] , randomNumX/100*$paperArea.width(), randomNumY/100*$paperArea.height())) 
+								{
+									j++;
+								}
+								if(papers.length == j)checkPaper = false;
+							}
+						}
 						$paper.css({
-							'left': Math.random() * 80 + "%",
-							'top': Math.random() * 80 + "%"
+							'left': randomNumX/100*$paperArea.width() + "px",
+							'top': randomNumY/100*$paperArea.height() + "px"
 						});
+						//存絕對位置
+						var thisPaper = {"x" : parseFloat($paper.css('left')), "y" : parseFloat($paper.css('top'))};
+						papers.push(thisPaper);
+
 						$paper.on("click", function () {
 							var $self = $(this);
 							var dream = $self.data('result');
@@ -86,7 +113,7 @@
 									var commentCtn = $commentSample.clone();
 									commentCtn.find('.avatar img').attr('src',_creator.get('fbPicture'));
 									commentCtn.find('.comment-author a').attr('href', '/other?UserId='+_creator.id).text(_creator.get("displayName"));
-									commentCtn.find('.comment-meta').text(_comment.updatedAt);
+									commentCtn.find('.comment-meta').text(_comment.updatedAt.toLocaleString());
 									commentCtn.find('.comment-content').text(_comment.get("content"));
 									commentCtn.appendTo($('.comment-list'));
 								}
@@ -102,27 +129,38 @@
 					}
 				});
 			}
+			function createComment(	DreamId, Content) {
+				$.ajax({
+					url: '/api/createComment',
+					type: 'POST',
+					data: {
+						DreamId: DreamId,
+						Content: Content
+					}
+				}).then(function (results) {
+					if(results == 'success')
+						successComment();
+				});
+			}
+
+			function successComment() {
+				var content = $('.comment-area').find('input').val();
+				$('.comment-area').find('input').val("");
+				var commentCtn = $commentSample.clone();
+				var user = Parse.User.current();
+				commentCtn.find('.avatar img').attr('src',user.get('fbPicture'));
+				commentCtn.find('.comment-author a').attr('href', '/other?UserId='+user.id).text(user.get("displayName"));
+				commentCtn.find('.comment-meta').text(new Date().toLocaleString());
+				commentCtn.find('.comment-content').text(content);
+				commentCtn.appendTo($('.comment-list'));
+				$('.send-comment').attr('disabled', false);;
+			}
+			//是否碰到
+			function isTouch(x1 , y1 , x2 ,y2){
+				var absX = Math.abs(x1-x2) < 120;
+				var absY = Math.abs(y1-y2) < 180;
+				return (absX && absY);
+			}
 		});
 	}
 })()
-function createComment(	DreamId, Content) {
-	$.ajax({
-		url: '/api/createComment',
-		type: 'POST',
-		data: {
-			DreamId: DreamId,
-			Content: Content
-		}
-	}).then(function (results) {
-		alert(results);
-		successComment();
-	});
-}
-
-function successComment() {
-	var conetnt = $('.comment-area').find('input').val();
-	$('.comment-area').find('input').val("");
-	$('.comment ul').append("<li>"+conetnt+"</li>")
-
-	$('.send-comment').attr('disabled', false);;
-}
