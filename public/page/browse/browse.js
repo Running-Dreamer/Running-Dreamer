@@ -1,5 +1,5 @@
 //存放位置點
-var papers = [];	
+var papers = [];
 
 
 (function () {
@@ -45,7 +45,7 @@ var papers = [];
 				if (type != null && type != "all") query.equalTo("type", type);
 				if (skip != null) query.skip(skip);
 
-				query.find().then(function (results) {				
+				query.find().then(function (results) {
 					var $paperArea = $('.paper-area');
 					$paperArea.empty(); //先清空
 					var i;
@@ -113,7 +113,7 @@ var papers = [];
 									var commentCtn = $commentSample.clone();
 									commentCtn.find('.avatar img').attr('src',_creator.get('fbPicture'));
 									commentCtn.find('.comment-author a').attr('href', '/other?UserId='+_creator.id).text(_creator.get("displayName"));
-									commentCtn.find('.comment-meta').text(_comment.updatedAt);
+									commentCtn.find('.comment-meta').text(_comment.updatedAt.toLocaleString());
 									commentCtn.find('.comment-content').text(_comment.get("content"));
 									commentCtn.appendTo($('.comment-list'));
 								}
@@ -129,34 +129,38 @@ var papers = [];
 					}
 				});
 			}
+			function createComment(	DreamId, Content) {
+				$.ajax({
+					url: '/api/createComment',
+					type: 'POST',
+					data: {
+						DreamId: DreamId,
+						Content: Content
+					}
+				}).then(function (results) {
+					if(results == 'success')
+						successComment();
+				});
+			}
+
+			function successComment() {
+				var content = $('.comment-area').find('input').val();
+				$('.comment-area').find('input').val("");
+				var commentCtn = $commentSample.clone();
+				var user = Parse.User.current();
+				commentCtn.find('.avatar img').attr('src',user.get('fbPicture'));
+				commentCtn.find('.comment-author a').attr('href', '/other?UserId='+user.id).text(user.get("displayName"));
+				commentCtn.find('.comment-meta').text(new Date().toLocaleString());
+				commentCtn.find('.comment-content').text(content);
+				commentCtn.appendTo($('.comment-list'));
+				$('.send-comment').attr('disabled', false);;
+			}
+			//是否碰到
+			function isTouch(x1 , y1 , x2 ,y2){
+				var absX = Math.abs(x1-x2) < 120;
+				var absY = Math.abs(y1-y2) < 180;
+				return (absX && absY);
+			}
 		});
 	}
 })()
-function createComment(	DreamId, Content) {
-	$.ajax({
-		url: '/api/createComment',
-		type: 'POST',
-		data: {
-			DreamId: DreamId,
-			Content: Content
-		}
-	}).then(function (results) {
-		alert(results);
-		successComment();
-	});
-}
-
-function successComment() {
-	var conetnt = $('.comment-area').find('input').val();
-	$('.comment-area').find('input').val("");
-	$('.comment ul').append("<li>"+conetnt+"</li>")
-
-	$('.send-comment').attr('disabled', false);;
-}
-
-//是否碰到
-function isTouch(x1 , y1 , x2 ,y2){
-	var absX = Math.abs(x1-x2) < 120;
-	var absY = Math.abs(y1-y2) < 180;
-	return (absX && absY);
-}
