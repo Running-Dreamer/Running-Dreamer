@@ -29,3 +29,7 @@
 .modal.SHOW .modal-container {
 	opacity: 1;
 }
+
+.modal-content {
+	display: none;
+}

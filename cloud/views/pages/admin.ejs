@@ -37,11 +37,12 @@
 								<div class="form-group">
 									<label for="type">類型</label>
 									<select id="type">
-										<option>類型一</option>
-										<option>類型二</option>
-										<option>類型三</option>
-										<option>類型四</option>
-										<option>類型五</option>
+										<option value="travel">旅遊</option>
+										<option value="experience">經驗</option>
+										<option value="adventure">冒險</option>
+										<option value="skill">技能</option>
+										<option value="family">家庭</option>
+										<option value="others">其他</option>
 									</select>
 								</div>
 							</form>
@@ -83,7 +84,7 @@
 							dream.set("title",$('#title').val());
 							dream.set("description",$('#description').val());
 							dream.set("photo",file);
-							//dream.set("type",$('#type').val());
+							dream.set("type",$('#type').val());
 							dream.save().then(function(){
 								//user那邊的Dreams關聯要更新
 								var query = new Parse.Query(User);
