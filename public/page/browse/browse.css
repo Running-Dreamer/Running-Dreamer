@@ -122,7 +122,6 @@
 	width: 55px;
 	height: 55px;
 	margin: 2px;
-
 	line-height: 48px;
 	text-align:center;
 }
@@ -134,32 +133,56 @@
 .pin-label-2 {
 	background-color: #ff9900;
 	border-radius: 50%;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+     cursor: pointer;
+>>>>>>> b7225b53f02f67e1c8b597d59da40dfe962f2e96
 }
 .pin-label-3 {
 	background-color: #ffff00;
 	border-radius: 50%;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+     cursor: pointer;
+>>>>>>> b7225b53f02f67e1c8b597d59da40dfe962f2e96
 }
 .pin-label-4 {
 	background-color: #0f0;
 	border-radius: 50%;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+     cursor: pointer;
+>>>>>>> b7225b53f02f67e1c8b597d59da40dfe962f2e96
 }
 .pin-label-5 {
 	background-color: #00f;
 	border-radius: 50%;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+     cursor: pointer;
+>>>>>>> b7225b53f02f67e1c8b597d59da40dfe962f2e96
 }
 .pin-label-6 {
 	background-color: #330099;
 	border-radius: 50%;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+     cursor: pointer;
+>>>>>>> b7225b53f02f67e1c8b597d59da40dfe962f2e96
 }
 .pin-label-7 {
 	background-color: #660066;
 	border-radius: 100%;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+     cursor: pointer;
+>>>>>>> b7225b53f02f67e1c8b597d59da40dfe962f2e96
 }
 .paper-area {
 	position: relative;
@@ -171,7 +194,11 @@
 	width: 120px;
 	height: 180px;
 	word-break: break-all;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+     cursor: pointer;
+>>>>>>> b7225b53f02f67e1c8b597d59da40dfe962f2e96
 }
 .paper img {
 	width: 80px;
