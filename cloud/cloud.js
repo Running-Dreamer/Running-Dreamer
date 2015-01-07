@@ -70,6 +70,26 @@ cloud.relationComment = function (DreamId, comment) {
 	return dream.save();	
 };
 
+//搜尋並確認該筆夢想是否為此人的
+cloud.checkDream = function (DreamId , UserId) {
+	var User = Parse.Object.extend("User");
+	var owner = new User();
+	owner.id = UserId;
+
+	var Dream = Parse.Object.extend("Dream");
+	var query = new Parse.Query(Dream);	
+	query.equalTo("objectId",DreamId);
+	query.equalTo("owner",owner);
+
+	return query.first();
+};
+
+
+//刪除某筆夢想
+cloud.delDream = function (Dream) {
+	return Dream.destroy();	
+};
+
 // 讓整個app可以用到
 exports.getCLOUD = function () {
 	return cloud;

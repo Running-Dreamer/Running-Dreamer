@@ -69,6 +69,20 @@ app.get('/', function (req, res) {
 	else
 		res.redirect('/login');
 });
+// 其他人的夢想列表home
+app.get('/other', function (req, res) {
+		var UserId = req.query.UserId;
+		CLOUD.getUser(UserId).then(function (user) {	
+			CLOUD.getUserDreams(user).then(function (dream) {
+				user.set('Dreams', dream);
+				res.render('./pages/home', {
+					page: 'home-page',
+					result: user
+				});
+			});
+		});
+});
+
 // 瀏覽夢想browse
 app.get('/browse', function (req, res) {
 	res.render('./pages/browse', {
@@ -119,6 +133,20 @@ app.post('/api/createComment', function(req, res){
 	
 	CLOUD.createOneComment(DreamId, CreatorId, Content).then(function (comment) {
 		CLOUD.relationComment(DreamId, comment).then(function(dream){
+			//success
+			res.send("success");
+		},function(error){
+			//error
+			res.send("error");
+		});
+	});
+});
+app.post('/api/delDream', function(req, res){
+	var DreamId = req.body.DreamId;
+	var ownerId = Parse.User.current().id;
+
+	CLOUD.checkDream(DreamId, ownerId).then(function (dream) {
+		CLOUD.delDream(dream).then(function(result){
 			//success
 			res.send("success");
 		},function(error){
