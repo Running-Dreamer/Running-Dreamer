@@ -61,6 +61,7 @@ app.get('/', function (req, res) {
 			CLOUD.getUserDreams(user).then(function (dream) {
 				user.set('Dreams', dream);
 				res.render('./pages/home', {
+					UserId: Parse.User.current().id,
 					page: 'home-page',
 					result: user
 				});
@@ -76,6 +77,7 @@ app.get('/other', function (req, res) {
 			CLOUD.getUserDreams(user).then(function (dream) {
 				user.set('Dreams', dream);
 				res.render('./pages/home', {
+					UserId: Parse.User.current().id,
 					page: 'home-page',
 					result: user
 				});

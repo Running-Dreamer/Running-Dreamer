@@ -106,3 +106,19 @@ h6 {
     height: 100%;
     margin-left: 40px;
 }
+.delBtn{
+    /*display:none;*/
+}
+
+.fa-stack {
+    width: 1.5em;
+    height: 1.5em;
+    line-height: 1.3em;
+    vertical-align: middle;
+}
+.fa-stack-2x {
+    font-size: 1.3em;
+}
+.fa-stack-1x {
+    font-size: 0.8em;
+}

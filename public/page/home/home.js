@@ -4,11 +4,15 @@
 	
 	function start() {
 		$(document).ready(function () {
+			$('.delBtn').hide();
 
 			$('.pencil').on('click', function(){
 				Modal.init();
 				Modal.show();
 			});
+			$('.eraser').on('click', function(){
+				$('.delBtn').show();
+			});			
 			$('#photo').on("change", function(e) {
 				var files = e.target.files || e.dataTransfer.files;
 				$(this).data('file', files[0]);
@@ -55,3 +59,16 @@
 		});
 	}
 })()
+
+function delDream(DreamId){
+	$.ajax({
+		url: '/api/delDream',
+		type: 'POST',
+		data: {
+			DreamId: DreamId
+		}
+	}).then(function (results) {
+		alert("刪除成功!");
+		location.reload();
+	});
+}

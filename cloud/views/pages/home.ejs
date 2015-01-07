@@ -21,11 +21,18 @@
             <div class="lines"></div>
             <ul class="list">
                 <% for(var i = 0; i < result.get('Dreams').length; i ++) {%>
-				<li><%= result.get('Dreams')[i].get('title') %></li>
+				<li>
+					<a href="#" class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
+					  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
+					  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+					</a>
+					<%= result.get('Dreams')[i].get('title') %>
+				</li>
 				<% }%>
             </ul>
         </div>
 	</div>
+	<% if(result.id == UserId) {%>
 	<div class="flex-column right-part">
 		<div class="flex-1 flex-row flex-center">
 			<div class="flex-1 flex-center">
@@ -34,6 +41,7 @@
 			</div>
 		</div>
 	</div>
+	<% }%>
 </div>
 
 
