@@ -119,9 +119,12 @@
 	border-right: 1px solid #5a2d2d;
 }
 .pin-label-area > div {
-	width: 32px;
-	height: 32px;
+	width: 55px;
+	height: 55px;
 	margin: 2px;
+
+	line-height: 48px;
+	text-align:center;
 }
 .pin-label-1 {
 	background-color: #f00;

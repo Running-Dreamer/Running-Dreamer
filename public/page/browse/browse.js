@@ -14,7 +14,14 @@
 			Modal.init();
 
 			//轉換夢想
-			$("#change_dream").on('click',function(event) {
+			$("#change_dream").on('click',function() {
+				getDream(type_now, skip_count);
+			});
+			//轉換分類
+			$('.type').on('click',function() {
+				skip_count = 0;
+				type_now = $(this).attr('type');
+				//alert(type_now);
 				getDream(type_now, skip_count);
 			});
 			
