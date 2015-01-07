@@ -1,5 +1,6 @@
 //存放位置點
-var papers = [];
+var papers = [];	
+
 
 (function () {
 	var fn = funcs;
@@ -31,6 +32,8 @@ var papers = [];
 			
 
 			function getDream(type, skip) {
+				//清空夢想
+				papers.length = 0;
 				var max_now = max; //當次迴圈要顯示的筆數
 
 				var Dream = Parse.Object.extend("Dream");
@@ -42,7 +45,7 @@ var papers = [];
 				if (type != null && type != "all") query.equalTo("type", type);
 				if (skip != null) query.skip(skip);
 
-				query.find().then(function (results) {
+				query.find().then(function (results) {				
 					var $paperArea = $('.paper-area');
 					$paperArea.empty(); //先清空
 					var i;
