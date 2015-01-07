@@ -270,4 +270,6 @@
 .modal ol{
 	-webkit-padding-start: 5px;
 }
-
+.comment-skeleton {
+	display: none;
+}

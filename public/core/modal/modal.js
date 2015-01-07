@@ -61,6 +61,13 @@
 				$(eles[i]).attr('src',src);
 			}
 			return self;
+		},
+		// call 傳入的function帶入傳入的參數
+		callFunction: function () {
+			var self = this;
+			var func = arguments[0];
+			func.apply(arguments[1]);
+			return self;
 		}
 	};
 })();
