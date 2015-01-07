@@ -60,6 +60,9 @@ h6 {
     letter-spacing: 3px;
     font-weight: bold;
 }
+.lines-container {
+	overflow: auto;
+}
 .list {
     padding: 0 !important;
     border: 1px solid #dedede;
@@ -68,6 +71,7 @@ h6 {
     list-style: none;
     border-bottom: 1px dotted #ccc;
     height: 25px;
+	margin-left: 25px;
 }
 
 .modal .modal-container {
