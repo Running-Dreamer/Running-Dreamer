@@ -39,6 +39,36 @@ cloud.getAllBrowseList = function (type, skip) {
 	return query.find();
 };
 
+// create comment
+cloud.createOneComment = function (DreamId, CreatorId, Content) {
+	var result = "false";
+
+	var User = Parse.Object.extend("User");
+	var owner = new User();
+	var Dream = Parse.Object.extend("Dream");
+	var dream = new Dream();
+	var Comment = Parse.Object.extend("Comment");
+	var comment = new Comment();
+	owner.id = CreatorId;
+	dream.id = DreamId;
+
+	comment.set("content",Content);
+	comment.set("belongTo",dream);
+	comment.set("creator",owner);
+	return comment.save();
+	
+};
+
+cloud.relationComment = function (DreamId, comment) {
+
+	var Dream = Parse.Object.extend("Dream");
+	var dream = new Dream();
+	dream.id = DreamId;
+
+	var relation = dream.relation("comments");
+	relation.add(comment);
+	return dream.save();	
+};
 
 // 讓整個app可以用到
 exports.getCLOUD = function () {

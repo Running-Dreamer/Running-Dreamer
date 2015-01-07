@@ -111,6 +111,22 @@ app.post('/api/getAllBrowseList', function(req, res){
 		res.send(result);
 	});
 });
+app.post('/api/createComment', function(req, res){
+	var DreamId = req.body.DreamId;
+	var CreatorId = Parse.User.current().id;
+	//var CreatorId = req.body.CreatorId;
+	var Content = req.body.Content;
+	
+	CLOUD.createOneComment(DreamId, CreatorId, Content).then(function (comment) {
+		CLOUD.relationComment(DreamId, comment).then(function(dream){
+			//success
+			res.send("success");
+		},function(error){
+			//error
+			res.send("error");
+		});
+	});
+});
 // -------------------API-------------------
 
 // -------------------建立server-------------------
