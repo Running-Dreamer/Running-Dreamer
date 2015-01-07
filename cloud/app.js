@@ -71,18 +71,15 @@ app.get('/', function (req, res) {
 });
 // 其他人的夢想列表home
 app.get('/other', function (req, res) {
-		var UserId = req.body.UserId;
-		res.send(req.body);
+		var UserId = req.query.UserId;
 		CLOUD.getUser(UserId).then(function (user) {	
-
-			/*
 			CLOUD.getUserDreams(user).then(function (dream) {
 				user.set('Dreams', dream);
 				res.render('./pages/home', {
 					page: 'home-page',
 					result: user
 				});
-			});*/
+			});
 		});
 });
 
