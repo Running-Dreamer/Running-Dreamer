@@ -89,32 +89,6 @@ app.get('/browse', function (req, res) {
 		page: 'browse-page'
 	});
 });
-// 
-app.get('/mylist', function (req, res) {
-	if(Parse.User.current())
-		CLOUD.getAllUser().then(function (result) {
-			res.render('./pages/home', {
-				page: 'mylist-page',
-				result: result
-			});
-		});
-	else
-		res.redirect('/login');
-});
-// 
-app.get('/hello', function (req, res) {
-	if(Parse.User.current())
-		CLOUD.sayHello().always(function (result) {
-			res.render('./pages/home', {
-				page: 'hello-page',
-				result: []
-			});
-		});
-	else
-		res.render('./pages/home', {
-			title: "請登入"
-		});
-});
 // -------------------routing-------------------
 
 // -------------------API-------------------
@@ -128,17 +102,10 @@ app.post('/api/getAllBrowseList', function(req, res){
 app.post('/api/createComment', function(req, res){
 	var DreamId = req.body.DreamId;
 	var CreatorId = Parse.User.current().id;
-	//var CreatorId = req.body.CreatorId;
 	var Content = req.body.Content;
 	
-	CLOUD.createOneComment(DreamId, CreatorId, Content).then(function (comment) {
-		CLOUD.relationComment(DreamId, comment).then(function(dream){
-			//success
-			res.send("success");
-		},function(error){
-			//error
-			res.send("error");
-		});
+	CLOUD.createComment(DreamId, CreatorId, Content).then(function (user) {
+		console.log(user);
 	});
 });
 app.post('/api/delDream', function(req, res){
