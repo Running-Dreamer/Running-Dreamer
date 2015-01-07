@@ -2,13 +2,26 @@
 	var fn = funcs;
 	fn.start = start;
 
+
 	function start() {
 		$(document).ready(function () {
+			var type_now = "all"; //夢想分類預設值
+			var skip_count = 0; //跳過夢想預設值
+			var max = 5; //顯示夢想筆數預設值
+
 			var $paperSample = $('.paper').clone();
-			getDream("all", 0);
+			getDream(type_now, skip_count);
 			Modal.init();
 
+			//轉換夢想
+			$("#change_dream").on('click',function(event) {
+				getDream(type_now, skip_count);
+			});
+			
+
 			function getDream(type, skip) {
+				var max_now = max; //當次迴圈要顯示的筆數
+
 				var Dream = Parse.Object.extend("Dream");
 				var query = new Parse.Query(Dream);
 				query.include('owner');
@@ -19,12 +32,16 @@
 				query.find().then(function (results) {
 					var $paperArea = $('.paper-area');
 					$paperArea.empty(); //先清空
-					var i, max = 7;
-					if (results.length < max) {
-						max = results.length;
-					} //如果不到最大筆數 就印他的比數
+					var i;
+					if (results.length <= max) {
+						max_now = results.length; //如果不到最大筆數 就印他的比數
+						skip_count = 0; //印到底了 將skip歸零
+					}  
+					else{
+						skip_count = skip_count + max; //將下次要skip的筆數增加
+					}
 
-					for (i = 0; i < max; i += 1) {
+					for (i = 0; i < max_now; i += 1) {
 						var result = results[i];
 						var $paper = $paperSample.clone();
 						$paper.find('.title').text(result.get("title"));
@@ -116,6 +133,7 @@
 				});*/
 
 			}
+
 		});
 	}
 })()
