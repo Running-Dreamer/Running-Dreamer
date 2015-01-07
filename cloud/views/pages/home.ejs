@@ -7,15 +7,32 @@
 <%- contentFor('body') %>
 <div class="flex-1 desktop flex-row <%= page%>">
 	<div class="flex-1 flex-column pic-notebook">
-		<div class="flex-row flex-start flex-full-width">
+        <div class="flex-row flex-start flex-full-width">
 			<div class="photo-outer flex-column flex-center">
 				<div class="photo-inner flex-1">
 					<img src='<%=result.get("fbPicture")%>'>
 				</div>
 				<div class="flex-center"><%= result.get('displayName') %></div>
 			</div>
-			<div class="flex-1">幾月幾號天氣晴</div>
-		</div>
+            <h4 class="flex-1 flex-center">Dreams</h4>
+			<h6 class="flex-end">幾月幾號天氣晴</h6>
+        </div>
+        <div>
+            <div class="lines"></div>
+            <ul class="list">
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+                <li></li>
+            </ul>
+        </div>    
 		<div class="flex-1 flex-column flex-start flex-full-width">
         <% for(var i = 0; i < result.get('Dreams').length; i ++) {%>
         	<div class="notebook"><%= result.get('Dreams')[i].get('title') %></div>
