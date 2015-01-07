@@ -54,7 +54,7 @@ var papers = [];
 						skip_count = skip_count + max; //將下次要skip的筆數增加
 					}
 
-					for (i = 0; i < results.length; i += 1) {
+					for (i = 0; i < max_now; i += 1) {
 						var result = results[i];
 						var $paper = $paperSample.clone();
 						var checkPaper = true;
