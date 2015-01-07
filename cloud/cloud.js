@@ -67,19 +67,18 @@ cloud.createComment = function (DreamId, CreatorId, Content) {
 	var comment = new Comment();
 	owner.id = CreatorId;
 	dream.id = DreamId;
-	var comments = dream.get("comment") || [];
-	console.log(comments);
 	comment.set("content",Content);
 	comment.set("belongTo",dream);
 	comment.set("creator",owner);
-	return comment.save().then(function(){
-		console.log("a");
+	return comment.save().then(function(comment){
+		return dream.fetch()
+	}).then(function(dream){
+		var comments = dream.get("comment") || [];
 		comments.push(comment);
 		dream.set('comment', comments);
-		dream.save();
+		return dream.save();
 	});
 };
-
 cloud.relationComment = function (DreamId, comment) {
 
 	var Dream = Parse.Object.extend("Dream");

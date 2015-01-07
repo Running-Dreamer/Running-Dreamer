@@ -86,7 +86,7 @@
 									var commentCtn = $commentSample.clone();
 									commentCtn.find('.avatar img').attr('src',_creator.get('fbPicture'));
 									commentCtn.find('.comment-author a').attr('href', '/other?UserId='+_creator.id).text(_creator.get("displayName"));
-									commentCtn.find('.comment-meta').text(_comment.updatedAt);
+									commentCtn.find('.comment-meta').text(_comment.updatedAt.toLocaleString());
 									commentCtn.find('.comment-content').text(_comment.get("content"));
 									commentCtn.appendTo($('.comment-list'));
 								}
@@ -102,27 +102,32 @@
 					}
 				});
 			}
+			function createComment(	DreamId, Content) {
+				$.ajax({
+					url: '/api/createComment',
+					type: 'POST',
+					data: {
+						DreamId: DreamId,
+						Content: Content
+					}
+				}).then(function (results) {
+					if(results == 'success')
+						successComment();
+				});
+			}
+
+			function successComment() {
+				var content = $('.comment-area').find('input').val();
+				$('.comment-area').find('input').val("");
+				var commentCtn = $commentSample.clone();
+				var user = Parse.User.current();
+				commentCtn.find('.avatar img').attr('src',user.get('fbPicture'));
+				commentCtn.find('.comment-author a').attr('href', '/other?UserId='+user.id).text(user.get("displayName"));
+				commentCtn.find('.comment-meta').text(new Date().toLocaleString());
+				commentCtn.find('.comment-content').text(content);
+				commentCtn.appendTo($('.comment-list'));
+				$('.send-comment').attr('disabled', false);;
+			}
 		});
 	}
 })()
-function createComment(	DreamId, Content) {
-	$.ajax({
-		url: '/api/createComment',
-		type: 'POST',
-		data: {
-			DreamId: DreamId,
-			Content: Content
-		}
-	}).then(function (results) {
-		alert(results);
-		successComment();
-	});
-}
-
-function successComment() {
-	var conetnt = $('.comment-area').find('input').val();
-	$('.comment-area').find('input').val("");
-	$('.comment ul').append("<li>"+conetnt+"</li>")
-
-	$('.send-comment').attr('disabled', false);;
-}
