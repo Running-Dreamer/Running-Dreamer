@@ -27,14 +27,14 @@
     border-bottom: 1px solid black;
 }
 .photo-outer {
-    border: 1px solid black;
-    margin: 10px;
+    border-radius: 100%;
+    margin: 20px;
     padding: 5px;
-    background-color: white;
 }
 .photo-inner img {
-    width: 80px;
-    height: 80px;
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
 }
 .pic-notebook {
     border-radius: 45px;
@@ -53,6 +53,12 @@ h6 {
     letter-spacing: -2px;
     text-align: left;
     margin-right: 10px;
+}
+.name_style{
+    color: #ae4d18;
+    font-size: 18px;
+    letter-spacing: 3px;
+    font-weight: bold;
 }
 .list {
     padding: 0 !important;
