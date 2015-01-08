@@ -102,6 +102,7 @@
 				dreams.each(function(){
 					var $dream = $(this);
 					var dreamID = $dream.attr('for');
+                    if(!dreamID) return;
 					var Dream = Parse.Object.extend("Dream");
 					var query = new Parse.Query(Dream);
 					query.equalTo("objectId", dreamID);

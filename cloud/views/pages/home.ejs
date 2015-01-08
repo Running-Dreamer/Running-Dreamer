@@ -3,6 +3,7 @@
 
 <%- contentFor('script') %>
 <script src="page/home/home.js"></script>
+<script src="core/js/turn.min.js"></script>
 
 <%- contentFor('body') %>
 <div class="flex-1 desktop flex-row <%= page%>">
@@ -17,19 +18,21 @@
             <h4 class="flex-1 flex-center">Dreams</h4>
 			<h6 class="flex-end">幾月幾號天氣晴</h6>
         </div>
-        <div class="lines-container">
+        <div class="lines-container" id="flip_page">
             <div class="lines"></div>
-            <ul class="list">
-                <% for(var i = 0; i < result.get('Dreams').length; i ++) {%>
-				<li for="<%= result.get('Dreams')[i].id %>" class="dream">
+            <div class="list">
+                <% for(var i = 0; i < 20; i ++) {%>
+				<span for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>" class="dream">
+                    <% if(i < result.get('Dreams').length) {%>
 					<a href="#" class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
 					  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
 					  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
 					</a>
 					<%= result.get('Dreams')[i].get('title') %>
-				</li>
+                    <% }%>
+				</span>
 				<% }%>
-            </ul>
+            </div>
         </div>
 	</div>
 	<% if(result.id == UserId) {%>
@@ -122,3 +125,11 @@
 		</div>
 	</li>
 </div>
+<script>
+        $(document).ready(ready);
+        
+        function ready () {
+            $('#flip_page').turn({}).turn("display", "single");
+        }
+        
+</script>
