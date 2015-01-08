@@ -120,6 +120,8 @@ var papers = [];
 							};
 							detailModal
 								.setImgSrcBySelector('.picture img', dream.get("photo").url())
+								.setHrefBySelector('.author a', '/other?UserId='+dream.get("owner").id)
+								.setTextBySelector('.author a', dream.get("owner").get('displayName'))
 								.setTextByClass('title', dream.get("title"))
 								.setTextByClass('description', dream.get("description"))
 								.callFunction(addComments, dream)

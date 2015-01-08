@@ -65,6 +65,27 @@
 				}
 				return self;
 			},
+			// 設定href
+			setHrefBySelector: function(selector, url) {
+				var self = this;
+				var eles = self.cacheEle.content.find(selector);
+				var i, max = eles.length;
+				for (var i = 0; i < max; i += 1) {
+					$(eles[i]).attr('href','');
+					$(eles[i]).attr('href',url);
+				}
+				return self;
+			},
+			setTextBySelector: function(selector, text) {
+				var self = this;
+				var eles = self.cacheEle.content.find(selector);
+				var i, max = eles.length;
+				for (var i = 0; i < max; i += 1) {
+					$(eles[i]).text('');
+					$(eles[i]).text(text);
+				}
+				return self;
+			},
 			// call 傳入的function帶入傳入的參數
 			callFunction: function () {
 				var self = this;
