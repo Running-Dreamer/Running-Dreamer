@@ -16,7 +16,7 @@ var papers = [];
 			var $paperSample = $('.paper').clone();
 			var $commentSample = $('.comment-sample').clone();
 			getDream(type_now, skip_count);
-			Modal.init();
+			var detailModal = Modal().init();
 
 			//轉換夢想
 			$("#change_dream").on('click',function() {
@@ -118,7 +118,7 @@ var papers = [];
 									commentCtn.appendTo($('.comment-list'));
 								}
 							};
-							Modal
+							detailModal
 								.setImgSrcBySelector('.picture img', dream.get("photo").url())
 								.setTextByClass('title', dream.get("title"))
 								.setTextByClass('description', dream.get("description"))

@@ -21,7 +21,7 @@
             <div class="lines"></div>
             <ul class="list">
                 <% for(var i = 0; i < result.get('Dreams').length; i ++) {%>
-				<li>
+				<li for="<%= result.get('Dreams')[i].id %>" class="dream">
 					<a href="#" class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
 					  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
 					  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
@@ -46,6 +46,7 @@
 
 
 <div class="modal-content">
+	<div class="new-dream-modal">
 		<div id="dream-title">I have a dream</div>
 		<div class="form-group">
 			<label for="title">夢想標題</label>
@@ -70,6 +71,54 @@
 				<option value="others">其他</option>
 			</select>
 		</div>
-	<button type="button" id="upload">送出夢想</button>
-
+		<button type="button" id="upload">送出夢想</button>
+	</div>
+	<div class="detail-modal">
+		<div class="flex-column flex-full-height">
+			<div class="flex-1 flex-column flex-center flex-full-width">
+				<div class="flex-row flex-center flex-full-width">
+					<div class="picture"><img></div>
+					<div class="flex-1 flex-column flex-center">
+						<h2>Title</h2>
+						<div class="flex-1 title"></div>
+					</div>
+				</div>
+				<div class="flex-1 flex-top-center flex-full-width">
+					<div class="flex-1 flex-column flex-center">
+						<h3>Description</h3>
+						<div class="flex-1 description"></div>
+					</div>
+				</div>
+			</div>
+			<div class="flex-1 flex-column flex-top-start comment-area">
+				<div class="flex-row">
+					<span>Comments</span>
+					<input>
+					<button class="send-comment">Send</button>
+				</div>
+				<section id="comments" class="flex-1 flex-column flex-full-width commentAll">
+					<ol class="comment-list">
+					</ol>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="comment-skeleton">
+	<li class="comment-sample comment">
+		<div class="comment-wrap">
+			<div class="avatar-wrap">
+				<div class="avatar">
+					<img src="http://www.ixtendo.com/themes/finesse-html/images/demo/avatar-50x50.png" alt="">
+				</div>
+				<a title="Edit comment" href="#" class="comment-edit-link" style="display: none;">Edit</a>
+			</div>
+			<div class="comment-details">
+				<div class="comment-author flex-row"><a href="#">高挺桂</a><span class="comment-meta flex-1 flex-end">February 18, 2012 at 5:30 pm</span></div>
+				<div class="comment-content">
+					<p>哈哈</p>
+				</div>
+			</div>
+		</div>
+	</li>
 </div>
