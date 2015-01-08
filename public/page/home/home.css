@@ -198,7 +198,10 @@ h6 {
 	text-align: center;
 	font-style: italic;
 }
-
+.modal .avatar img {
+	width: 60px;
+	height: 60px;
+}
 .modal ol.comment-list .comment-details {
 	overflow: hidden;
 }

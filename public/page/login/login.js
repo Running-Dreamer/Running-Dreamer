@@ -24,7 +24,7 @@
 							user.set("fbLink", response.link);
 							user.set("birthday", response.birthday);
 							// 抓大頭貼
-							FB.api("/me/picture", function (response) {
+							FB.api("/me/picture",{"type":"large"}, function (response) {
 								if (response && !response.error) {
 									user.set("fbPicture", response.data.url);
 									user.save(null, {
