@@ -13,7 +13,7 @@
 	text-align:center;
 }
 .hole {
-    background-image: url(images/hole.png);
+    background-image: url('./images/hole.png');
     background-size: 100%;
     cursor: pointer;
 }
@@ -23,7 +23,7 @@
 .paper {
 	display: none;
 	position: absolute;
-	background-image:url(images/wanted.jpg);
+	background-image:url('./images/wanted.jpg');
 	width: 180px;
 	height: 270px;
 	word-break: break-all;
