@@ -18,10 +18,12 @@
             <h4 class="flex-1 flex-center">Dreams</h4>
 			<h6 class="flex-end">幾月幾號天氣晴</h6>
         </div>
-        <div class="lines-container" id="flip_page">
+        <div class="lines-container">
             <div class="lines"></div>
-            <div class="list">
-                <% for(var i = 0; i < 20; i ++) {%>
+            <div id="flip_page" class="list">
+				<% for(var j = 0; j < 2; j ++) {%>
+				<div class="page">
+                <% for(var i = j*10; i < (j+1)*10; i ++) {%>
 				<span for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>" class="dream">
                     <% if(i < result.get('Dreams').length) {%>
 					<a href="#" class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
@@ -31,6 +33,8 @@
 					<%= result.get('Dreams')[i].get('title') %>
                     <% }%>
 				</span>
+				<% }%>
+				</div>
 				<% }%>
             </div>
         </div>
