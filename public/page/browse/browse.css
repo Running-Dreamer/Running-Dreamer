@@ -5,119 +5,6 @@
 .upper {
 	position: relative;
 }
-.pin-foot > div {
-	position: absolute;
-	margin: auto;
-}
-.pin-foot {
-	position: relative;
-	background: #b71d1d;
-	border-radius: 50%;
-	border: 1px solid #690000;
-	box-shadow: 5px 5px 5px #888888;
-	width: 32px;
-	height: 32px;
-	z-index: 1;
-}
-.pin-body {
-	background: #831616;
-	border-radius: 50%;
-	content: "";
-	height: 65%;
-	width: 65%;
-	right: 20%;
-	top: 15%;
-	z-index: 2;
-}
-.pin-head {
-	background: #b71d1d;
-	border: 1px solid #690000;
-	border-radius: 50%;
-	height: 75%;
-	width: 75%;
-	left: -15%;
-	top: -15%;
-	z-index: 4;
-}
-.rope {
-	position: absolute;
-	width: 8px;
-	margin-left: 0px;
-	height: 200px;
-	background: #464646;
-	top: 4px;
-	left: 12px;
-	border: 1px solid #1f1f1f;
-	z-index: 3;
-}
-.rope:after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	bottom: 0;
-	right: 0;
-	background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255, 255, .5)), color-stop(.25, transparent), color-stop(.5, transparent), color-stop(.5, rgba(255, 255, 255, .5)), color-stop(.75, rgba(255, 255, 255, .5)), color-stop(.75, transparent), to(transparent));
-	background-image: -webkit-linear-gradient(-45deg, rgba(255, 255, 255, .5) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .5) 50%, rgba(255, 255, 255, .5) 75%, transparent 75%, transparent);
-	z-index: 1;
-	background-size: 8px 8px;
-	-webkit-border-top-right-radius: 8px;
-	-webkit-border-bottom-right-radius: 8px;
-	border-top-right-radius: 8px;
-	border-bottom-right-radius: 8px;
-	-webkit-border-top-left-radius: 20px;
-	-webkit-border-bottom-left-radius: 20px;
-	border-top-left-radius: 20px;
-	border-bottom-left-radius: 20px;
-	overflow: hidden;
-}
-.rope-left {
-	-webkit-transform-origin: 50% 0%;
-	-ms-transform-origin: 50% 0%;
-	transform-origin: 50% 0%;
-	-webkit-transform: rotate(50deg);
-	-ms-transform: rotate(50deg);
-	transform: rotate(50deg);
-}
-.rope-right {
-	-webkit-transform-origin: 50% 0%;
-	-ms-transform-origin: 50% 0%;
-	transform-origin: 50% 0%;
-	-webkit-transform: rotate(-50deg);
-	-ms-transform: rotate(-50deg);
-	transform: rotate(-50deg);
-}
-.board {
-	width: 90%;
-	margin: 0 20px 10px;
-	z-index: 5;
-	background-image: url(images/board.jpg);
-	background-repeat: repeat;
-}
-.board-border {
-	background-image: url(images/border.jpg);
-	background-repeat: repeat;
-}
-.board-border.topbottom {
-	height: 25px;
-	border-left: 1px solid #5a2d2d;
-	border-right: 1px solid #5a2d2d;
-}
-.board-border.leftright {
-	width: 25px;
-}
-.board-border.topbottom.top {
-	border-top: 1px solid #5a2d2d;
-}
-.board-border.topbottom.bottom {
-	border-bottom: 1px solid #5a2d2d;
-}
-.board-border.leftright.left {
-	border-left: 1px solid #5a2d2d;
-}
-.board-border.leftright.right {
-	border-right: 1px solid #5a2d2d;
-}
 .pin-label-area > div {
 	width: 55px;
 	height: 55px;
@@ -125,39 +12,9 @@
 	line-height: 48px;
 	text-align:center;
 }
-.pin-label-1 {
-	background-color: #f00;
-	border-radius: 50%;
-    cursor: pointer;
-}
-.pin-label-2 {
-	background-color: #ff9900;
-	border-radius: 50%;
-    cursor: pointer;
-}
-.pin-label-3 {
-	background-color: #ffff00;
-	border-radius: 50%;
-    cursor: pointer;
-}
-.pin-label-4 {
-	background-color: #0f0;
-	border-radius: 50%;
-    cursor: pointer;
-}
-.pin-label-5 {
-	background-color: #00f;
-	border-radius: 50%;
-    cursor: pointer;
-}
-.pin-label-6 {
-	background-color: #330099;
-	border-radius: 50%;
-    cursor: pointer;
-}
-.pin-label-7 {
-	background-color: #660066;
-	border-radius: 100%;
+.hole {
+    background-image: url('./images/hole.png');
+    background-size: 100%;
     cursor: pointer;
 }
 .paper-area {
@@ -166,16 +23,21 @@
 .paper {
 	display: none;
 	position: absolute;
-	background-color: #ff0;
-	width: 120px;
-	height: 180px;
+	background-image:url('./images/wanted.jpg');
+	width: 180px;
+	height: 270px;
 	word-break: break-all;
     cursor: pointer;
 
 }
+.dream{
+    font-family: Sancreek;
+    font-size: 36px;
+    letter-spacing: 3px;
+}
 .paper img {
-	width: 80px;
-	height: 80px;
+	width: 160px;
+	height: 100px;
 }
 .modal .modal-container {
 	max-width: 400px;

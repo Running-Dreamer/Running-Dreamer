@@ -6,46 +6,32 @@
 
 <%- contentFor('body') %>
 <div class="flex-1 flex-column bg">
-	<div class="flex-1 flex-row flex-center">
-		<div class="pin-foot">
-			<div class="pin-head" id="change_dream"></div>
-			<div class="pin-body"></div>
-			<div class="rope rope-left"></div>
-			<div class="rope rope-right"></div>
-		</div>
-	</div>
-	<div class="flex-6 flex-column flex-center">
-		<div class="board flex-1 flex-column">
-			<div class="board-border topbottom top"></div>
-			<div class="flex-1 flex-row" >
-				<div class="board-border leftright left"></div>
 				<div class="flex-1 flex-column">
 					<div class="flex-1 flex-row pin-label-area">
-						<div class="pin-label-1 type" type="all">全部</div>
-						<div class="pin-label-2 type" type="adventure">冒險</div>
-						<div class="pin-label-3 type" type="experience">經驗</div>
-						<div class="pin-label-4 type" type="skill">技能</div>
-						<div class="pin-label-5 type" type="travel">旅遊</div>
-						<div class="pin-label-6 type" type="family">家庭</div>
-						<div class="pin-label-7 type" type="others">其他</div>
+						<div class="flex-3"></div>
+                        <div class="flex-1 hole type" type="all">全部</div>
+						<div class="flex-1 hole type" type="adventure">冒險</div>
+						<div class="flex-1 hole type" type="experience">經驗</div>
+						<div class="flex-1 hole type" type="skill">技能</div>
+						<div class="flex-1 hole type" type="travel">旅遊</div>
+						<div class="flex-1 hole type" type="family">家庭</div>
+						<div class="flex-1 hole type" type="others">其他</div>
+                        <div class="flex-3"></div>
 					</div>
 					<div class="flex-6 paper-area">
 						<div class="flex-column paper">
-							<div class="flex-center">DREAM</div>
-							<div class="flex-center picture">
-								<img>
-							</div>
-							<div class="flex-center title">Title</div>
-							<div class="flex-1 flex-center description">Description</div>
-							<div class="flex-end author">Author</div>
+                            <div class="flex-1 flex-column ABS-FULL">
+                                <div class="flex-1"></div>
+                                <div class="flex-1 flex-center dream">DREAM</div>
+                                <div class="flex-6 flex-center picture">
+                                    <img>
+                                </div>
+				                <div class="flex-1 flex-center title">Title</div>
+				                <div class="flex-4 flex-center description">Description</div>
+                                <div class="flex-1 flex-end author">Author</div>
+                            </div>
 						</div>
-					</div>
 				</div>
-				<div class="board-border leftright right"></div>
-			</div>
-			<div class="board-border topbottom bottom"></div>
-		</div>
-	</div>
 </div>
 <div class="modal-content">
 	<div class="flex-column flex-full-height">

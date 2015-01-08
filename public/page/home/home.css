@@ -53,7 +53,7 @@ h4 {
 h6 {
     color: #ae4d18;
     font-size: 20px;
-    letter-spacing: -2px;
+    letter-spacing: 2px;
     text-align: left;
     margin-right: 10px;
 }
@@ -80,6 +80,11 @@ h6 {
     text-overflow: ellipsis;
     display: block;
 }
+.date {
+    display: block;
+    width: 153px;
+}
+
 
 .modal .new-dream-modal {
 	max-width: 100%;
