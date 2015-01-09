@@ -4,6 +4,8 @@
 
     function start() {
         $(document).ready(function () {
+			getWeather()
+			setInterval(function(){getWeather();},1000*60*10);
             $('.delBtn').hide();
             var newDreamModal = Modal().init('.new-dream-modal');
             var detailModal = Modal().init('.detail-modal');
@@ -121,6 +123,26 @@
                     }
                 });
             }
+			
+			function getWeather() {
+				navigator.geolocation.getCurrentPosition(function (position) {
+					$.simpleWeather({
+						location: position.coords.latitude+','+position.coords.longitude,
+						woeid: '',
+						unit: 'c',
+						success: function (weather) {
+							var vs = rdvs;
+							vs.weather = weather;
+							$('.weather').text(weatherCode[weather.code]["CHT"]);
+						},
+						error: function (error) {
+							console.debug("getWeather error");
+						}
+					});
+				}, function(err){
+					debugger;
+				});
+			}
         });
     }
 })()
