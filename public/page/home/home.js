@@ -95,7 +95,6 @@
                     .setTextByClass('description', dream.get("description"))
                     .callFunction(addComments, dream)
                     .show();
-                detailModal.show();
             });
 
 
