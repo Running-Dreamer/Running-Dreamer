@@ -64,7 +64,7 @@ h6 {
     font-weight: bold;
 }
 .lines-container {
-	overflow: auto;
+	overflow: hidden;
 }
 .list {
     padding: 0 !important;
@@ -234,4 +234,7 @@ h6 {
 }
 .comment-skeleton {
 	display: none;
+}
+.page {
+	background: #f5f5f5;
 }
