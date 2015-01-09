@@ -26,6 +26,9 @@
     height: 40px;
     border-bottom: 1px solid black;
 }
+#flip_page{
+    overflow: hidden;
+}
 .photo-outer {
     border-radius: 100%;
     margin: 20px;
@@ -50,7 +53,7 @@ h4 {
 h6 {
     color: #ae4d18;
     font-size: 20px;
-    letter-spacing: -2px;
+    letter-spacing: 2px;
     text-align: left;
     margin-right: 10px;
 }
@@ -67,12 +70,21 @@ h6 {
     padding: 0 !important;
     border: 1px solid #dedede;
 }
-.list li {
-    list-style: none;
+.list span {
+    border-left: double #FFAA9F;
     border-bottom: 1px dotted #ccc;
     height: 25px;
 	margin-left: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
 }
+.date {
+    display: block;
+    width: 153px;
+}
+
 
 .modal .new-dream-modal {
 	max-width: 100%;
@@ -98,14 +110,7 @@ h6 {
 	margin-top: 10px;
 	text-align: center;
 }
-.lines {
-    border-left: 1px solid #ffaa9f;
-    border-right: 1px solid #ffaa9f;
-    width: 5px;
-    float: left;
-    height: 100%;
-    margin-left: 40px;
-}
+
 .delBtn{
     /*display:none;*/
 }
