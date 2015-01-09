@@ -44,13 +44,13 @@
     margin: 50px 50px 20px;
     background-color: #f5f5f5;
 }
-h4 {
+.pic-notebook h4 {
     color: #cd0000;
     font-size: 45px;
     font-style: italic;
     letter-spacing: 25px;
 }
-h6 {
+.pic-notebook .date {
     color: #ae4d18;
     font-size: 20px;
     letter-spacing: 2px;
@@ -237,4 +237,8 @@ h6 {
 }
 .page {
 	background: #f5f5f5;
+}
+.weather {
+	margin: 0 15px;
+	font-size: 1.5em;
 }

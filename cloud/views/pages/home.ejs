@@ -3,7 +3,9 @@
 
 <%- contentFor('script') %>
 <script src="page/home/home.js"></script>
-<script src="core/js/turn.min.js"></script>
+<script src="page/home/turn.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js"></script>
+<script src="core/js/weather.code.js"></script>
 
 <%- contentFor('body') %>
 <div class="flex-1 desktop flex-row <%= page%>">
@@ -15,8 +17,11 @@
 				</div>
 				<div class="flex-center name_style"><%= result.get('displayName') %></div>
 			</div>
-            <h4 class="flex-1 flex-center">Dreams</h4>
-			<span class="date"><h6 class="flex-end" id="clock"></h6></span>
+            <h4 class="flex-1 flex-center ">Dreams</h4>
+			<div class="flex-column flex-end">
+				<span class="date" id="clock"></span>
+				<h5 class="weather">天氣</h5>
+			</div>
         </div>
         <div class="lines-container">
             <div class="lines"></div>
