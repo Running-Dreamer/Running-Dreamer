@@ -1,4 +1,4 @@
-.detail {
+.detail-modal {
 	max-height: 100%;
 	max-width: 100%;
 	width: 800px;
@@ -7,60 +7,60 @@
 	border-radius: 15px;
 	background-color: white;
 }
-.detail .splitter {
+.detail-modal .splitter {
 	margin: 5px;
 }
-.detail .splitter-l {
+.detail-modal .splitter-l {
 	border-right: 5px solid black;
 }
-.detail .splitter-r {
+.detail-modal .splitter-r {
 	border-left: 5px solid black;
 }
-.detail .splitter-u {
+.detail-modal .splitter-u {
 	border-bottom: 5px dashed black;
 	padding-bottom: 5px;
 }
-.detail .picture {
+.detail-modal .picture {
 	width: 150px;
 	height: 150px;
 	border: 10px double black;
 	border-radius: 15px;
 }
-.detail .title {
+.detail-modal .title {
 	color: rgb(52, 65, 192);
 	font-size: 2em;
 	font-weight: bold;
 }
-.detail .description {
+.detail-modal .description {
 	font-size: 1.5em;
 }
-.detail .comment-list {
+.detail-modal .comment-list {
 	overflow: auto;
 }
-.detail .comment {
+.detail-modal .comment {
 	margin: 15px 5px;
 }
-.detail .comment-avatar {
+.detail-modal .comment-avatar {
 	width: 50px;
 	height: 50px;
 }
-.detail .comment-author {} .detail .comment-content {
+.detail-modal .comment-author {} .detail-modal .comment-content {
 	font-size: 0.7em;
 	font-family: bold;
 }
-.detail .comment-date {
+.detail-modal .comment-date {
 	font-size: 0.5em;
 	color: #888;
 	font-style: italic;
 }
-.detail .comment-area {
+.detail-modal .comment-area {
 	margin-bottom: 5px;
 }
-.detail .comment-area > input {
+.detail-modal .comment-area > input {
 	height: 24px;
 	width: 100%;
 	margin-left: 5px;
 }
-.detail .comment-area > button {
+.detail-modal .comment-area > button {
 	height: 30px;
 }
