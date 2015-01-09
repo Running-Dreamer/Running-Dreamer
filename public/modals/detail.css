@@ -1,0 +1,66 @@
+.detail {
+	max-height: 100%;
+	max-width: 100%;
+	width: 800px;
+	height: 400px;
+	border: 5px solid black;
+	border-radius: 15px;
+	background-color: white;
+}
+.detail .splitter {
+	margin: 5px;
+}
+.detail .splitter-l {
+	border-right: 5px solid black;
+}
+.detail .splitter-r {
+	border-left: 5px solid black;
+}
+.detail .splitter-u {
+	border-bottom: 5px dashed black;
+	padding-bottom: 5px;
+}
+.detail .picture {
+	width: 150px;
+	height: 150px;
+	border: 10px double black;
+	border-radius: 15px;
+}
+.detail .title {
+	color: rgb(52, 65, 192);
+	font-size: 2em;
+	font-weight: bold;
+}
+.detail .description {
+	font-size: 1.5em;
+}
+.detail .comment-list {
+	overflow: auto;
+}
+.detail .comment {
+	margin: 15px 5px;
+}
+.detail .comment-avatar {
+	width: 50px;
+	height: 50px;
+}
+.detail .comment-author {} .detail .comment-content {
+	font-size: 0.7em;
+	font-family: bold;
+}
+.detail .comment-date {
+	font-size: 0.5em;
+	color: #888;
+	font-style: italic;
+}
+.detail .comment-area {
+	margin-bottom: 5px;
+}
+.detail .comment-area > input {
+	height: 24px;
+	width: 100%;
+	margin-left: 5px;
+}
+.detail .comment-area > button {
+	height: 30px;
+}

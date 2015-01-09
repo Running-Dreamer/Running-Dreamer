@@ -34,6 +34,9 @@ app.use(expressLayouts);
 // -------------------設定app-------------------
 
 // -------------------routing-------------------
+app.get('/test', function(req, res) {
+	res.render('./pages/test', {page: 'test-page'});
+});
 // 管理者
 app.get('/admin', function (req, res) {
 	CLOUD.getAllUser().then(function(result){
