@@ -7,6 +7,7 @@
 			DOMElement: {},
 			// 初始化
 			init: function (param) {
+				param = param || {};
 				var selector = param.selector || '';
 				var transition = param.transition || '';
 				var closeBy = param.closeByBtn ? '.modal-close' : '.modal-mask';
