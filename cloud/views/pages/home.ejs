@@ -24,7 +24,7 @@
 				<span class="weather"><span>天氣</span><img src="core/images/Thermometer.svg"></span>
 			</div>
         </div>
-        <div class="lines-container">
+        <div class="flex-1 lines-container">
             <div class="lines"></div>
             <div id="flip_page" class="list">
 				<% for(var j = 0; j < 2; j ++) {%>
@@ -43,6 +43,12 @@
 						  <i class="fa fa-circle fa-stack-2x"></i>
 						  <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
 						</span>
+						<% } else {%>
+						<span class="fa-stack fa-lg disabled delBtn">
+						  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
+						  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+						</span>
+						<span class="dream-title">　</span>
 						<% }%>
 					</div>
 					<% }%>

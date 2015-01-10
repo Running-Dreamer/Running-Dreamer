@@ -75,12 +75,17 @@
 	opacity: 0;
 	pointer-events: none;
 }
+.list .dream .delBtn.disabled {
+	opacity: 0 !important;
+}
 .list .dream .detailBtn {
 	font-size: 0.8em;
+	cursor: pointer;
 }
 .list .dream .delBtn.SHOW {
 	opacity: 1;
 	pointer-events: all;
+	cursor: pointer;
 }
 .list .dream-title {
     border-left: double #FFAA9F;
