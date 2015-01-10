@@ -29,6 +29,7 @@
 	opacity: 1;
 }
 .modal-close {
+	cursor: pointer;
 	display: inline-block;
 	position: absolute;
 	top: -15px;

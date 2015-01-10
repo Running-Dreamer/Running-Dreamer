@@ -24,12 +24,12 @@
 				<span class="weather"><span>天氣</span><img src="core/images/Thermometer.svg"></span>
 			</div>
         </div>
-        <div class="lines-container">
+        <div class="flex-1 lines-container">
             <div class="lines"></div>
             <div id="flip_page" class="list">
 				<% for(var j = 0; j < 2; j ++) {%>
 				<div class="page">
-					<% for(var i = j*10; i < (j+1)*10; i ++) {%>
+					<% for(var i = j*8; i < (j+1)*8; i ++) {%>
 					<div class="flex-row flex-start dream" for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>">
 						<% if(i < result.get('Dreams').length) {%>
 						<span class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
@@ -43,6 +43,12 @@
 						  <i class="fa fa-circle fa-stack-2x"></i>
 						  <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
 						</span>
+						<% } else {%>
+						<span class="fa-stack fa-lg disabled delBtn">
+						  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
+						  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+						</span>
+						<span class="dream-title">　</span>
 						<% }%>
 					</div>
 					<% }%>
