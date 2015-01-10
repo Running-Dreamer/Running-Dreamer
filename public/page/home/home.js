@@ -7,7 +7,6 @@
 			getWeather();
 			setInterval(function(){getWeather();},1000*60*10);
 			$('#flip_page').turn({}).turn("display", "single");
-            $('.delBtn').hide();
             var newDreamModal = Modal().init('.new-dream-modal');
             var detailModal = Modal().init('.detail-modal');
             var $commentSample = $('.comment').clone();
@@ -17,7 +16,7 @@
                 newDreamModal.show();
             });
             $('.eraser').on('click', function () {
-                $('.delBtn').show();
+                $('.delBtn').toggleClass("SHOW");
             });
             $('#photo').on("change", function (e) {
                 var files = e.target.files || e.dataTransfer.files;
@@ -61,9 +60,9 @@
                 });
 
             });
-            $('.dream').on('click', function () {
+            $('.detailBtn').on('click', function () {
                 var $self = $(this);
-                var dream = mapDreamIDtoDream[$self.attr('for')];
+                var dream = mapDreamIDtoDream[$self.parent().attr('for')];
 
                 //發送訊息
                 var $sendBtn = $('.send-comment').off('click');

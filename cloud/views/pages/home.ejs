@@ -30,15 +30,21 @@
 				<% for(var j = 0; j < 2; j ++) {%>
 				<div class="page">
 					<% for(var i = j*10; i < (j+1)*10; i ++) {%>
-					<span for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>" class="dream">
+					<div class="flex-row flex-start dream" for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>">
 						<% if(i < result.get('Dreams').length) {%>
-						<a href="#" class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
+						<span class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
 						  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
 						  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
-						</a>
-						<%= result.get('Dreams')[i].get('title') %>
+						</span>
+						<div class="">
+							<span class="dream-title"><%= result.get('Dreams')[i].get('title') %></span>
+						</div>
+						<span class="fa-stack fa-lg detailBtn">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
+						</span>
 						<% }%>
-					</span>
+					</div>
 					<% }%>
 				</div>
 				<% }%>

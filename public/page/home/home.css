@@ -71,15 +71,24 @@
     padding: 0 !important;
     border: 1px solid #dedede;
 }
-.list span {
+.list .dream .delBtn {
+	opacity: 0;
+	pointer-events: none;
+}
+.list .dream .detailBtn {
+	font-size: 0.8em;
+}
+.list .dream .delBtn.SHOW {
+	opacity: 1;
+	pointer-events: all;
+}
+.list .dream-title {
     border-left: double #FFAA9F;
     border-bottom: 1px dotted #ccc;
     height: 25px;
-	margin-left: 25px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
-    display: block;
 }
 .date {
     display: block;
