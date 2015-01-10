@@ -4,6 +4,7 @@ var papers = [];
 
 (function () {
 	var fn = funcs;
+	var vs = rdvs;
 	fn.start = start;
 
 
@@ -14,7 +15,7 @@ var papers = [];
 			var max = 5; //顯示夢想筆數預設值
 
 			var $paperSample = $('.paper').clone();
-			var $commentSample = $('.comment').clone();
+			var $commentSample = vs.$commentSample = $('.comment').clone();
 			getDream(type_now, skip_count);
 			var detailModal = Modal().init();
 
@@ -150,9 +151,9 @@ var papers = [];
 				$('.comment-area').find('input').val("");
 				var commentCtn = $commentSample.clone();
 				var user = Parse.User.current();
-				commentCtn.find('.avatar img').attr('src',user.get('fbPicture'));
+				commentCtn.find('.comment-avatar img').attr('src',user.get('fbPicture'));
 				commentCtn.find('.comment-author a').attr('href', '/other?UserId='+user.id).text(user.get("displayName"));
-				commentCtn.find('.comment-meta').text(new Date().toLocaleString());
+				commentCtn.find('.comment-date').text(new Date().toLocaleString());
 				commentCtn.find('.comment-content').text(content);
 				commentCtn.appendTo($('.comment-list'));
 				$('.send-comment').attr('disabled', false);;

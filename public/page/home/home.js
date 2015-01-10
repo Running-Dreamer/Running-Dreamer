@@ -1,5 +1,6 @@
 (function () {
     var fn = funcs;
+	var vs = rdvs;
     fn.start = start;
 
     function start() {
@@ -7,17 +8,16 @@
 			getWeather();
 			setInterval(function(){getWeather();},1000*60*10);
 			$('#flip_page').turn({}).turn("display", "single");
-            $('.delBtn').hide();
             var newDreamModal = Modal().init({selector:'.new-dream-modal'});
             var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail'});
-            var $commentSample = $('.comment').clone();
+            var $commentSample = vs.$commentSample = $('.comment').clone();
             var mapDreamIDtoDream = {};
             getAllDreamDetail();
             $('.pencil').on('click', function () {
                 newDreamModal.show();
             });
             $('.eraser').on('click', function () {
-                $('.delBtn').show();
+                $('.delBtn').toggleClass("SHOW");
             });
             $('#photo').on("change", function (e) {
                 var files = e.target.files || e.dataTransfer.files;
@@ -61,9 +61,9 @@
                 });
 
             });
-            $('.dream').on('click', function () {
+            $('.detailBtn').on('click', function () {
                 var $self = $(this);
-                var dream = mapDreamIDtoDream[$self.attr('for')];
+                var dream = mapDreamIDtoDream[$self.parent().attr('for')];
 
                 //發送訊息
                 var $sendBtn = $('.send-comment').off('click');
@@ -160,6 +160,35 @@ function delDream(DreamId) {
         alert("刪除成功!");
         location.reload();
     });
+}
+
+function createComment(	DreamId, Content) {
+	$.ajax({
+		url: '/api/createComment',
+		type: 'POST',
+		data: {
+			DreamId: DreamId,
+			Content: Content
+		}
+	}).then(function (results) {
+//		if(results == 'success')
+//			successComment();
+	});
+	appendCommentToUI();
+}
+
+function appendCommentToUI() {
+	var vs = rdvs;
+	var content = $('.comment-area').find('input').val();
+	$('.comment-area').find('input').val("");
+	var commentCtn = vs.$commentSample.clone();
+	var user = Parse.User.current();
+	commentCtn.find('.comment-avatar img').attr('src', user.get('fbPicture'));
+	commentCtn.find('.comment-author a').attr('href', '/other?UserId=' + user.id).text(user.get("displayName"));
+	commentCtn.find('.comment-date').text(new Date().toLocaleString());
+	commentCtn.find('.comment-content').text(content);
+	commentCtn.appendTo($('.comment-list'));
+	$('.send-comment').attr('disabled', false);
 }
 
 (function () {
