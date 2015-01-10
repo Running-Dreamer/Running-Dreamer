@@ -1,0 +1,103 @@
+.modal .modal-container.modal-transition-detail {
+	-webkit-transform: scale(.5) translateX(-100%);
+	-ms-transform: scale(.5) translateX(-100%);
+	transform: scale(.5) translateX(-100%);
+}
+.modal.SHOW .modal-container.modal-transition-detail {
+	-webkit-transform: scale(1) translateX(0);
+	-ms-transform: scale(1) translateX(0);
+	transform: scale(1) translateX(0);
+}
+.detail-modal {
+	max-height: 100%;
+	max-width: 100%;
+	width: 800px;
+	height: 400px;
+	border: 5px solid black;
+	border-radius: 15px;
+	background-color: white;
+	overflow: hidden;
+}
+.detail-modal .splitter {
+	/*	margin: 5px;*/
+}
+.detail-modal .splitter-l {
+	border-right: 10px double black;
+}
+.detail-modal .splitter-l .splitter-u {
+	border-bottom: 5px dashed black;
+	background: rgb(255, 197, 120);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(255, 197, 120, 1)), color-stop(100%, rgba(251, 157, 35, 1)));
+	background: -webkit-linear-gradient(top, rgba(255, 197, 120, 1) 0%, rgba(251, 157, 35, 1) 100%);
+	background: linear-gradient(to bottom, rgba(255, 197, 120, 1) 0%, rgba(251, 157, 35, 1) 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffc578', endColorstr='#fb9d23', GradientType=0);
+}
+.detail-modal .splitter-l .splitter-d {
+	overflow: auto;
+	background: rgb(180, 223, 91);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(180, 223, 91, 1)), color-stop(100%, rgba(180, 223, 91, 1)));
+	background: -webkit-linear-gradient(top, rgba(180, 223, 91, 1) 0%, rgba(180, 223, 91, 1) 100%);
+	background: linear-gradient(to bottom, rgba(180, 223, 91, 1) 0%, rgba(180, 223, 91, 1) 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#b4df5b', endColorstr='#b4df5b', GradientType=0);
+}
+.detail-modal .splitter-r .splitter-u {
+	border-bottom: 5px solid black;
+	background: rgb(122, 188, 255);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(122, 188, 255, 1)), color-stop(44%, rgba(96, 171, 248, 1)), color-stop(100%, rgba(64, 150, 238, 1)));
+	background: -webkit-linear-gradient(top, rgba(122, 188, 255, 1) 0%, rgba(96, 171, 248, 1) 44%, rgba(64, 150, 238, 1) 100%);
+	background: linear-gradient(to bottom, rgba(122, 188, 255, 1) 0%, rgba(96, 171, 248, 1) 44%, rgba(64, 150, 238, 1) 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#7abcff', endColorstr='#4096ee', GradientType=0);
+}
+.detail-modal .splitter-r .splitter-d {
+	background: rgb(252, 255, 244);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(252, 255, 244, 1)), color-stop(40%, rgba(223, 229, 215, 1)), color-stop(100%, rgba(179, 190, 173, 1)));
+	background: -webkit-linear-gradient(top, rgba(252, 255, 244, 1) 0%, rgba(223, 229, 215, 1) 40%, rgba(179, 190, 173, 1) 100%);
+	background: linear-gradient(to bottom, rgba(252, 255, 244, 1) 0%, rgba(223, 229, 215, 1) 40%, rgba(179, 190, 173, 1) 100%);
+	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fcfff4', endColorstr='#b3bead', GradientType=0);
+}
+.detail-modal .picture {
+	width: 150px;
+	height: 150px;
+	border: 10px double black;
+	border-radius: 15px;
+	margin: 5px;
+}
+.detail-modal .title {
+	color: rgb(52, 65, 192);
+	font-size: 2em;
+	font-weight: bold;
+}
+.detail-modal .description {
+	font-size: 1.5em;
+}
+.detail-modal .comment-list {
+	overflow: auto;
+}
+.detail-modal .comment {
+	margin: 15px 5px;
+}
+.detail-modal .comment-avatar img {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+}
+.detail-modal .comment-author {} .detail-modal .comment-content {
+	font-size: 0.7em;
+	font-family: bold;
+}
+.detail-modal .comment-date {
+	font-size: 0.5em;
+	color: #888;
+	font-style: italic;
+}
+.detail-modal .comment-area {
+	margin-bottom: 5px;
+}
+.detail-modal .comment-area > input {
+	height: 24px;
+	width: 100%;
+	margin-left: 5px;
+}
+.detail-modal .comment-area > button {
+	height: 30px;
+}

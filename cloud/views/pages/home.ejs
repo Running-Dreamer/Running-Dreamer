@@ -1,9 +1,12 @@
 <%- contentFor('style') %>
 <link rel="stylesheet" href="page/home/home.css">
+<link rel="stylesheet" href="modals/detail.css">
 
 <%- contentFor('script') %>
 <script src="page/home/home.js"></script>
-<script src="core/js/turn.min.js"></script>
+<script src="page/home/turn.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.simpleWeather/3.0.2/jquery.simpleWeather.min.js"></script>
+<script src="core/js/weather.code.js"></script>
 
 <%- contentFor('body') %>
 <div class="flex-1 desktop flex-row <%= page%>">
@@ -13,24 +16,43 @@
 				<div class="photo-inner flex-1">
 					<img src='<%=result.get("fbPicture")%>'>
 				</div>
-				<div class="flex-center name_style"><%= result.get('displayName') %></div>
+				<div class="flex-center name_style setofont"><%= result.get('displayName') %></div>
 			</div>
-            <h4 class="flex-1 flex-center">Dreams</h4>
-			<span class="date"><h6 class="flex-end" id="clock"></h6></span>
+            <h4 class="flex-1 flex-center setofont">Dreams</h4>
+			<div class="flex-column flex-end">
+				<span class="date setofont" id="clock"></span>
+				<span class="weather"><span class="setofont">天氣</span><img src="core/images/Thermometer.svg"></span>
+			</div>
         </div>
-        <div class="lines-container" id="flip_page">
+        <div class="flex-1 lines-container">
             <div class="lines"></div>
-            <div class="list">
-                <% for(var i = 0; i < 20; i ++) {%>
-				<span for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>" class="dream">
-                    <% if(i < result.get('Dreams').length) {%>
-					<a href="#" class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
-					  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
-					  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
-					</a>
-					<%= result.get('Dreams')[i].get('title') %>
-                    <% }%>
-				</span>
+            <div id="flip_page" class="list">
+				<% for(var j = 0; j < 2; j ++) {%>
+				<div class="page">
+					<% for(var i = j*7; i < (j+1)*7; i ++) {%>
+					<div class="flex-row flex-start dream" for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>">
+						<% if(i < result.get('Dreams').length) {%>
+						<span class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
+						  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
+						  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+						</span>
+						<div class="">
+							<span class="dream-title setofont"><%= result.get('Dreams')[i].get('title') %></span>
+						</div>
+						<span class="fa-stack fa-lg detailBtn">
+						  <i class="fa fa-circle fa-stack-2x"></i>
+						  <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
+						</span>
+						<% } else {%>
+						<span class="fa-stack fa-lg disabled delBtn">
+						  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
+						  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+						</span>
+						<span class="dream-title">　</span>
+						<% }%>
+					</div>
+					<% }%>
+				</div>
 				<% }%>
             </div>
         </div>
@@ -76,60 +98,5 @@
 		</div>
 		<button type="button" id="upload">送出夢想</button>
 	</div>
-	<div class="detail-modal">
-		<div class="flex-column flex-full-height">
-			<div class="flex-1 flex-column flex-center flex-full-width">
-				<div class="flex-row flex-center flex-full-width">
-					<div class="picture"><img></div>
-					<div class="flex-1 flex-column flex-center">
-						<h2>Title</h2>
-						<div class="flex-1 title"></div>
-					</div>
-				</div>
-				<div class="flex-1 flex-top-center flex-full-width">
-					<div class="flex-1 flex-column flex-center">
-						<h3>Description</h3>
-						<div class="flex-1 description"></div>
-					</div>
-				</div>
-			</div>
-			<div class="flex-1 flex-column flex-top-start comment-area">
-				<div class="flex-row">
-					<span>Comments</span>
-					<input>
-					<button class="send-comment">Send</button>
-				</div>
-				<section id="comments" class="flex-1 flex-column flex-full-width commentAll">
-					<ol class="comment-list">
-					</ol>
-				</section>
-			</div>
-		</div>
-	</div>
+	<% include ../partials/modals/detail %>
 </div>
-<div class="comment-skeleton">
-	<li class="comment-sample comment">
-		<div class="comment-wrap">
-			<div class="avatar-wrap">
-				<div class="avatar">
-					<img src="http://www.ixtendo.com/themes/finesse-html/images/demo/avatar-50x50.png" alt="">
-				</div>
-				<a title="Edit comment" href="#" class="comment-edit-link" style="display: none;">Edit</a>
-			</div>
-			<div class="comment-details">
-				<div class="comment-author flex-row"><a href="#">高挺桂</a><span class="comment-meta flex-1 flex-end">February 18, 2012 at 5:30 pm</span></div>
-				<div class="comment-content">
-					<p>哈哈</p>
-				</div>
-			</div>
-		</div>
-	</li>
-</div>
-<script>
-        $(document).ready(ready);
-        
-        function ready () {
-            $('#flip_page').turn({}).turn("display", "single");
-        }
-        
-</script>

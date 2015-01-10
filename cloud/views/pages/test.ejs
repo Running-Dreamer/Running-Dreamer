@@ -1,0 +1,42 @@
+<%- contentFor( 'style') %>
+<link rel="stylesheet" href="modals/upload.css">
+<%- contentFor( 'script') %>
+<style>
+	main {
+		background-color: yellow;
+	}
+</style>
+<%- contentFor( 'body') %>
+<div class="flex-1 flex-center flex-full">
+	123
+</div>
+<div class="modal-content">
+	<% include ../partials/modals/upload %>
+</div>
+<script>
+	$(document).ready(function(){
+		var scrollEvent = function () {
+			var modal = this;
+			var $mask = modal.DOMElement.find('.modal-mask');
+			var $uploadModal = modal.DOMElement.find('.upload-modal');
+			$mask.data('uploadModal', $uploadModal);
+			$uploadModal.data('uploadModal', $uploadModal);
+			$mask[0].addEventListener('mousewheel', wheelfunc, false);
+			$uploadModal[0].addEventListener('mousewheel', wheelfunc, false);
+			
+			function wheelfunc (e) {
+				var $self = $(this);
+				var $uploadModal = $self.data('uploadModal');
+				var step = -(e.deltaY / 10);
+				if($(window).height() + $uploadModal.offset().top < 0 && step < 0)
+					return;
+				if($uploadModal.position().top >= 0 && step > 0)
+					return;
+				$uploadModal.css('top', '+='+step+'px');
+			}
+		};
+		var modal = Modal().init({selector:'.upload-modal'});
+		modal.callFunction(scrollEvent, modal);
+		modal.show();
+	});
+</script>
