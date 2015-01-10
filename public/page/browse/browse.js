@@ -57,7 +57,7 @@ var papers = [];
 						skip_count = skip_count + max; //將下次要skip的筆數增加
 					}*/
 
-					for (i = 0; i < 6; i += 1) {
+					for (i = 0; i < 8; i += 1) {
 						var result = results[i];
 						var $paper = $paperSample.clone();
 						var checkPaper = true;
@@ -72,25 +72,31 @@ var papers = [];
 
 							/*var randomNumX = Math.random() * 100;
 							var randomNumY = Math.random() * 100;*/
-                            var X = 25;
-                            var Y = 25;
-                            if(i=0){
-			                     X=X+60*i;
-			                 }else if(i=2){
-				                    X=X+120*i/2;
-				                    Y=Y-i*10;
-			                 }else if(i=3){
-				                    X=X+120*(i-1)/2;
-				                    Y=Y+i*10;
-			                 }else if(i=4){
-				                    X=X+120*i/2;
-				                    Y=Y-i*10;
-			                 }else if(i=5){
-				                    X=X+120*(i-1)/2;
-				                    Y=Y+i*10;
+                            var X = 0;
+                            var Y = 1/3*$paperArea.height();
+                            if(i==0){
+			                     X=X;
+			                 }else if(i==1){
+				                    X=X+250*i;
+				                    Y=Y+140;
+			                 }else if(i==2){
+				                    X=X+250*i/2;
+				                    Y=Y-100;
+			                 }else if(i==3){
+				                    X=X+250*(i-1);
+				                    Y=Y+175;
+			                 }else if(i==4){
+				                    X=X+250*i/2;
+				                    Y=Y-150;
+                             }else if(i==5){
+				                    X=X+250*3;
+				                    Y=Y+140;
+			                 }else if(i==6){
+				                    X=X+250*3;
+				                    Y=Y-100;
 			                 }else{
-                                 X=X+60*i;
-                             }
+				                    X=X+250*4;
+			                 }
 							var j = 0;
 							for(var i=0; i<papers.length; i++){
 									j++;
