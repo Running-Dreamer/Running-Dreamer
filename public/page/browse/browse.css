@@ -1,5 +1,5 @@
 .browse-page .bg {
-	background-image: url('images/wall.jpg');
+	background-image: url('images/table.jpg');
 	background-size: cover;
 }
 .upper {
@@ -12,10 +12,22 @@
 	line-height: 48px;
 	text-align:center;
 }
-.hole {
-    background-image: url('./images/hole.png');
-    background-size: 100%;
+.tag {
+    background-color: #688;
+    height: 100%;
+    width: 100%;
+    border:2px solid #000;
+    border-left: 0px;
     cursor: pointer;
+}
+.tag::after{
+    content:"";
+    position: absolute;
+    height:8px;
+    width:8px;
+    border: 2px solid #000;
+    border-radius: 50%;
+    background-color: #fff;
 }
 .paper-area {
 	position: relative;
@@ -23,19 +35,20 @@
 .paper {
 	display: none;
 	position: absolute;
-	background-image:url('./images/wanted.jpg');
-	width: 180px;
-	height: 270px;
+    background-color: #fff;
+    border-radius: 10px;
+	width: 160px;
+	height: 210px;
 	word-break: break-all;
     cursor: pointer;
 
 }
 .dream{
     font-family: Sancreek;
-    font-size: 36px;
+    font-size: 30px;
     letter-spacing: 3px;
 }
 .paper img {
-	width: 160px;
-	height: 100px;
+	width: 140px;
+	height: 80px;
 }
