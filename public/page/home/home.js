@@ -4,12 +4,13 @@
 
     function start() {
         $(document).ready(function () {
-			getWeather()
+			getWeather();
 			setInterval(function(){getWeather();},1000*60*10);
+			$('#flip_page').turn({}).turn("display", "single");
             $('.delBtn').hide();
             var newDreamModal = Modal().init('.new-dream-modal');
             var detailModal = Modal().init('.detail-modal');
-            var $commentSample = $('.comment-sample').clone();
+            var $commentSample = $('.comment').clone();
             var mapDreamIDtoDream = {};
             getAllDreamDetail();
             $('.pencil').on('click', function () {
@@ -81,20 +82,19 @@
                         var _comment = _comments[j];
                         var _creator = _comment.get("creator");
                         var commentCtn = $commentSample.clone();
-                        commentCtn.find('.avatar img').attr('src', _creator.get('fbPicture'));
+                        commentCtn.find('.comment-avatar img').attr('src', _creator.get('fbPicture'));
                         commentCtn.find('.comment-author a').attr('href', '/other?UserId=' + _creator.id).text(_creator.get("displayName"));
-                        commentCtn.find('.comment-meta').text(_comment.updatedAt.toLocaleString());
+                        commentCtn.find('.comment-date').text(_comment.updatedAt.toLocaleString());
                         commentCtn.find('.comment-content').text(_comment.get("content"));
                         commentCtn.appendTo($('.comment-list'));
                     }
                 };
                 detailModal
-                    .setImgSrcBySelector('.picture img', dream.get("photo").url())
+                    .setImgSrcBySelector('.picture', dream.get("photo").url())
                     .setTextByClass('title', dream.get("title"))
                     .setTextByClass('description', dream.get("description"))
                     .callFunction(addComments, dream)
                     .show();
-                detailModal.show();
             });
 
 
