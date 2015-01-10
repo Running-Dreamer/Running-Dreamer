@@ -75,7 +75,7 @@ var papers = [];
                             var X = 0;
                             var Y = 1/3*$paperArea.height();
                             if(i==0){
-			                     X=X;
+			                     X=0;
 			                 }else if(i==1){
 				                    X=X+1/4*$paperArea.width();
 				                    Y=Y+1/4*$paperArea.height();
@@ -95,7 +95,7 @@ var papers = [];
 				                    X=X+3/4*$paperArea.width()
 				                    Y=Y-1/6*$paperArea.height();
 			                 }else{
-				                    X=X+250*4;
+				                    X=X+$paperArea.width();
 			                 }
 							var j = 0;
 							for(var i=0; i<papers.length; i++){
