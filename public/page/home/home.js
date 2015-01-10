@@ -133,7 +133,9 @@
 						success: function (weather) {
 							var vs = rdvs;
 							vs.weather = weather;
-							$('.weather').text(weatherCode[weather.code]["CHT"]);
+							var $weather = $('.weather');
+							$weather.children('span').text(weatherCode[weather.code]["CHT"]);
+							$weather.children('img').attr('src', weather.thumbnail);
 						},
 						error: function (error) {
 							console.debug("getWeather error");
