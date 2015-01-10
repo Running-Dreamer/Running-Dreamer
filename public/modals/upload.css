@@ -7,6 +7,7 @@
 	background: white;
 	border: 1px solid black;
 	border-radius: 10px;
+	z-index: -2;
 }
 .upload-modal::after {
 	content: "";
@@ -23,6 +24,7 @@
 	border-top-color: yellow;
 	border-right-color: white;
 	border-bottom-color: white;
+	z-index: -1;
 }
 .upload-modal .type {
 	font-size: 1.5em;
