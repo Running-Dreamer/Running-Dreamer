@@ -151,16 +151,3 @@
 	width: 61px;
 	height: 34px;
 }
-
-.jf-loading body { /*載入中不顯示*/
-      opacity: 0;
-      visibility: hidden;
-}
-.jf-active body { /*如果處理成功，直接顯示*/
-      opacity: 1;
-      visibility: visible;
-}
-.jf-inactive body {/*如果處理失敗，直接顯示*/
-      opacity: 1;
-      visibility: visible;
-}

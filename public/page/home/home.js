@@ -144,7 +144,6 @@
 							vs.weather = weather;
 							var $weather = $('.weather');
 							$weather.children('span').text(weatherCode[weather.code]["CHT"]);
-                            _jf.flush(); //內容變動後，呼叫此函數刷新字型
 							$weather.children('img').attr('src', weather.thumbnail);
 						},
 						error: function (error) {
