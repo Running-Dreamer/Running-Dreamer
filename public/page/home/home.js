@@ -9,7 +9,7 @@
 			setInterval(function(){getWeather();},1000*60*10);
 			$('#flip_page').turn({}).turn("display", "single");
             var newDreamModal = Modal().init({selector:'.new-dream-modal'});
-            var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail'});
+            var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail', closeByBtn: true});
             var $commentSample = vs.$commentSample = $('.comment').clone();
             var mapDreamIDtoDream = {};
             getAllDreamDetail();
