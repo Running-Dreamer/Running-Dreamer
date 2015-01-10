@@ -29,17 +29,17 @@
             <div id="flip_page" class="list">
 				<% for(var j = 0; j < 2; j ++) {%>
 				<div class="page">
-                <% for(var i = j*10; i < (j+1)*10; i ++) {%>
-				<span for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>" class="dream">
-                    <% if(i < result.get('Dreams').length) {%>
-					<a href="#" class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
-					  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
-					  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
-					</a>
-					<%= result.get('Dreams')[i].get('title') %>
-                    <% }%>
-				</span>
-				<% }%>
+					<% for(var i = j*10; i < (j+1)*10; i ++) {%>
+					<span for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>" class="dream">
+						<% if(i < result.get('Dreams').length) {%>
+						<a href="#" class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
+						  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
+						  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+						</a>
+						<%= result.get('Dreams')[i].get('title') %>
+						<% }%>
+					</span>
+					<% }%>
 				</div>
 				<% }%>
             </div>
