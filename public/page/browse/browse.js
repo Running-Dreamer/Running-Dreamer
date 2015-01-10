@@ -78,25 +78,25 @@ var papers = [];
                             if(i==0){
 			                     X=X;
 			                 }else if(i==1){
-				                    X=X+1/4*$paperArea.width();
+				                    X=X+1/5*$paperArea.width();
 				                    Y=Y+1/4*$paperArea.height();
 			                 }else if(i==2){
-				                    X=X+1/4*$paperArea.width();
+				                    X=X+1/5*$paperArea.width();
 				                    Y=Y-1/6*$paperArea.height();
 			                 }else if(i==3){
-				                    X=X+1/2*$paperArea.width();
+				                    X=X+19/48*$paperArea.width();
 				                    Y=Y+3/10*$paperArea.height();
 			                 }else if(i==4){
-				                    X=X+1/2*$paperArea.width();
+				                    X=X+19/48*$paperArea.width();
 				                    Y=Y-1/4*$paperArea.height();
                              }else if(i==5){
-				                    X=X+3/4*$paperArea.width()
+				                    X=X+3/5*$paperArea.width()
 				                    Y=Y+1/4*$paperArea.height();
 			                 }else if(i==6){
-				                    X=X+3/4*$paperArea.width()
+				                    X=X+3/5*$paperArea.width()
 				                    Y=Y-1/6*$paperArea.height();
 			                 }else{
-				                    X=X+250*4;
+				                    X=X+4/5*$paperArea.width();
 			                 }
 							var j = 0;
 							for(var i=0; i<papers.length; i++){
