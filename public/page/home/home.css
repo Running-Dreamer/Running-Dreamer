@@ -65,6 +65,7 @@
 }
 .lines-container {
 	overflow: hidden;
+	margin: 20px;
 }
 .list {
     padding: 0 !important;
