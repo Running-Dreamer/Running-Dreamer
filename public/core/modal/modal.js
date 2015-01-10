@@ -4,13 +4,16 @@
 			// 暫存元素
 			cacheEle: {},
 			// 初始化
-			init: function (selector) {
+			init: function (param) {
+				var selector = param.selector || '';
+				var transition = param.transition || '';
 				var self = this;
-				var content = self.cacheEle.content = $('.modal-content').children(selector) || $('.modal-content').children();
+				var content = self.cacheEle.content = $('.modal-content').children(selector);
 				self.cacheEle.orgcontent = content.clone();
 				var modal = self.cacheEle.modal = $('<div class="modal flex-center"><div class="modal-mask"></div><div class="modal-container"></div></div>');
 				var mask = self.cacheEle.mask = modal.find('.modal-mask');
 				var container = self.cacheEle.container = modal.find('.modal-container');
+				container.addClass(transition);
 				content.appendTo(container);
 				modal.appendTo($('footer'));
 				mask.on('click', self, function (e) {

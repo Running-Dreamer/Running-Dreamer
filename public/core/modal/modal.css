@@ -22,14 +22,13 @@
 	position: relative;
 	overflow: hidden;
 	opacity: 0;
-	-webkit-transition: opacity .5s linear;
-	transition: opacity .5s linear;
+	-webkit-transition: all .5s linear;
+	transition: all .5s linear;
 	z-index: 9999;
 }
 .modal.SHOW .modal-container {
 	opacity: 1;
 }
-
 .modal-content {
 	display: none;
 }
