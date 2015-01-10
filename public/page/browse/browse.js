@@ -77,23 +77,23 @@ var papers = [];
                             if(i==0){
 			                     X=X;
 			                 }else if(i==1){
-				                    X=X+250*i;
-				                    Y=Y+140;
+				                    X=X+1/4*$paperArea.width();
+				                    Y=Y+1/4*$paperArea.height();
 			                 }else if(i==2){
-				                    X=X+250*i/2;
-				                    Y=Y-100;
+				                    X=X+1/4*$paperArea.width();
+				                    Y=Y-1/6*$paperArea.height();
 			                 }else if(i==3){
-				                    X=X+250*(i-1);
-				                    Y=Y+175;
+				                    X=X+1/2*$paperArea.width();
+				                    Y=Y+3/10*$paperArea.height();
 			                 }else if(i==4){
-				                    X=X+250*i/2;
-				                    Y=Y-150;
+				                    X=X+1/2*$paperArea.width();
+				                    Y=Y-1/4*$paperArea.height();
                              }else if(i==5){
-				                    X=X+250*3;
-				                    Y=Y+140;
+				                    X=X+3/4*$paperArea.width()
+				                    Y=Y+1/4*$paperArea.height();
 			                 }else if(i==6){
-				                    X=X+250*3;
-				                    Y=Y-100;
+				                    X=X+3/4*$paperArea.width()
+				                    Y=Y-1/6*$paperArea.height();
 			                 }else{
 				                    X=X+250*4;
 			                 }
