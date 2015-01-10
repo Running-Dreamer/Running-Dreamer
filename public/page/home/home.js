@@ -143,7 +143,7 @@
 							var vs = rdvs;
 							vs.weather = weather;
 							var $weather = $('.weather');
-							$weather.children('span').text(weatherCode[weather.code]["CHT"]);
+							$weather.children('span').text(weatherCode[weather.code]["CHT"]).addClass('setofont');
 							$weather.children('img').attr('src', weather.thumbnail);
 						},
 						error: function (error) {

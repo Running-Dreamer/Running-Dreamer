@@ -16,12 +16,12 @@
 				<div class="photo-inner flex-1">
 					<img src='<%=result.get("fbPicture")%>'>
 				</div>
-				<div class="flex-center name_style"><%= result.get('displayName') %></div>
+				<div class="flex-center name_style setofont"><%= result.get('displayName') %></div>
 			</div>
-            <h4 class="flex-1 flex-center ">Dreams</h4>
+            <h4 class="flex-1 flex-center setofont">Dreams</h4>
 			<div class="flex-column flex-end">
-				<span class="date" id="clock"></span>
-				<span class="weather"><span>天氣</span><img src="core/images/Thermometer.svg"></span>
+				<span class="date setofont" id="clock"></span>
+				<span class="weather"><span class="setofont">天氣</span><img src="core/images/Thermometer.svg"></span>
 			</div>
         </div>
         <div class="flex-1 lines-container">
@@ -37,7 +37,7 @@
 						  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
 						</span>
 						<div class="">
-							<span class="dream-title"><%= result.get('Dreams')[i].get('title') %></span>
+							<span class="dream-title setofont"><%= result.get('Dreams')[i].get('title') %></span>
 						</div>
 						<span class="fa-stack fa-lg detailBtn">
 						  <i class="fa fa-circle fa-stack-2x"></i>
