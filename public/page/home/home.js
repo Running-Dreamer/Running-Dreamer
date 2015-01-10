@@ -1,5 +1,6 @@
 (function () {
     var fn = funcs;
+	var vs = rdvs;
     fn.start = start;
 
     function start() {
@@ -9,7 +10,7 @@
 			$('#flip_page').turn({}).turn("display", "single");
             var newDreamModal = Modal().init('.new-dream-modal');
             var detailModal = Modal().init('.detail-modal');
-            var $commentSample = $('.comment').clone();
+            var $commentSample = vs.$commentSample = $('.comment').clone();
             var mapDreamIDtoDream = {};
             getAllDreamDetail();
             $('.pencil').on('click', function () {
@@ -157,6 +158,35 @@ function delDream(DreamId) {
         alert("刪除成功!");
         location.reload();
     });
+}
+
+function createComment(	DreamId, Content) {
+	$.ajax({
+		url: '/api/createComment',
+		type: 'POST',
+		data: {
+			DreamId: DreamId,
+			Content: Content
+		}
+	}).then(function (results) {
+//		if(results == 'success')
+//			successComment();
+	});
+	appendCommentToUI();
+}
+
+function appendCommentToUI() {
+	var vs = rdvs;
+	var content = $('.comment-area').find('input').val();
+	$('.comment-area').find('input').val("");
+	var commentCtn = vs.$commentSample.clone();
+	var user = Parse.User.current();
+	commentCtn.find('.comment-avatar img').attr('src', user.get('fbPicture'));
+	commentCtn.find('.comment-author a').attr('href', '/other?UserId=' + user.id).text(user.get("displayName"));
+	commentCtn.find('.comment-date').text(new Date().toLocaleString());
+	commentCtn.find('.comment-content').text(content);
+	commentCtn.appendTo($('.comment-list'));
+	$('.send-comment').attr('disabled', false);
 }
 
 (function () {
