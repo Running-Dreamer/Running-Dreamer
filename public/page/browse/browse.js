@@ -49,15 +49,15 @@ var papers = [];
 					var $paperArea = $('.paper-area');
 					$paperArea.empty(); //先清空
 					var i;
-					if (results.length <= max) {
+					/*if (results.length <= max) {
 						max_now = results.length; //如果不到最大筆數 就印他的比數
 						skip_count = 0; //印到底了 將skip歸零
 					}
 					else{
 						skip_count = skip_count + max; //將下次要skip的筆數增加
-					}
+					}*/
 
-					for (i = 0; i < max_now; i += 1) {
+					for (i = 0; i < 6; i += 1) {
 						var result = results[i];
 						var $paper = $paperSample.clone();
 						var checkPaper = true;
@@ -70,21 +70,36 @@ var papers = [];
 						while(checkPaper){
 							if(papers.length<1){checkPaper = false;}
 
-							var randomNumX = Math.random() * 80;
-							var randomNumY = Math.random() * 80;
+							/*var randomNumX = Math.random() * 100;
+							var randomNumY = Math.random() * 100;*/
+                            var X = 25;
+                            var Y = 25;
+                            if(i=0){
+			                     X=X+60*i;
+			                 }else if(i=2){
+				                    X=X+120*i/2;
+				                    Y=Y-i*10;
+			                 }else if(i=3){
+				                    X=X+120*(i-1)/2;
+				                    Y=Y+i*10;
+			                 }else if(i=4){
+				                    X=X+120*i/2;
+				                    Y=Y-i*10;
+			                 }else if(i=5){
+				                    X=X+120*(i-1)/2;
+				                    Y=Y+i*10;
+			                 }else{
+                                 X=X+60*i;
+                             }
 							var j = 0;
 							for(var i=0; i<papers.length; i++){
-								//測有沒有相撞
-								if (!isTouch(papers[i]['x'] , papers[i]['y'] , randomNumX/100*$paperArea.width(), randomNumY/100*$paperArea.height())) 
-								{
 									j++;
-								}
 								if(papers.length == j)checkPaper = false;
 							}
 						}
 						$paper.css({
-							'left': randomNumX/100*$paperArea.width() + "px",
-							'top': randomNumY/100*$paperArea.height() + "px"
+							'left': /*randomNumX/100*$paperArea.width()*/ X + "px",
+							'top': /*randomNumY/100*$paperArea.height()*/ Y + "px"
 						});
 						//存絕對位置
 						var thisPaper = {"x" : parseFloat($paper.css('left')), "y" : parseFloat($paper.css('top'))};
@@ -158,11 +173,11 @@ var papers = [];
 				$('.send-comment').attr('disabled', false);;
 			}
 			//是否碰到
-			function isTouch(x1 , y1 , x2 ,y2){
-				var absX = Math.abs(x1-x2) < 120;
-				var absY = Math.abs(y1-y2) < 180;
+			/*function isTouch(x1 , y1 , x2 ,y2){
+				var absX = Math.abs(x1-x2) < 180;
+				var absY = Math.abs(y1-y2) < 270;
 				return (absX && absY);
-			}
+			}*/
 		});
 	}
 })()
