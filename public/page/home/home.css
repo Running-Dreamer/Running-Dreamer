@@ -71,6 +71,9 @@
     padding: 0 !important;
     border: 1px solid #dedede;
 }
+.list .dream {
+	border-bottom: 1px dotted #ccc;
+}
 .list .dream .delBtn {
 	opacity: 0;
 	pointer-events: none;
@@ -89,7 +92,6 @@
 }
 .list .dream-title {
     border-left: double #FFAA9F;
-    border-bottom: 1px dotted #ccc;
     height: 25px;
     overflow: hidden;
     white-space: nowrap;
@@ -119,11 +121,6 @@
 #upload {
 	margin-left: 20px;
 	margin-top: 20px;
-}
-
-#dream-title{
-	margin-top: 10px;
-	text-align: center;
 }
 
 .delBtn{
