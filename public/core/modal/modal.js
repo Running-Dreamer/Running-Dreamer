@@ -3,6 +3,8 @@
 		var modal = {
 			// 暫存元素
 			cacheEle: {},
+			// 容器
+			DOMElement: {},
 			// 初始化
 			init: function (param) {
 				var selector = param.selector || '';
@@ -11,7 +13,7 @@
 				var self = this;
 				var content = self.cacheEle.content = $('.modal-content').children(selector);
 				self.cacheEle.orgcontent = content.clone();
-				var modal = self.cacheEle.modal = $('<div class="modal flex-center"><div class="modal-mask"></div><div class="modal-container"><span class="modal-close"></span></div></div>');
+				var modal = self.DOMElement = self.cacheEle.modal = $('<div class="modal flex-center"><div class="modal-mask"></div><div class="modal-container"><span class="modal-close"></span></div></div>');
 				var mask = self.cacheEle.mask = modal.find('.modal-mask');
 				var close = self.cacheEle.close = modal.find(closeBy);
 				if(closeBy == '.modal-mask')
