@@ -33,6 +33,7 @@
 	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#ffc578', endColorstr='#fb9d23', GradientType=0);
 }
 .detail-modal .splitter-l .splitter-d {
+	overflow: auto;
 	background: rgb(180, 223, 91);
 	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(180, 223, 91, 1)), color-stop(100%, rgba(180, 223, 91, 1)));
 	background: -webkit-linear-gradient(top, rgba(180, 223, 91, 1) 0%, rgba(180, 223, 91, 1) 100%);
