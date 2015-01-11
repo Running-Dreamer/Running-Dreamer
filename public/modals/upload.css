@@ -53,8 +53,8 @@
 	border: 1px solid #2e5dfa;
 }
 .upload-modal .title {
-	display: inline-block;
-	min-width: 50px;
+	width: 100%;
+	text-align: center;
 	font-size: 2em;
 }
 .upload-modal .description-box {

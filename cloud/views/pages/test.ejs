@@ -28,10 +28,9 @@
 			var $title = modalEle.find('.title');
 			var $description = modalEle.find('.description');
 			
-			$title.parent().on('click', makeEditable);
-			$title.parent().on("keydown", confirmEdit);
-			$description.parent().on('click', makeEditable);
-			$description.parent().on("keydown", confirmEdit);
+			$title.on('blur', trimText);
+			$title.on('keydown', confirmText);
+			$description.on('keydown', confirmText);
 			
 			var $file = modalEle.find('#file');
 			var $img = modalEle.find('.picture img');
@@ -55,6 +54,8 @@
 			
 			function wheelfunc (e) {
 				var $self = $(this);
+				if(e.target.tagName == 'TEXTAREA')
+					return;
 				var $uploadModal = $self.data('uploadModal');
 				var step = -(e.deltaY / 10);
 				if($(window).height() + $uploadModal.offset().top < 250 && step < 0)
@@ -64,16 +65,17 @@
 				$uploadModal.css('top', '+='+step+'px');
 			}
 			
-			function makeEditable (e) {
-				var $self = $(this);
-				$self.first().attr('contenteditable',true).focus();
-				document.execCommand('selectAll',false,null);
-			}
-			
-			function confirmEdit (ev){
+			function confirmText (ev) {
 				if (ev.which==13){
 					$(this).blur();
 					return false;
+				}
+			}
+
+			function trimText (e) {
+				var $self = $(this);
+				if($self.val().length > 10) {
+					$self.val($self.val().trim().slice(0, 10));
 				}
 			}
 		};
