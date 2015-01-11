@@ -15,14 +15,43 @@
 </div>
 <script>
 	$(document).ready(function(){
-		var scrollEvent = function () {
+		var modalEvent = function () {
 			var modal = this;
-			var $mask = modal.DOMElement.find('.modal-mask');
-			var $uploadModal = modal.DOMElement.find('.upload-modal');
+			var modalEle = modal.DOMElement;
+			var $mask = modalEle.find('.modal-mask');
+			var $uploadModal = modalEle.find('.upload-modal');
 			$mask.data('uploadModal', $uploadModal);
 			$uploadModal.data('uploadModal', $uploadModal);
 			$mask[0].addEventListener('mousewheel', wheelfunc, false);
 			$uploadModal[0].addEventListener('mousewheel', wheelfunc, false);
+			
+			var $title = modalEle.find('.title');
+			var $description = modalEle.find('.description');
+			
+			$title.parent().on('click', makeEditable);
+			$title.parent().on("keydown", confirmEdit);
+			$description.parent().on('click', makeEditable);
+			$description.parent().on("keydown", confirmEdit);
+			
+			var $file = modalEle.find('#file');
+			var $img = modalEle.find('.picture img');
+			$file.data('img', $img);
+			$file.on("change", function (e) {
+				var $self = $(this);
+                var files = e.target.files || e.dataTransfer.files;
+                $self.data('file', files[0]);
+				
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					var $self = $(this);
+					var $img = $self.data('img');
+					var imgDURL = e.target.result;
+					$img.attr('src', imgDURL);
+				}.bind(this);
+				reader.readAsDataURL(files[0]);
+            });
+
+			$img.parent().on('click', function(){$('#file').click()});
 			
 			function wheelfunc (e) {
 				var $self = $(this);
@@ -34,9 +63,22 @@
 					return;
 				$uploadModal.css('top', '+='+step+'px');
 			}
+			
+			function makeEditable (e) {
+				var $self = $(this);
+				$self.first().attr('contenteditable',true).focus();
+				document.execCommand('selectAll',false,null);
+			}
+			
+			function confirmEdit (ev){
+				if (ev.which==13){
+					$(this).blur();
+					return false;
+				}
+			}
 		};
 		var modal = Modal().init({selector:'.upload-modal'});
-		modal.callFunction(scrollEvent, modal);
+		modal.callFunction(modalEvent, modal);
 		modal.show();
 	});
 </script>

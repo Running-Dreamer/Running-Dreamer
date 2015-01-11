@@ -42,13 +42,26 @@
 .upload-modal .picture {
 	width: 375px;
 	height: 250px;
+	margin-bottom: 5px;
 }
 .upload-modal .picture > img {
 	max-height: 100%;
 	max-width: 100%;
 }
+.upload-modal .title-box {
+	width: 350px;
+	border: 1px solid #2e5dfa;
+}
 .upload-modal .title {
+	display: inline-block;
+	min-width: 50px;
 	font-size: 2em;
+}
+.upload-modal .description-box {
+	width: 350px;
+	border: 1px solid #2e5dfa;
+	margin-top: 5px;
+	overflow: auto;
 }
 .upload-modal .description {
 	font-size: 1.5em;
