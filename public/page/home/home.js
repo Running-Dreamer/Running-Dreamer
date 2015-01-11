@@ -12,6 +12,7 @@
 			uploadModal.callFunction(uploadModalEvent, uploadModal);
             var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail', closeByBtn: true});
             var $commentSample = vs.$commentSample = $('.comment').clone();
+			var $dreamSample = vs.$dreamSample = $('.dream').first().clone();
             var mapDreamIDtoDream = {};
             getAllDreamDetail();
             $('.pencil').on('click', function () {
@@ -20,11 +21,29 @@
             $('.eraser').on('click', function () {
                 $('.delBtn').toggleClass("SHOW");
             });
-            $('#photo').on("change", function (e) {
-                var files = e.target.files || e.dataTransfer.files;
-                $(this).data('file', files[0]);
-            });
-            $('.detailBtn').on('click', function () {
+            $('.detailBtn').on('click', showDetail);
+							   
+            function change_done_status(isdone) {
+                var done_status;
+                if(isdone == "none") done_status = "未完成";
+                else if(isdone == "already") done_status = "進行中";
+                else if(isdone == "done") done_status = "已完成";
+                else done_status = "未完成";
+                return done_status;
+            }
+            function changeType(type) {
+                var result;
+                if(type == "travel") {result="旅遊";}
+                else if(type == "experience"){result="經驗";}
+                else if(type == "adventure"){result="冒險";}
+                else if(type == "skill"){result="技能";}
+                else if(type == "family"){result="家庭";}
+                else{result="其他";}
+
+                return result;
+            }
+			
+			function showDetail () {
                 var $self = $(this);
                 var dream = mapDreamIDtoDream[$self.closest('.dream').attr('for')];
 
@@ -62,25 +81,6 @@
                     .setTextByClass('type', changeType(dream.get("type")))
                     .callFunction(addComments, dream)
                     .show();
-            });
-            function change_done_status(isdone) {
-                var done_status;
-                if(isdone == "none") done_status = "未完成";
-                else if(isdone == "already") done_status = "進行中";
-                else if(isdone == "done") done_status = "已完成";
-                else done_status = "未完成";
-                return done_status;
-            }
-            function changeType(type) {
-                var result;
-                if(type == "travel") {result="旅遊";}
-                else if(type == "experience"){result="經驗";}
-                else if(type == "adventure"){result="冒險";}
-                else if(type == "skill"){result="技能";}
-                else if(type == "family"){result="家庭";}
-                else{result="其他";}
-
-                return result;
             }
 
 
@@ -292,6 +292,8 @@
 											user.save().then(function () {
 												console.log("relation success");
 												swal("新增夢想成功~", "", "success")
+												addDreamToUI(dream);
+												modal.reset().hide().callFunction(uploadModalEvent, modal);
 											});
 										},
 										error: function (object, error) {
@@ -302,9 +304,19 @@
 									});
 								});
 							});
-							modal.reset().hide().callFunction(uploadModalEvent, modal);
+							
 						}.bind(modal)
 					);
+				}
+				
+				function addDreamToUI (dream) {
+					mapDreamIDtoDream[dream.id] = dream;
+					debugger;
+					$dreamSample.attr('for', dream.id);
+					$dreamSample.find('.delBtn').attr('onclick', 'delDream("'+dream.id+'")');
+					$dreamSample.find('.dream-title').text(dream.get('title'));
+					$dreamSample.find('.detailBtn').on('click', showDetail);
+					$('.page.p1').prepend($dreamSample);
 				}
 
 			};
