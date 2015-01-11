@@ -58,7 +58,7 @@ var papers = [];
 						skip_count = skip_count + max; //將下次要skip的筆數增加
 					}*/
 
-					for (i = 0; i < 8; i += 1) {
+					for (i = 0; i < results.length; i += 1) {
 						var result = results[i];
 						var $paper = $paperSample.clone();
 						var checkPaper = true;
@@ -141,7 +141,7 @@ var papers = [];
 								}
 							};
 							detailModal
-								.setImgSrcBySelector('.picture', dream.get("photo").url())
+								.setImgSrcBySelector('.picture img', dream.get("photo").url())
 								.setHrefBySelector('.author a', '/other?UserId='+dream.get("owner").id)
 								.setTextBySelector('.author a', dream.get("owner").get('displayName'))
 								.setTextByClass('title', dream.get("title"))

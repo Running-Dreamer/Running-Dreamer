@@ -30,7 +30,7 @@
 	font-size: 1.5em;
 	position: absolute;
 	left: 10px;
-	top: 10px;
+	top: 20px;
 	z-index: 2;
 	-webkit-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
