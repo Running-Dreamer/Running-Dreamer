@@ -66,6 +66,7 @@ var papers = [];
 						$paper.find('.description').text(result.get("description"));
 						$paper.find('img').attr('src', result.get("photo").url());
 						$paper.find('.author').text(result.get('owner').get('displayName'));
+						$paper.find('.done_status').text(change_done_status(result.get('done')) );
 						$paper.data("result", result);
 						//判斷有沒有相碰
 						while(checkPaper){
