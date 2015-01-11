@@ -18,7 +18,7 @@ cloud.getUser = function (id) {
 //搜尋某人的夢想
 cloud.getUserDreams = function (user) {
 	var relation = user.relation("Dreams");
-	return relation.query().find();
+	return relation.query().descending("createdAt").find();
 };
 cloud.getAllUser = function () {
 	var query = new Parse.Query("User");

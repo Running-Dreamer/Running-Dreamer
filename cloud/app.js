@@ -34,6 +34,9 @@ app.use(expressLayouts);
 // -------------------設定app-------------------
 
 // -------------------routing-------------------
+app.get('/test', function(req, res) {
+	res.render('./pages/test', {page: 'test-page'});
+});
 // 管理者
 app.get('/admin', function (req, res) {
 	CLOUD.getAllUser().then(function(result){
@@ -130,6 +133,36 @@ app.post('/api/delDream', function(req, res){
 	});
 });
 // -------------------API-------------------
+
+
+// -------------------Function-------------------
+app.locals({
+  changeType  : function(type) {
+  	var result;
+	if(type == "travel") {result="旅遊";}
+	else if(type == "experience"){result="經驗";}
+	else if(type == "adventure"){result="冒險";}
+	else if(type == "skill"){result="技能";}
+	else if(type == "family"){result="家庭";}
+	else{result="其他";}
+
+    return result;
+  },
+  changeDone  : function(done) {
+  	var result;
+	if(done == "none") {result="未完成";}
+	else if(done == "already"){result="進行中";}
+	else if(done == "done"){result="完成！";}
+	else{result="未完成";}
+
+    return result;
+  },  
+  getLocalTime  : function(d) {
+
+    return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日' + d.getHours() + ':' + d.getMinutes();
+  },    
+});
+// -------------------Function-------------------
 
 // -------------------建立server-------------------
 

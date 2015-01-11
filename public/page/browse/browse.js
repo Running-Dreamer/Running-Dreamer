@@ -4,6 +4,7 @@ var papers = [];
 
 (function () {
 	var fn = funcs;
+	var vs = rdvs;
 	fn.start = start;
 
 
@@ -14,7 +15,7 @@ var papers = [];
 			var max = 5; //顯示夢想筆數預設值
 
 			var $paperSample = $('.paper').clone();
-			var $commentSample = $('.comment-sample').clone();
+			var $commentSample = vs.$commentSample = $('.comment').clone();
 			getDream(type_now, skip_count);
 			var detailModal = Modal().init();
 
@@ -57,7 +58,7 @@ var papers = [];
 						skip_count = skip_count + max; //將下次要skip的筆數增加
 					}*/
 
-					for (i = 0; i < 8; i += 1) {
+					for (i = 0; i < results.length; i += 1) {
 						var result = results[i];
 						var $paper = $paperSample.clone();
 						var checkPaper = true;
@@ -122,19 +123,19 @@ var papers = [];
 								var conetnt = $('.comment-area').find('input').val();
 								createComment(dream.id, conetnt);
 							});
-							var addComments = function(){
+							var addComments = function () {
 								var _dream = this;
 								var _comments = _dream.get("comment");
 								$('.comment-list').empty();
-								if(!_comments) return;
+								if (!_comments) return;
 								var j, maxJ = _comments.length;
-								for(j = 0; j < maxJ; j +=1 ) {
+								for (j = 0; j < maxJ; j += 1) {
 									var _comment = _comments[j];
 									var _creator = _comment.get("creator");
 									var commentCtn = $commentSample.clone();
-									commentCtn.find('.avatar img').attr('src',_creator.get('fbPicture'));
-									commentCtn.find('.comment-author a').attr('href', '/other?UserId='+_creator.id).text(_creator.get("displayName"));
-									commentCtn.find('.comment-meta').text(_comment.updatedAt.toLocaleString());
+									commentCtn.find('.comment-avatar img').attr('src', _creator.get('fbPicture'));
+									commentCtn.find('.comment-author a').attr('href', '/other?UserId=' + _creator.id).text(_creator.get("displayName"));
+									commentCtn.find('.comment-date').text(_comment.updatedAt.toLocaleString());
 									commentCtn.find('.comment-content').text(_comment.get("content"));
 									commentCtn.appendTo($('.comment-list'));
 								}
@@ -171,9 +172,9 @@ var papers = [];
 				$('.comment-area').find('input').val("");
 				var commentCtn = $commentSample.clone();
 				var user = Parse.User.current();
-				commentCtn.find('.avatar img').attr('src',user.get('fbPicture'));
+				commentCtn.find('.comment-avatar img').attr('src',user.get('fbPicture'));
 				commentCtn.find('.comment-author a').attr('href', '/other?UserId='+user.id).text(user.get("displayName"));
-				commentCtn.find('.comment-meta').text(new Date().toLocaleString());
+				commentCtn.find('.comment-date').text(new Date().toLocaleString());
 				commentCtn.find('.comment-content').text(content);
 				commentCtn.appendTo($('.comment-list'));
 				$('.send-comment').attr('disabled', false);;

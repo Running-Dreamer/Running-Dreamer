@@ -20,16 +20,30 @@
 }
 .modal .modal-container {
 	position: relative;
-	overflow: hidden;
 	opacity: 0;
-	-webkit-transition: opacity .5s linear;
-	transition: opacity .5s linear;
+	-webkit-transition: all .5s linear;
+	transition: all .5s linear;
 	z-index: 9999;
 }
 .modal.SHOW .modal-container {
 	opacity: 1;
 }
-
+.modal-close {
+	cursor: pointer;
+	display: inline-block;
+	position: absolute;
+	top: -15px;
+	right: -15px;
+	width: 32px;
+	height: 32px;
+	border-radius: 50%;
+	border: 2px solid gray;
+	background-color: #2e2c2c;
+	background-size: 60% 60%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAXEAAAFxABGGER2wAAABh0RVh0U29mdHdhcmUAcGFpbnQubmV0IDQuMC41ZYUyZQAAA+VJREFUWEetl1lPE1EUx1m+A1vYwiLEBxuNIJukZUtL2beSoCT6AIYUFBWIkfCi344nHtgDCZuJgKWUFmg7w/j/z9xCbWfamcovOcn0zrlzzj333NNzs9LwAuKBZKu/rJEDmYQ8V39lwMvCwkJfXV1dBM8ftCFLTLW1tUUKCgr+4LleGzJPQ2lp6cXGxobi9/sVu90uY2wGwlWlgzrTbrf7LhQKKZubm0p5efkZxurUtyZoqKys/LO7u6vEuLq6UvBBRmJWUzGEW/Wpr68vSuMxuBAsyI93raqWAZzcBW+D29vbYuoDgUBAaW9vv4MOI6GXE1y51+l0ytfX12LWA/v7+0pFRYUPOg2qtg5Om80WODo6ElOSCQaDSn9/fxi605B4J3IhS4iSzGgZsbOzo1RVVV1A167OisNVU1Nze3JyIlSNoQEkVxRzmJh0gjLf29sr397eCi1jGImysrIA5txvhxsrDx0fHwuV9DAxOzs7Jcz9CPmGqKgJZxY6UVtby0g46MDswMCALEmSeG0OGnS5XNLg4OCdmZXHc3Nzo3R0dPBkeekAk2d5fHz8n8w1Aw1Ho1HxyxzcQiyYJ2oJcp9H2Tk5OXMjIyNSOBwWqo9PLGqwNw9JqikcWMF+SlYjYQaG3ePx8ATNQfSOsQqdWEBGS3pnOVNEIePKUxqPQYUvyIlH2Q5Gs6enh8fWqIDpokZieHj4v7aD1RMrp/HPENPGYzAxvUNDQ7LVTCesmijdPGqsFZaNk1w4sIiTIUciEfFZ89AB/Clx33nWkzI+HaztP7h6Zm+mcO7o6Ci34CvE/P6DhbGxsYxCnwgTmfUF39Q9+4lQ4fvExIRktbymQmwH82FF2NCFe76MYvEoK0+EeYQtZSQWYSvJCYZ9ZXJyUsok4czCI82jDXsLtKlaBky4n0y4TP7VrDrMnEhMzAVUKstHjUWGFa67u1u+vLwUo+ag46I6qj2mHU1o8PDwULxOD2u7w+FgUvEDXnRId0w0sxwcHCiweYm5r+kA6aiurvbHd8JG+Hw+dkP8V4vvkGdQcsOp+sEYtIG+kM1puzb1gWY2jHt7e0I1GYYadwQafw+JLyxMqOmuri4plRPsttEPsj1vVmfp0FpcXHyxtbUlpjxwfn6utLS0pLsl8UISYX4ksr6+zrvBb+g0aqrG1KN/P+ONJgY/iNXd4N1bTcUQRsWLfi8an5irq6tKfn7+Kd7xrmmK+qKiIh8jIa5mXPk7iJl6Tp0ZzJHo+NramoL74S+MPVXfWuBVSUnJaWNj4zWe32hDlphqamoK5+XlHePZpg1Z5xlkUHu0DCNBx5+ov3TJyvoLUml2clQsU24AAAAASUVORK5CYII=")
+}
 .modal-content {
 	display: none;
 }

@@ -8,3 +8,21 @@
 .HIDE {
 	display: none !important;
 }
+
+
+/* 嵌入字型設定 */
+@font-face {
+    font-family: "W3";
+    src: url(w3.ttf) format('truetype');
+}
+/* 引用嵌入字型 */
+.setofont, span, div, label, a {
+    font-family: "W3";
+    font-weight: bolder;
+}
+
+body {
+	font-size: 110%;
+}
+ 
+</style>

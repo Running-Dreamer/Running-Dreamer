@@ -1,0 +1,46 @@
+.upload-modal {
+	position: absolute;
+	top: -150px;
+	left: -225px;
+	width: 450px;
+	height: 600px;
+	background: white;
+	border: 1px solid black;
+	border-radius: 10px;
+	z-index: -2;
+}
+.upload-modal::after {
+	content: "";
+	background-color: yellow;
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-width: 50px;
+	border-style: solid;
+	border-top-left-radius: 10px;
+	border-left-color: yellow;
+	border-top-color: yellow;
+	border-right-color: white;
+	border-bottom-color: white;
+	z-index: -1;
+}
+.upload-modal .type {
+	font-size: 1.5em;
+	position: absolute;
+	left: 10px;
+	top: 20px;
+	z-index: 2;
+	-webkit-transform: rotate(-45deg);
+	-ms-transform: rotate(-45deg);
+	transform: rotate(-45deg);
+}
+.upload-modal .dream-text {
+	font-size: 5em;
+}
+.upload-modal .picture img {
+	width: 375px;
+	;
+	height: 250px;
+}

@@ -1,5 +1,6 @@
 <%- contentFor( 'style') %>
 <link rel="stylesheet" href="page/browse/browse.css">
+<link rel="stylesheet" href="modals/detail.css">
 
 <%- contentFor( 'script') %>
 <script src="page/browse/browse.js"></script>
@@ -34,51 +35,5 @@
 				</div>
 </div>
 <div class="modal-content">
-	<div class="flex-column flex-full-height">
-		<div class="flex-1 flex-column flex-center flex-full-width">
-			<div class="flex-row flex-center flex-full-width">
-				<div class="picture"><img></div>
-				<div class="flex-1 flex-column flex-center">
-					<h2>Title</h2>
-					<div class="flex-1 title"></div>
-					<div class="flex-end author"><a></a></div>
-				</div>
-			</div>
-			<div class="flex-1 flex-top-center flex-full-width">
-				<div class="flex-1 flex-column flex-center">
-					<h3>Description</h3>
-					<div class="flex-1 description"></div>
-				</div>
-			</div>
-		</div>
-		<div class="flex-1 flex-column flex-top-start comment-area">
-			<div class="flex-row">
-				<span>Comments</span>
-				<input>
-				<button class="send-comment">Send</button>
-			</div>
-			<section id="comments" class="flex-1 flex-column flex-full-width commentAll">
-				<ol class="comment-list">
-				</ol>
-			</section>
-		</div>
-	</div>
-</div>
-<div class="comment-skeleton">
-	<li class="comment-sample comment">
-		<div class="comment-wrap">
-			<div class="avatar-wrap">
-				<div class="avatar">
-					<img src="http://www.ixtendo.com/themes/finesse-html/images/demo/avatar-50x50.png" alt="">
-				</div>
-				<a title="Edit comment" href="#" class="comment-edit-link" style="display: none;">Edit</a>
-			</div>
-			<div class="comment-details">
-				<div class="comment-author flex-row"><a href="#">高挺桂</a><span class="comment-meta flex-1 flex-end">February 18, 2012 at 5:30 pm</span></div>
-				<div class="comment-content">
-					<p>哈哈</p>
-				</div>
-			</div>
-		</div>
-	</li>
+	<% include ../partials/modals/detail %>
 </div>
