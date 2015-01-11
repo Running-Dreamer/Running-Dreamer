@@ -16,7 +16,7 @@
     src: url(w3.ttf) format('truetype');
 }
 /* 引用嵌入字型 */
-.setofont, span, div, label, a {
+.setofont, span, div, label, a, input, textarea {
     font-family: "W3";
     font-weight: bolder;
 }

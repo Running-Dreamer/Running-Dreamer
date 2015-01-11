@@ -104,9 +104,30 @@
 					.setTextBySelector('.author a', dream.get("owner").get('displayName'))
                     .setTextByClass('title', dream.get("title"))
                     .setTextByClass('description', dream.get("description"))
+                    .setTextByClass('is_done', change_done_status( dream.get("done") ))
+                    .setTextByClass('type', changeType(dream.get("type")) )        
                     .callFunction(addComments, dream)
                     .show();
             });
+            function change_done_status(isdone) {
+                var done_status;
+                if(isdone == "none") done_status = "未完成";
+                else if(isdone == "already") done_status = "進行中";
+                else if(isdone == "done") done_status = "已完成";
+                else done_status = "未完成";
+                return done_status;
+            }
+            function changeType(type) {
+                var result;
+                if(type == "travel") {result="旅遊";}
+                else if(type == "experience"){result="經驗";}
+                else if(type == "adventure"){result="冒險";}
+                else if(type == "skill"){result="技能";}
+                else if(type == "family"){result="家庭";}
+                else{result="其他";}
+
+                return result;
+            }
 
 
             function getAllDreamDetail() {
