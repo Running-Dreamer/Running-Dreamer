@@ -32,30 +32,31 @@
 					<% for(var i = j*7; i < (j+1)*7; i ++) {%>
 					<div class="flex-row flex-start dream" for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>">
 						<% if(i < result.get('Dreams').length) {%>
-						<div class="flex-1">
-							<span class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
-							  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
-							  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
-							</span>							
+						<div class="flex-1">					
 							<span class="dream-title setofont"><%= result.get('Dreams')[i].get('title') %></span>
+							<!--詳細按鈕-->
 							<span class="fa-stack fa-lg detailBtn">
 							  <i class="fa fa-circle fa-stack-2x"></i>
 							  <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
 							</span>
 						</div>
 						<div class="flex-end">
-							<span class="done list-<%= result.get('Dreams')[i].get('done') %>"><%= changeDone(result.get('Dreams')[i].get('done')) %></span>							
-							<span class="list-type">
+							<!--刪除按鈕-->
+							<span class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
+							  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
+							  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+							</span>		
+							<!--是否完成-->							
+							<span class="done list-<%= result.get('Dreams')[i].get('done') %>"><%= changeDone(result.get('Dreams')[i].get('done')) %></span>	
+							<!--類型-->						
+							<span class="list-type list-<%= result.get('Dreams')[i].get('type') %>">
 								<%= changeType(result.get('Dreams')[i].get('type')) %>
 							</span>
+							<!--時間-->
 							<span class="list-date"><%= getLocalTime(result.get('Dreams')[i].createdAt) %></span>
 						</div>
 						<% } else {%>
 						<div class="">
-							<span class="fa-stack fa-lg disabled delBtn">
-							  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
-							  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
-							</span>
 							<span class="dream-title">　</span>
 						</div>
 						<% }%>

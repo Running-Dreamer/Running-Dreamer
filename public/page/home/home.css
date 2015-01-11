@@ -110,6 +110,7 @@
 .list .done{
     padding-right: 15px;
 }
+
 .list .list-none ,.list .list-undefined{
     color: #888;
 }
@@ -119,6 +120,26 @@
 .list .list-done{
     color: #E51C1C;
 }
+
+.list .list-adventure{
+    color: red;
+}
+.list .list-experience {
+    color: orange;
+}
+.list .list-skill{
+    color: green;
+}
+.list .list-travel{
+    color: rgb(0, 186, 255);
+}
+.list .list-family {
+    color:  rgb(0, 0, 255);
+}
+.list .list-others{
+    color: rgb(128, 0, 128);
+}
+
 
 .modal .new-dream-modal {
 	max-width: 100%;
