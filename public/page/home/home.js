@@ -9,7 +9,7 @@
 			setInterval(function(){getWeather();},1000*60*10);
 			$('#flip_page').turn({}).turn("display", "single");
             var uploadModal = Modal().init({selector:'.upload-modal'});
-			uploadModal.setTextByClass('owner',Parse.User.current().get('displayName')).callFunction(uploadModalEvent, uploadModal);
+			uploadModal.callFunction(uploadModalEvent, uploadModal);
             var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail', closeByBtn: true});
             var $commentSample = vs.$commentSample = $('.comment').clone();
             var mapDreamIDtoDream = {};
@@ -23,53 +23,6 @@
             $('#photo').on("change", function (e) {
                 var files = e.target.files || e.dataTransfer.files;
                 $(this).data('file', files[0]);
-            });
-            $('#upload').on('click', function () {
-                $(this).attr('disabled' , 'disabled');
-
-                try{
-                    var parseFile = new Parse.File("photo", $('#photo').data('file'));
-                    parseFile.save().then(function (file) {
-                        var Dream = Parse.Object.extend("Dream");
-                        var dream = new Dream();
-                        var User = Parse.Object.extend("User");
-                        var owner = new User();
-                        owner.id = Parse.User.current().id;
-                        dream.set("owner", owner);
-                        dream.set("title", $('#title').val());
-                        dream.set("description", $('#description').val());
-                        dream.set("photo", file);
-                        dream.set("type", $('#type').val());
-                        dream.save().then(function () {
-                            //user那邊的Dreams關聯要更新
-                            var query = new Parse.Query(User);
-                            query.get(owner.id, {
-                                success: function (user) {
-                                    var relation = user.relation("Dreams");
-                                    relation.add(dream);
-                                    user.save().then(function () {
-                                        console.log("relation success");
-                                        alert("新增成功!");
-                                        location.reload();
-                                    });
-                                },
-                                error: function (object, error) {
-                                    // error is a Parse.Error with an error code and description.
-                                    console.log(error);
-                                    alert("新增失敗..");
-                                }
-                            });
-                            $(this).removeAttr('disabled');
-                            uploadModal.hide();
-                        });
-
-                    });
-                }
-                catch(e){
-                    alert("請選擇照片後再上傳");
-                    $(this).removeAttr('disabled');
-                }
-
             });
             $('.detailBtn').on('click', function () {
                 var $self = $(this);
@@ -188,7 +141,10 @@
 				$uploadModal.data('uploadModal', $uploadModal);
 				$mask[0].addEventListener('mousewheel', wheelfunc, false);
 				$uploadModal[0].addEventListener('mousewheel', wheelfunc, false);
-
+				
+				var owner = modal.find('.owner');
+				owner.text(Parse.User.current().get('displayName'));
+				
 				var $title = modal.find('.title');
 				var $description = modal.find('.description');
 
@@ -297,9 +253,57 @@
 							cancelButtonText: "取消",
 							closeOnConfirm: true
 						},
-						function(){
-							modal.reset().hide().setTextByClass('owner',Parse.User.current().get('displayName')).callFunction(uploadModalEvent, modal);
-						}
+						function() {
+							var modal = this;
+							var content = modal.mapEle['content'];
+							var data = {};
+							var title = content.find('.title').val();
+							var description = content.find('.description').val();
+							var file = content.find('#file').data('file') || {base64:defaultPhoto};
+							var type = content.find('.type').val() || 'others';
+							if(title == "") {
+								swal("請輸入標題!!")
+								return;
+							}
+							if(description == "") {
+								swal("請輸入敘述!!")
+								return;
+							}
+							// 新增
+							var parseFile = new Parse.File("photo", file);
+							parseFile.save().then(function (file) {
+								var Dream = Parse.Object.extend("Dream");
+								var dream = new Dream();
+								var User = Parse.Object.extend("User");
+								var owner = new User();
+								owner.id = Parse.User.current().id;
+								dream.set("owner", owner);
+								dream.set("title", title);
+								dream.set("description", description);
+								dream.set("photo", file);
+								dream.set("type", type);
+								dream.save().then(function (dream) {
+									//user那邊的Dreams關聯要更新
+									var query = new Parse.Query(User);
+									query.get(owner.id, {
+										success: function (user) {
+											var relation = user.relation("Dreams");
+											relation.add(dream);
+											user.save().then(function () {
+												console.log("relation success");
+												swal("新增夢想成功~", "", "success")
+											});
+										},
+										error: function (object, error) {
+											// error is a Parse.Error with an error code and description.
+											console.log(error);
+											swal("新增夢想失敗...", "", "error")
+										}
+									});
+								});
+							});
+							modal.reset().hide().callFunction(uploadModalEvent, modal);
+						}.bind(modal)
 					);
 				}
 
