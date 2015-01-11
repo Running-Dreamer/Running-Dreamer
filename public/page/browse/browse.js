@@ -12,7 +12,7 @@ var papers = [];
 		$(document).ready(function () {
 			var type_now = "all"; //夢想分類預設值
 			var skip_count = 0; //跳過夢想預設值
-			var max = 7; //顯示夢想筆數預設值
+			var max = 8; //顯示夢想筆數預設值
 
 			var $paperSample = $('.paper').clone();
 			var $commentSample = vs.$commentSample = $('.comment').clone();
@@ -46,19 +46,19 @@ var papers = [];
 				if (type != null && type != "all") query.equalTo("type", type);
 				if (skip != null) query.skip(skip);
 
-				query.find().then(function (results) {
+				query.descending("updatedAt").find().then(function (results) {
 					var $paperArea = $('.paper-area');
 					$paperArea.empty(); //先清空
 					var i;
 					if (results.length <= max) {
 						max_now = results.length; //如果不到最大筆數 就印他的比數
-						//skip_count = 0; //印到底了 將skip歸零
+						skip_count = 0; //印到底了 將skip歸零
 					}
-					/*else{
+					else{
 						skip_count = skip_count + max; //將下次要skip的筆數增加
-					}*/
+					}
 
-					for (i = 0; i < max_now+1; i += 1) {
+					for (i = 0; i < max_now; i++ ) {
 						var result = results[i];
 						var $paper = $paperSample.clone();
 						var checkPaper = true;
