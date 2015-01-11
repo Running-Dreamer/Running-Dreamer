@@ -8,13 +8,14 @@
 			getWeather();
 			setInterval(function(){getWeather();},1000*60*10);
 			$('#flip_page').turn({}).turn("display", "single");
-            var newDreamModal = Modal().init({selector:'.new-dream-modal'});
+            var uploadModal = Modal().init({selector:'.upload-modal'});
+			uploadModal.setTextByClass('owner',Parse.User.current().get('displayName')).callFunction(uploadModalEvent, uploadModal);
             var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail', closeByBtn: true});
             var $commentSample = vs.$commentSample = $('.comment').clone();
             var mapDreamIDtoDream = {};
             getAllDreamDetail();
             $('.pencil').on('click', function () {
-                newDreamModal.show();
+                uploadModal.show();
             });
             $('.eraser').on('click', function () {
                 $('.delBtn').toggleClass("SHOW");
@@ -59,7 +60,7 @@
                                 }
                             });
                             $(this).removeAttr('disabled');
-                            newDreamModal.hide();
+                            uploadModal.hide();
                         });
 
                     });
@@ -105,7 +106,7 @@
                     .setTextByClass('title', dream.get("title"))
                     .setTextByClass('description', dream.get("description"))
                     .setTextByClass('is_done', change_done_status( dream.get("done") ))
-                    .setTextByClass('type', changeType(dream.get("type")) )        
+                    .setTextByClass('type', changeType(dream.get("type")))
                     .callFunction(addComments, dream)
                     .show();
             });
@@ -177,6 +178,132 @@
 					debugger;
 				});
 			}
+			
+			function uploadModalEvent () {
+				var self = this;
+				var modal = self.modal;
+				var $mask = modal.find('.modal-mask');
+				var $uploadModal = modal.find('.upload-modal');
+				$mask.data('uploadModal', $uploadModal);
+				$uploadModal.data('uploadModal', $uploadModal);
+				$mask[0].addEventListener('mousewheel', wheelfunc, false);
+				$uploadModal[0].addEventListener('mousewheel', wheelfunc, false);
+
+				var $title = modal.find('.title');
+				var $description = modal.find('.description');
+
+				$title.on('blur', trimText);
+				$title.on('keydown', confirmText);
+				$description.on('keydown', confirmText);
+
+				var $file = modal.find('#file');
+				var $img = modal.find('.picture img');
+				$file.data('img', $img);
+				$file.on("change", setFile);
+
+				var $type = modal.find('.type select');
+				$type.on('change', $uploadModal, changeTagColor);
+
+				var $upload = modal.find('.upload');
+				$upload.on('click', self, readyToUpload);
+
+				$img.parent().on('click', function(){$('#file').click()});
+
+				function wheelfunc (e) {
+					var $self = $(this);
+					if(e.target.tagName == 'TEXTAREA')
+						return;
+					var $uploadModal = $self.data('uploadModal');
+					var step = -(e.deltaY / 10);
+					if($(window).height() + $uploadModal.offset().top < 250 && step < 0)
+						return;
+					if($uploadModal.position().top >= 0 && step > 0)
+						return;
+					$uploadModal.css('top', '+='+step+'px');
+				}
+
+				function confirmText (ev) {
+					if (ev.which==13){
+						$(this).blur();
+						return false;
+					}
+				}
+
+				function trimText (e) {
+					var $self = $(this);
+					var txt = $self.val()+"";
+					var len = calcLength(txt);
+					if(len > 20) {
+						var str = trimToTheRightSize(txt);
+						$self.val(str);
+					}
+
+					function calcLength (str) {
+						var count = 0;
+						for (var i = 0, len = str.length; i < len; i++) {
+							count += str.charCodeAt(i) < 256 ? 1 : 2;
+						}
+						return count;
+					}
+
+					function trimToTheRightSize (str) {
+						var temp = str.substring(0, str.length - 1);
+						var len = calcLength(temp);
+						if(len <= 20) {
+							return temp;
+						} else {
+							return trimToTheRightSize(temp);
+						}
+					}
+				}
+
+				function setFile (e) {
+					var $self = $(this);
+					var files = e.target.files || e.dataTransfer.files;
+					$self.data('file', files[0]);
+
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						var $self = $(this);
+						var $img = $self.data('img');
+						var imgDURL = e.target.result;
+						$img.attr('src', imgDURL);
+					}.bind(this);
+					reader.readAsDataURL(files[0]);
+				}
+
+				function changeTagColor (e) {
+					var $self = $(this);
+					var value = $self.val();
+					var uploadModal = e.data;
+					uploadModal.removeClass('ADVEN EXP SKILL TRAV FAMI OTHER');
+					if(value == 'adventure') uploadModal.addClass('ADVEN');
+					if(value == 'experience') uploadModal.addClass('EXP');
+					if(value == 'skill') uploadModal.addClass('SKILL');
+					if(value == 'travel') uploadModal.addClass('TRAV');
+					if(value == 'family') uploadModal.addClass('FAMI');
+					if(value == 'other') uploadModal.addClass('OTHER');
+				}
+
+				function readyToUpload (e) {
+					var modal = e.data;
+					swal({
+							title: "確定要上傳嗎?",
+							text: "",
+							type: "warning",
+							showCancelButton: true,
+							confirmButtonColor: "#DD6B55",
+							confirmButtonText: "確定",
+							cancelButtonText: "取消",
+							closeOnConfirm: true
+						},
+						function(){
+							modal.reset().hide().setTextByClass('owner',Parse.User.current().get('displayName')).callFunction(uploadModalEvent, modal);
+						}
+					);
+				}
+
+			};
         });
     }
 })()

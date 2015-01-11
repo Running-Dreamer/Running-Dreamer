@@ -1,6 +1,7 @@
 <%- contentFor('style') %>
 <link rel="stylesheet" href="page/home/home.css">
 <link rel="stylesheet" href="modals/detail.css">
+<link rel="stylesheet" href="modals/upload.css">
 
 <%- contentFor('script') %>
 <script src="page/home/home.js"></script>
@@ -80,32 +81,6 @@
 
 
 <div class="modal-content">
-	<div class="new-dream-modal">
-		<div id="dream-title">I have a dream</div>
-		<div class="form-group">
-			<label for="title">夢想標題</label>
-			<input type="text" id="title" placeholder="你的夢想是什麼?">
-		</div>
-		<div class="form-group">
-			<label for="description">夢想描述</label>
-			<textarea id="description" placeholder="說說你的夢想吧!"></textarea>
-		</div>
-		<div class="form-group">
-			<label for="photo">夢想圖片</label>
-			<input type="file" id="photo">
-		</div>
-		<div class="form-group">
-			<label for="type">夢想類型</label>
-			<select id="type">
-				<option value="travel">旅遊</option>
-				<option value="experience">經驗</option>
-				<option value="adventure">冒險</option>
-				<option value="skill">技能</option>
-				<option value="family">家庭</option>
-				<option value="others">其他</option>
-			</select>
-		</div>
-		<button type="button" id="upload">送出夢想</button>
-	</div>
+	<% include ../partials/modals/upload %>
 	<% include ../partials/modals/detail %>
 </div>

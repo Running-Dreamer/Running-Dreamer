@@ -1,60 +1,85 @@
 (function () {
 	window.Modal = function() {
 		var modal = {
+			// 初始化參數
+			initParam: {},
 			// 暫存元素
-			cacheEle: {},
-			// 容器
-			DOMElement: {},
+			mapEle: {},
+			// modal元素
+			modal: null,
+			// 原始內容
+			orgContent: null,
 			// 初始化
 			init: function (param) {
-				param = param || {};
-				var selector = param.selector || '';
-				var transition = param.transition || '';
-				var closeBy = param.closeByBtn ? '.modal-close' : '.modal-mask';
 				var self = this;
-				var content = self.cacheEle.content = $('.modal-content').children(selector);
-				self.cacheEle.orgcontent = content.clone();
-				var modal = self.DOMElement = self.cacheEle.modal = $('<div class="modal flex-center"><div class="modal-mask"></div><div class="modal-container"><span class="modal-close"></span></div></div>');
-				var mask = self.cacheEle.mask = modal.find('.modal-mask');
-				var close = self.cacheEle.close = modal.find(closeBy);
+				// 初始化參數
+				param = self.initParam = param || {};
+				// 所要的template selector
+				var selector = param.selector || '';
+				// SHOW的動畫效果
+				var transition = param.transition || '';
+				// 由什麼元素關閉
+				var closeBy = param.closeByBtn ? '.modal-close' : '.modal-mask';
+				// map元素
+				var mapEle = {};
+				// modal根元素
+				var modal = self.modal = self.modal || $('<div class="modal flex-center"><div class="modal-mask"></div><div class="modal-container"><span class="modal-close"></span></div></div>');
+				// content容器
+				var container = mapEle['container'] = modal.find('.modal-container');
+				// template
+				var content = mapEle['content'] = self.orgContent ? self.orgContent.clone() : $('.modal-content').children(selector);
+				// 將template存起來以供reset
+				self.orgContent = content.clone();
+				// 將mask暫存
+				var mask = mapEle['mask'] || modal.find('.modal-mask');
+				// 將關閉按鈕暫存
+				var close = mapEle[close] = modal.find(closeBy);
+				// 如果是由mask關閉 隱藏close
 				if(closeBy == '.modal-mask')
 					modal.find('.modal-close').hide();
-				var container = self.cacheEle.container = modal.find('.modal-container');
+				// 加入動畫效果
 				container.addClass(transition);
+				// 將內容插入容器
 				content.appendTo(container);
+				// 將modal加入footer
 				modal.appendTo($('footer'));
-				close.on('click', self, function (e) {
+				// 綁定關閉事件
+				close.off('click').on('click', self, function (e) {
 					var self = e.data;
 					self.hide();
 				});
+				// 存mapping表
+				self.mapEle = mapEle;
+				// 元素存mapping表
+				modal.data('mapEle', mapEle);
+
 				return self;
 			},
 			// 重置
 			reset: function () {
 				var self = this;
-				self.cacheEle.content.remove();
-				self.cacheEle.container.append(self.cacheEle.orgcontent.clone());
+				self.mapEle['content'].remove();
+				self.init(self.initParam);
 				return self;
 			},
 			// 隱藏modal
 			hide: function () {
 				var self = this;
-				var modal = self.cacheEle.modal;
+				var modal = self.modal;
 				modal.removeClass("SHOW");
 				return this;
 			},
 			// 顯示modal
 			show: function () {
 				var self = this;
-				var modal = self.cacheEle.modal;
+				var modal = self.modal;
 				modal.addClass("SHOW");
 				return self;
 			},
 			// 設定有某class元素的text
 			setTextByClass: function (className, text) {
 				var self = this;
-				var eles = self.cacheEle[className] || self.cacheEle.content.find("." + className);
-				self.cacheEle[className] = eles;
+				var eles = self.mapEle['content'].find("." + className);
 				var typeOfText = typeof text === "object" ? "array" : "string";
 				var i, max = eles.length;
 				for (var i = 0; i < max; i += 1) {
@@ -68,7 +93,7 @@
 			// 以selector設定img src
 			setImgSrcBySelector: function (selector, src) {
 				var self = this;
-				var eles = self.cacheEle.content.find(selector);
+				var eles = self.mapEle['content'].find(selector);
 				var i, max = eles.length;
 				for (var i = 0; i < max; i += 1) {
 					$(eles[i]).attr('src','');
@@ -79,7 +104,7 @@
 			// 設定href
 			setHrefBySelector: function(selector, url) {
 				var self = this;
-				var eles = self.cacheEle.content.find(selector);
+				var eles = self.mapEle['content'].find(selector);
 				var i, max = eles.length;
 				for (var i = 0; i < max; i += 1) {
 					$(eles[i]).attr('href','');
@@ -89,7 +114,7 @@
 			},
 			setTextBySelector: function(selector, text) {
 				var self = this;
-				var eles = self.cacheEle.content.find(selector);
+				var eles = self.mapEle['content'].find(selector);
 				var i, max = eles.length;
 				for (var i = 0; i < max; i += 1) {
 					$(eles[i]).text('');
