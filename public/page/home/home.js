@@ -72,7 +72,7 @@
             });
             $('.detailBtn').on('click', function () {
                 var $self = $(this);
-                var dream = mapDreamIDtoDream[$self.parent().attr('for')];
+                var dream = mapDreamIDtoDream[$self.closest('.dream').attr('for')];
 
                 //發送訊息
                 var $sendBtn = $('.send-comment').off('click');
