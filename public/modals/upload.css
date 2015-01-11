@@ -65,6 +65,7 @@
 }
 .upload-modal .description {
 	font-size: 1.5em;
+	resize: none;
 }
 .upload-modal .owner {
 	font-size: 1.5em;
