@@ -123,18 +123,20 @@ app.post('/api/createDream', function(req, res){
 	//要塞預設的none
 	var title = req.body.title;
 	var description = req.body.description;
-	var photo = req.body.photo;
+	var file = req.body.file;
 	var type = req.body.type;
-
-	CLOUD.createDream(title,description,photo,type).then(
-		function () {
-			res.send("success");
-		},
-		function () {
-			res.send("error");
-		}
-	);
-
+	console.log(type);
+	console.log(file);
+	res.send("success");
+//
+//	CLOUD.createDream(title,description,photo,type).then(
+//		function () {
+//			res.send("success");
+//		},
+//		function () {
+//			res.send("error");
+//		}
+//	);
 });
 app.post('/api/delDream', function(req, res){
 	var DreamId = req.body.DreamId;

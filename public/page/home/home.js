@@ -8,69 +8,42 @@
 			getWeather();
 			setInterval(function(){getWeather();},1000*60*10);
 			$('#flip_page').turn({}).turn("display", "single");
-            var newDreamModal = Modal().init({selector:'.new-dream-modal'});
+            var uploadModal = Modal().init({selector:'.upload-modal'});
+			uploadModal.callFunction(uploadModalEvent, uploadModal);
             var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail', closeByBtn: true});
             var $commentSample = vs.$commentSample = $('.comment').clone();
+			var $dreamSample = vs.$dreamSample = $('.dream').first().clone();
             var mapDreamIDtoDream = {};
             getAllDreamDetail();
             $('.pencil').on('click', function () {
-                newDreamModal.show();
+                uploadModal.show();
             });
             $('.eraser').on('click', function () {
                 $('.delBtn').toggleClass("SHOW");
             });
-            $('#photo').on("change", function (e) {
-                var files = e.target.files || e.dataTransfer.files;
-                $(this).data('file', files[0]);
-            });
-            $('#upload').on('click', function () {
-                $(this).attr('disabled' , 'disabled');
+            $('.detailBtn').on('click', showDetail);
+							   
+            function change_done_status(isdone) {
+                var done_status;
+                if(isdone == "none") done_status = "未完成";
+                else if(isdone == "already") done_status = "進行中";
+                else if(isdone == "done") done_status = "已完成";
+                else done_status = "未完成";
+                return done_status;
+            }
+            function changeType(type) {
+                var result;
+                if(type == "travel") {result="旅遊";}
+                else if(type == "experience"){result="經驗";}
+                else if(type == "adventure"){result="冒險";}
+                else if(type == "skill"){result="技能";}
+                else if(type == "family"){result="家庭";}
+                else{result="其他";}
 
-                try{
-                    var parseFile = new Parse.File("photo", $('#photo').data('file'));
-                    parseFile.save().then(function (file) {
-                        var Dream = Parse.Object.extend("Dream");
-                        var dream = new Dream();
-                        var User = Parse.Object.extend("User");
-                        var owner = new User();
-                        owner.id = Parse.User.current().id;
-                        dream.set("owner", owner);
-                        dream.set("title", $('#title').val());
-                        dream.set("description", $('#description').val());
-                        dream.set("photo", file);
-                        dream.set("type", $('#type').val());
-                        dream.save().then(function () {
-                            //user那邊的Dreams關聯要更新
-                            var query = new Parse.Query(User);
-                            query.get(owner.id, {
-                                success: function (user) {
-                                    var relation = user.relation("Dreams");
-                                    relation.add(dream);
-                                    user.save().then(function () {
-                                        console.log("relation success");
-                                        alert("新增成功!");
-                                        location.reload();
-                                    });
-                                },
-                                error: function (object, error) {
-                                    // error is a Parse.Error with an error code and description.
-                                    console.log(error);
-                                    alert("新增失敗..");
-                                }
-                            });
-                            $(this).removeAttr('disabled');
-                            newDreamModal.hide();
-                        });
-
-                    });
-                }
-                catch(e){
-                    alert("請選擇照片後再上傳");
-                    $(this).removeAttr('disabled');
-                }
-
-            });
-            $('.detailBtn').on('click', function () {
+                return result;
+            }
+			
+			function showDetail () {
                 var $self = $(this);
                 var dream = mapDreamIDtoDream[$self.closest('.dream').attr('for')];
 
@@ -105,28 +78,9 @@
                     .setTextByClass('title', dream.get("title"))
                     .setTextByClass('description', dream.get("description"))
                     .setTextByClass('is_done', change_done_status( dream.get("done") ))
-                    .setTextByClass('type', changeType(dream.get("type")) )        
+                    .setTextByClass('type', changeType(dream.get("type")))
                     .callFunction(addComments, dream)
                     .show();
-            });
-            function change_done_status(isdone) {
-                var done_status;
-                if(isdone == "none") done_status = "未完成";
-                else if(isdone == "already") done_status = "進行中";
-                else if(isdone == "done") done_status = "已完成";
-                else done_status = "未完成";
-                return done_status;
-            }
-            function changeType(type) {
-                var result;
-                if(type == "travel") {result="旅遊";}
-                else if(type == "experience"){result="經驗";}
-                else if(type == "adventure"){result="冒險";}
-                else if(type == "skill"){result="技能";}
-                else if(type == "family"){result="家庭";}
-                else{result="其他";}
-
-                return result;
             }
 
 
@@ -177,6 +131,195 @@
 					debugger;
 				});
 			}
+			
+			function uploadModalEvent () {
+				var self = this;
+				var modal = self.modal;
+				var $mask = modal.find('.modal-mask');
+				var $uploadModal = modal.find('.upload-modal');
+				$mask.data('uploadModal', $uploadModal);
+				$uploadModal.data('uploadModal', $uploadModal);
+				$mask[0].addEventListener('mousewheel', wheelfunc, false);
+				$uploadModal[0].addEventListener('mousewheel', wheelfunc, false);
+				
+				var owner = modal.find('.owner');
+				owner.text(Parse.User.current().get('displayName'));
+				
+				var $title = modal.find('.title');
+				var $description = modal.find('.description');
+
+				$title.on('blur', trimText);
+				$title.on('keydown', confirmText);
+				$description.on('keydown', confirmText);
+
+				var $file = modal.find('#file');
+				var $img = modal.find('.picture img');
+				$file.data('img', $img);
+				$file.on("change", setFile);
+
+				var $type = modal.find('.type select');
+				$type.on('change', $uploadModal, changeTagColor);
+
+				var $upload = modal.find('.upload');
+				$upload.on('click', self, readyToUpload);
+
+				$img.parent().on('click', function(){$('#file').click()});
+
+				function wheelfunc (e) {
+					var $self = $(this);
+					if(e.target.tagName == 'TEXTAREA')
+						return;
+					var $uploadModal = $self.data('uploadModal');
+					var step = -(e.deltaY / 10);
+					if($(window).height() + $uploadModal.offset().top < 250 && step < 0)
+						return;
+					if($uploadModal.position().top >= 0 && step > 0)
+						return;
+					$uploadModal.css('top', '+='+step+'px');
+				}
+
+				function confirmText (ev) {
+					if (ev.which==13){
+						$(this).blur();
+						return false;
+					}
+				}
+
+				function trimText (e) {
+					var $self = $(this);
+					var txt = $self.val()+"";
+					var len = calcLength(txt);
+					if(len > 20) {
+						var str = trimToTheRightSize(txt);
+						$self.val(str);
+					}
+
+					function calcLength (str) {
+						var count = 0;
+						for (var i = 0, len = str.length; i < len; i++) {
+							count += str.charCodeAt(i) < 256 ? 1 : 2;
+						}
+						return count;
+					}
+
+					function trimToTheRightSize (str) {
+						var temp = str.substring(0, str.length - 1);
+						var len = calcLength(temp);
+						if(len <= 20) {
+							return temp;
+						} else {
+							return trimToTheRightSize(temp);
+						}
+					}
+				}
+
+				function setFile (e) {
+					var $self = $(this);
+					var files = e.target.files || e.dataTransfer.files;
+					$self.data('file', files[0]);
+
+					var reader = new FileReader();
+					reader.onload = function (e) {
+						var $self = $(this);
+						var $img = $self.data('img');
+						var imgDURL = e.target.result;
+						$img.attr('src', imgDURL);
+					}.bind(this);
+					reader.readAsDataURL(files[0]);
+				}
+
+				function changeTagColor (e) {
+					var $self = $(this);
+					var value = $self.val();
+					var uploadModal = e.data;
+					uploadModal.removeClass('ADVEN EXP SKILL TRAV FAMI OTHER');
+					if(value == 'adventure') uploadModal.addClass('ADVEN');
+					if(value == 'experience') uploadModal.addClass('EXP');
+					if(value == 'skill') uploadModal.addClass('SKILL');
+					if(value == 'travel') uploadModal.addClass('TRAV');
+					if(value == 'family') uploadModal.addClass('FAMI');
+					if(value == 'other') uploadModal.addClass('OTHER');
+				}
+
+				function readyToUpload (e) {
+					var modal = e.data;
+					swal({
+							title: "確定要上傳嗎?",
+							text: "",
+							type: "warning",
+							showCancelButton: true,
+							confirmButtonColor: "#DD6B55",
+							confirmButtonText: "確定",
+							cancelButtonText: "取消",
+							closeOnConfirm: true
+						},
+						function() {
+							var modal = this;
+							var content = modal.mapEle['content'];
+							var data = {};
+							var title = content.find('.title').val();
+							var description = content.find('.description').val();
+							var file = content.find('#file').data('file') || {base64:defaultPhoto};
+							var type = content.find('.type').val() || 'others';
+							if(title == "") {
+								swal("請輸入標題!!")
+								return;
+							}
+							if(description == "") {
+								swal("請輸入敘述!!")
+								return;
+							}
+							// 新增
+							var parseFile = new Parse.File("photo", file);
+							parseFile.save().then(function (file) {
+								var Dream = Parse.Object.extend("Dream");
+								var dream = new Dream();
+								var User = Parse.Object.extend("User");
+								var owner = new User();
+								owner.id = Parse.User.current().id;
+								dream.set("owner", owner);
+								dream.set("title", title);
+								dream.set("description", description);
+								dream.set("photo", file);
+								dream.set("type", type);
+								dream.save().then(function (dream) {
+									//user那邊的Dreams關聯要更新
+									var query = new Parse.Query(User);
+									query.get(owner.id, {
+										success: function (user) {
+											var relation = user.relation("Dreams");
+											relation.add(dream);
+											user.save().then(function () {
+												console.log("relation success");
+												swal("新增夢想成功~", "", "success")
+												addDreamToUI(dream);
+												modal.reset().hide().callFunction(uploadModalEvent, modal);
+											});
+										},
+										error: function (object, error) {
+											// error is a Parse.Error with an error code and description.
+											console.log(error);
+											swal("新增夢想失敗...", "", "error")
+										}
+									});
+								});
+							});
+							
+						}.bind(modal)
+					);
+				}
+				
+				function addDreamToUI (dream) {
+					mapDreamIDtoDream[dream.id] = dream;
+					debugger;
+					$dreamSample.attr('for', dream.id);
+					$dreamSample.find('.delBtn').attr('onclick', 'delDream("'+dream.id+'")');
+					$dreamSample.find('.dream-title').text(dream.get('title'));
+					$dreamSample.find('.detailBtn').on('click', showDetail);
+					$('.page.p1').prepend($dreamSample);
+				}
+
+			};
         });
     }
 })()
