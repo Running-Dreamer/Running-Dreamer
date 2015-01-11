@@ -104,6 +104,21 @@ cloud.checkDream = function (DreamId , UserId) {
 	return query.first();
 };
 
+//follow someone
+cloud.followIt = function (FollowerId) {
+	console.log("cloud follow");
+	var User = Parse.Object.extend("User");
+	var follower = new User();
+	follower.id = FollowerId;
+
+	var me = Parse.User.current();
+	console.log(me.id);
+	var following = me.get("Following") || [];
+	following.push(follower);
+	me.set('Following', following);
+	return me.save();	
+};
+
 
 //新增夢想
 cloud.createDream = function(title,description,photo,type) {

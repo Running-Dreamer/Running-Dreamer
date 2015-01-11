@@ -22,6 +22,22 @@
                 $('.delBtn').toggleClass("SHOW");
             });
             $('.detailBtn').on('click', showDetail);
+
+            //測試用follow按紐
+            $('#followBtn').on('click', followIt);
+
+            function followIt() {
+                $.ajax({
+                    url: '/api/followIt',
+                    type: 'POST',
+                    data: {
+                        FollowerId: "8sB4kWEG7k",
+                    }
+                }).then(function (results) {
+                    //if(results == 'success')
+                    alert(results);
+                });
+            }
 							   
             function change_done_status(isdone) {
                 var done_status;

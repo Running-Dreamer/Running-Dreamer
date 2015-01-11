@@ -118,6 +118,21 @@ app.post('/api/createComment', function(req, res){
 		}
 	);
 });
+
+app.post('/api/followIt', function(req, res){
+	var FollowerId = req.body.FollowerId;
+	console.log(FollowerId);
+	
+	CLOUD.followIt(FollowerId).then(
+		function () {
+			res.send("success");
+		},
+		function () {
+			res.send("error");
+		}
+	);
+});
+
 app.post('/api/createDream', function(req, res){
 	console.log("createDream");
 	//要塞預設的none
