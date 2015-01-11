@@ -29,6 +29,13 @@
     border-radius: 50%;
     background-color: #fff;
 }
+.button{
+    margin: 280px 500px;
+    height:50px;
+    width: 180px;
+    background-color: #000;
+    z-index: 3;
+}
 .paper-area {
 	position: relative;
 }
@@ -41,20 +48,96 @@
 	height: 240px;
 	word-break: break-all;
     cursor: pointer;
+    -webkit-box-shadow: 13px 14px 6px -1px rgba(0,0,0,0.75);
+    -moz-box-shadow: 13px 14px 6px -1px rgba(0,0,0,0.75);
+    box-shadow: 13px 14px 6px -1px rgba(0,0,0,0.75);
 
 }
+.ADV {
+    position: absolute;
+    border-width: 20px;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-left-color: red;
+    border-top-color: red;
+    border-right-color: white;
+    border-bottom-color: white;
+    z-index: 1;
+}
+.EXP {
+    position: absolute;
+    border-width: 20px;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-left-color: orange;
+    border-top-color: orange;
+    border-right-color: white;
+    border-bottom-color: white;
+    z-index: 1;
+}
+.SKI {
+    position: absolute;
+    border-width: 20px;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-left-color: yellow;
+    border-top-color: yellow;
+    border-right-color: white;
+    border-bottom-color: white;
+    z-index: 1;
+}
+.TRAV {
+    position: absolute;
+    border-width: 20px;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-left-color: green;
+    border-top-color: green;
+    border-right-color: white;
+    border-bottom-color: white;
+    z-index: 1;
+}
+.FAM {
+    position: absolute;
+    border-width: 20px;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-left-color: blue;
+    border-top-color: blue;
+    border-right-color: white;
+    border-bottom-color: white;
+    z-index: 1;
+}
+.OTH {
+    position: absolute;
+    border-width: 20px;
+    border-style: solid;
+    border-top-left-radius: 10px;
+    border-left-color: purple;
+    border-top-color: purple;
+    border-right-color: white;
+    border-bottom-color: white;
+    z-index: 1;
+}
+
 .dream{
     font-family: Sancreek;
     font-size: 30px;
     letter-spacing: 3px;
+    z-index: 2;
 }
 .des{
+    margin-top: 3px;
+    margin-bottom: 3px;
+    border-top:1px solid #000;
+    border-bottom:1px solid #000;
     width:180px;
-    height: 69px;
+    height: 50px;
     overflow: hidden;
     text-overflow: ellipsis; 
 }
 .paper img {
 	width: 150px;
 	height: 90px;
+    z-index: 2;
 }

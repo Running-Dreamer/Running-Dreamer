@@ -48,7 +48,8 @@ var papers = [];
 
 				query.descending("updatedAt").find().then(function (results) {
 					var $paperArea = $('.paper-area');
-					$paperArea.empty(); //先清空
+					//$paperArea.empty(); //先清空
+                    $paperArea.find('.paper').remove()
 					var i;
 					if (results.length <= max) {
 						max_now = results.length; //如果不到最大筆數 就印他的比數
@@ -68,12 +69,12 @@ var papers = [];
 						$paper.find('.author').text(result.get('owner').get('displayName'));
 						$paper.find('.done_status').text(change_done_status(result.get('done')) );
 						$paper.data("result", result);
+                        //按分類換顏色
+                        var type1 = $(this).attr('type');
+                        changecolor(type1);
 						//判斷有沒有相碰
 						while(checkPaper){
 							if(papers.length<1){checkPaper = false;}
-
-							/*var randomNumX = Math.random() * 100;
-							var randomNumY = Math.random() * 100;*/
                             var X = 0;
                             var Y = 7/24*$paperArea.height();
                             if(i==0){
@@ -112,6 +113,7 @@ var papers = [];
 						//存絕對位置
 						var thisPaper = {"x" : parseFloat($paper.css('left')), "y" : parseFloat($paper.css('top'))};
 						papers.push(thisPaper);
+                        
 
 						$paper.on("click", function () {
 							var $self = $(this);
@@ -209,6 +211,16 @@ var papers = [];
 				var absY = Math.abs(y1-y2) < 270;
 				return (absX && absY);
 			}*/
+            //夢想分類
+            function changecolor(type){
+                        var category = $('.category');
+                        if(type == 'adventure') category.addClass('ADV');
+				        if(type == 'experience') category.addClass('EXP');
+				        if(type == 'skill') category.addClass('SKI');
+				        if(type == 'travel') category.addClass('TRAV');
+				        if(type == 'family') category.addClass('FAM');
+				        if(type == 'other') category.addClass('OTH');
+            }
 		});
 	}
 })()
