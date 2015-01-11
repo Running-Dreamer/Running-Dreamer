@@ -1,6 +1,6 @@
 .upload-modal {
 	position: absolute;
-	top: -150px;
+	top: -250px;
 	left: -225px;
 	width: 450px;
 	height: 600px;
@@ -39,8 +39,20 @@
 .upload-modal .dream-text {
 	font-size: 5em;
 }
-.upload-modal .picture img {
+.upload-modal .picture {
 	width: 375px;
-	;
 	height: 250px;
+}
+.upload-modal .picture > img {
+	max-height: 100%;
+	max-width: 100%;
+}
+.upload-modal .title {
+	font-size: 2em;
+}
+.upload-modal .description {
+	font-size: 1.5em;
+}
+.upload-modal .owner {
+	font-size: 1.5em;
 }
