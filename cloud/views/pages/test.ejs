@@ -28,7 +28,7 @@
 				var $self = $(this);
 				var $uploadModal = $self.data('uploadModal');
 				var step = -(e.deltaY / 10);
-				if($(window).height() + $uploadModal.offset().top < 0 && step < 0)
+				if($(window).height() + $uploadModal.offset().top < 250 && step < 0)
 					return;
 				if($uploadModal.position().top >= 0 && step > 0)
 					return;
