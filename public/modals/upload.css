@@ -11,7 +11,6 @@
 }
 .upload-modal::after {
 	content: "";
-	background-color: yellow;
 	width: 0;
 	height: 0;
 	position: absolute;
@@ -26,15 +25,45 @@
 	border-bottom-color: white;
 	z-index: -1;
 }
+.upload-modal.ADVEN::after {
+	border-left-color: red;
+	border-top-color: red;
+}
+.upload-modal.EXP::after {
+	border-left-color: orange;
+	border-top-color: orange;
+}
+.upload-modal.SKILL::after {
+	border-left-color: green;
+	border-top-color: green;
+}
+.upload-modal.TRAV::after {
+	border-left-color: #00baff;
+	border-top-color: #00baff;
+}
+.upload-modal.FAMI::after {
+	border-left-color: blue;
+	border-top-color: blue;
+}
+.upload-modal.OTHER::after {
+	border-left-color: purple;
+	border-top-color: purple;
+}
 .upload-modal .type {
-	font-size: 1.5em;
 	position: absolute;
-	left: 10px;
-	top: 20px;
+	left: 0px;
+	top: 10px;
 	z-index: 2;
 	-webkit-transform: rotate(-45deg);
 	-ms-transform: rotate(-45deg);
 	transform: rotate(-45deg);
+}
+.upload-modal .type > select {
+	font-size: 1.5em;
+	border: none;
+	outline: none;
+	background-color: transparent;
+	cursor: pointer;
 }
 .upload-modal .dream-text {
 	font-size: 5em;
@@ -43,6 +72,7 @@
 	width: 375px;
 	height: 250px;
 	margin-bottom: 5px;
+	cursor: pointer;
 }
 .upload-modal .picture > img {
 	max-height: 100%;
@@ -69,4 +99,14 @@
 }
 .upload-modal .owner {
 	font-size: 1.5em;
+}
+.upload-modal .upload {
+	position: absolute;
+	top: 0;
+	right: 0;
+	font-size: 4em;
+	cursor: pointer;
+}
+.sweet-alert button.cancel {
+	background-color: #4A4A4A;
 }

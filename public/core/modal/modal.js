@@ -34,6 +34,7 @@
 				var self = this;
 				self.cacheEle.content.remove();
 				self.cacheEle.container.append(self.cacheEle.orgcontent.clone());
+				return self;
 			},
 			// 隱藏modal
 			hide: function () {

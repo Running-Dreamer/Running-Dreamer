@@ -27,7 +27,6 @@
 			
 			var $title = modalEle.find('.title');
 			var $description = modalEle.find('.description');
-			var $type = modalEle.find('.type');
 			
 			$title.on('blur', trimText);
 			$title.on('keydown', confirmText);
@@ -36,21 +35,14 @@
 			var $file = modalEle.find('#file');
 			var $img = modalEle.find('.picture img');
 			$file.data('img', $img);
-			$file.on("change", function (e) {
-				var $self = $(this);
-                var files = e.target.files || e.dataTransfer.files;
-                $self.data('file', files[0]);
-				
-				var reader = new FileReader();
-				reader.onload = function (e) {
-					var $self = $(this);
-					var $img = $self.data('img');
-					var imgDURL = e.target.result;
-					$img.attr('src', imgDURL);
-				}.bind(this);
-				reader.readAsDataURL(files[0]);
-            });
-
+			$file.on("change", setFile);
+			
+			var $type = modalEle.find('.type select');
+			$type.on('change', $uploadModal, changeTagColor);
+			
+			var $upload = modalEle.find('.upload');
+			$upload.on('click', modal, readyToUpload);
+			
 			$img.parent().on('click', function(){$('#file').click()});
 			
 			function wheelfunc (e) {
@@ -100,6 +92,53 @@
 					}
 				}
 			}
+			
+			function setFile (e) {
+				var $self = $(this);
+                var files = e.target.files || e.dataTransfer.files;
+                $self.data('file', files[0]);
+				
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					var $self = $(this);
+					var $img = $self.data('img');
+					var imgDURL = e.target.result;
+					$img.attr('src', imgDURL);
+				}.bind(this);
+				reader.readAsDataURL(files[0]);
+            }
+			
+			function changeTagColor (e) {
+				var $self = $(this);
+				var value = $self.val();
+				var uploadModal = e.data;
+				uploadModal.removeClass('ADVEN EXP SKILL TRAV FAMI OTHER');
+				if(value == 'adventure') uploadModal.addClass('ADVEN');
+				if(value == 'experience') uploadModal.addClass('EXP');
+				if(value == 'skill') uploadModal.addClass('SKILL');
+				if(value == 'travel') uploadModal.addClass('TRAV');
+				if(value == 'family') uploadModal.addClass('FAMI');
+				if(value == 'other') uploadModal.addClass('OTHER');
+			}
+			
+			function readyToUpload (e) {
+				var modal = e.data;
+				swal({
+						title: "確定要上傳嗎?",
+						text: "",
+						type: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#DD6B55",
+						confirmButtonText: "確定",
+						cancelButtonText: "取消",
+						closeOnConfirm: true
+					},
+					function(){
+						modal.reset().hide();
+					}
+				);
+			}
+
 		};
 		var modal = Modal().init({selector:'.upload-modal'});
 		modal.callFunction(modalEvent, modal);
