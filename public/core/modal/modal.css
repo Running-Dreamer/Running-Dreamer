@@ -15,7 +15,7 @@
 	left: 0;
 	right: 0;
 	bottom: 0;
-	z-index: 9998;
+	z-index: 998;
 	background-color: rgba(0,0,0,0.7);
 }
 .modal .modal-container {
@@ -23,7 +23,7 @@
 	opacity: 0;
 	-webkit-transition: all .5s linear;
 	transition: all .5s linear;
-	z-index: 9999;
+	z-index: 999;
 }
 .modal.SHOW .modal-container {
 	opacity: 1;

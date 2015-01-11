@@ -105,6 +105,41 @@ cloud.checkDream = function (DreamId , UserId) {
 };
 
 
+//新增夢想
+cloud.createDream = function(title,description,photo,type) {
+		//完成度預設為none
+		var Dream = Parse.Object.extend("Dream");
+		var dream = new Dream();
+		var User = Parse.Object.extend("User");
+		var owner = new User();
+        owner.id = Parse.User.current().id;
+
+		dream.set("owner", owner);
+	    dream.set("title", title);
+	    dream.set("description", description);
+	    dream.set("photo", file);
+	    dream.set("type", type);
+	    dream.set("done", "none");
+	    dream.save().then(function () {
+	        //user那邊的Dreams關聯要更新
+	        var query = new Parse.Query(User);
+	        query.get(owner.id, {
+	            success: function (user) {
+	                var relation = user.relation("Dreams");
+	                relation.add(dream);
+	                user.save().then(function () {
+	                	console.log("relation success");
+	                });
+	            },
+	            error: function (object, error) {
+	                // error is a Parse.Error with an error code and description.
+	                console.log(error);
+	            }
+	        });
+	    });
+	    return dream;
+};
+
 //刪除某筆夢想
 cloud.delDream = function (Dream) {
 	return Dream.destroy();	

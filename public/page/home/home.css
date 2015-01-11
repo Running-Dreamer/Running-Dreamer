@@ -26,17 +26,14 @@
     height: 40px;
     border-bottom: 1px solid black;
 }
-#flip_page{
-    overflow: hidden;
-}
 .photo-outer {
     border-radius: 100%;
     margin: 20px;
     padding: 5px;
 }
 .photo-inner img {
-    width: 120px;
-    height: 120px;
+    width: 115px;
+    height: 115px;
     border-radius: 100%;
 }
 .pic-notebook {
@@ -59,13 +56,14 @@
 }
 .name_style{
     color: #ae4d18;
-    font-size: 18px;
+    font-size: 22px;
     letter-spacing: 3px;
     font-weight: bold;
 }
 .lines-container {
 	overflow: hidden;
 	margin: 20px;
+    font-size: 22px;
 }
 .list {
     padding: 0 !important;
@@ -73,6 +71,7 @@
 }
 .list .dream {
 	border-bottom: 1px dotted #ccc;
+    height: 43px;
 }
 .list .dream .delBtn {
 	opacity: 0;
@@ -102,6 +101,24 @@
     width: 153px;
 }
 
+.list .list-date{
+    padding-right: 5px;
+}
+.list .list-type{
+    padding-right: 15px;
+}
+.list .done{
+    padding-right: 15px;
+}
+.list .list-none ,.list .list-undefined{
+    color: #888;
+}
+.list .list-already {
+    color: #100BD0;
+}
+.list .list-done{
+    color: #E51C1C;
+}
 
 .modal .new-dream-modal {
 	max-width: 100%;

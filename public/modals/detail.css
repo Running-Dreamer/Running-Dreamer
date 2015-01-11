@@ -56,11 +56,16 @@
 	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#fcfff4', endColorstr='#b3bead', GradientType=0);
 }
 .detail-modal .picture {
-	width: 150px;
-	height: 150px;
+	width: 160px;
+	height: 120px;
 	border: 10px double black;
 	border-radius: 15px;
 	margin: 5px;
+	background-color: white;
+}
+.detail-modal .picture > img {
+	max-width: 100%;
+	max-height: 100%;
 }
 .detail-modal .title {
 	color: rgb(52, 65, 192);

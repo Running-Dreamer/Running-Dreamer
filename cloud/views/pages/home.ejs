@@ -26,29 +26,38 @@
         </div>
         <div class="flex-1 lines-container">
             <div class="lines"></div>
-            <div id="flip_page" class="list">
-				<% for(var j = 0; j < 2; j ++) {%>
+            <div id="flip_page" class="list" style="height: 300px;">
+				<% for(var j = 0; j < ((result.get('Dreams').length/7)>1?(result.get('Dreams').length/7):2); j ++) {%>
 				<div class="page">
 					<% for(var i = j*7; i < (j+1)*7; i ++) {%>
 					<div class="flex-row flex-start dream" for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>">
 						<% if(i < result.get('Dreams').length) {%>
-						<span class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
-						  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
-						  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
-						</span>
-						<div class="">
+						<div class="flex-1">
+							<span class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
+							  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
+							  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+							</span>							
 							<span class="dream-title setofont"><%= result.get('Dreams')[i].get('title') %></span>
+							<span class="fa-stack fa-lg detailBtn">
+							  <i class="fa fa-circle fa-stack-2x"></i>
+							  <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
+							</span>
 						</div>
-						<span class="fa-stack fa-lg detailBtn">
-						  <i class="fa fa-circle fa-stack-2x"></i>
-						  <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
-						</span>
+						<div class="flex-end">
+							<span class="done list-<%= result.get('Dreams')[i].get('done') %>"><%= changeDone(result.get('Dreams')[i].get('done')) %></span>							
+							<span class="list-type">
+								<%= changeType(result.get('Dreams')[i].get('type')) %>
+							</span>
+							<span class="list-date"><%= getLocalTime(result.get('Dreams')[i].createdAt) %></span>
+						</div>
 						<% } else {%>
-						<span class="fa-stack fa-lg disabled delBtn">
-						  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
-						  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
-						</span>
-						<span class="dream-title">　</span>
+						<div class="">
+							<span class="fa-stack fa-lg disabled delBtn">
+							  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
+							  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
+							</span>
+							<span class="dream-title">　</span>
+						</div>
 						<% }%>
 					</div>
 					<% }%>

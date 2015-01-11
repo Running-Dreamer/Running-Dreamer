@@ -118,6 +118,24 @@ app.post('/api/createComment', function(req, res){
 		}
 	);
 });
+app.post('/api/createDream', function(req, res){
+	console.log("createDream");
+	//要塞預設的none
+	var title = req.body.title;
+	var description = req.body.description;
+	var photo = req.body.photo;
+	var type = req.body.type;
+
+	CLOUD.createDream(title,description,photo,type).then(
+		function () {
+			res.send("success");
+		},
+		function () {
+			res.send("error");
+		}
+	);
+
+});
 app.post('/api/delDream', function(req, res){
 	var DreamId = req.body.DreamId;
 	var ownerId = Parse.User.current().id;
@@ -133,6 +151,36 @@ app.post('/api/delDream', function(req, res){
 	});
 });
 // -------------------API-------------------
+
+
+// -------------------Function-------------------
+app.locals({
+  changeType  : function(type) {
+  	var result;
+	if(type == "travel") {result="旅遊";}
+	else if(type == "experience"){result="經驗";}
+	else if(type == "adventure"){result="冒險";}
+	else if(type == "skill"){result="技能";}
+	else if(type == "family"){result="家庭";}
+	else{result="其他";}
+
+    return result;
+  },
+  changeDone  : function(done) {
+  	var result;
+	if(done == "none") {result="未完成";}
+	else if(done == "already"){result="進行中";}
+	else if(done == "done"){result="完成！";}
+	else{result="未完成";}
+
+    return result;
+  },  
+  getLocalTime  : function(d) {
+
+    return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日' + d.getHours() + ':' + d.getMinutes();
+  },    
+});
+// -------------------Function-------------------
 
 // -------------------建立server-------------------
 

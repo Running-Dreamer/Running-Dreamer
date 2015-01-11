@@ -54,7 +54,7 @@ main > div {
 	transition: all .2s linear;
 }
 .menu-menu {
-	z-index: 999;
+	z-index: 99;
 	width: 50px;
 	height: 50px;
 	top: 0;
@@ -71,13 +71,13 @@ main > div {
 	left: 0;
 }
 .menu-create {
-	z-index: 998;
+	z-index: 98;
 }
 .menu-browse {
-	z-index: 997;
+	z-index: 97;
 }
 .menu-fulfill {
-	z-index: 996;
+	z-index: 96;
 }
 .menu-create.SHOW {
 	top: 60px;

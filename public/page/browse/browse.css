@@ -37,8 +37,8 @@
 	position: absolute;
     background-color: #fff;
     border-radius: 10px;
-	width: 160px;
-	height: 210px;
+	width: 180px;
+	height: 240px;
 	word-break: break-all;
     cursor: pointer;
 
@@ -48,7 +48,13 @@
     font-size: 30px;
     letter-spacing: 3px;
 }
+.des{
+    width:180px;
+    height: 69px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
 .paper img {
-	width: 140px;
-	height: 80px;
+	width: 150px;
+	height: 90px;
 }

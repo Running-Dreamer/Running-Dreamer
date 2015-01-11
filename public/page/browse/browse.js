@@ -12,7 +12,7 @@ var papers = [];
 		$(document).ready(function () {
 			var type_now = "all"; //夢想分類預設值
 			var skip_count = 0; //跳過夢想預設值
-			var max = 5; //顯示夢想筆數預設值
+			var max = 8; //顯示夢想筆數預設值
 
 			var $paperSample = $('.paper').clone();
 			var $commentSample = vs.$commentSample = $('.comment').clone();
@@ -46,19 +46,19 @@ var papers = [];
 				if (type != null && type != "all") query.equalTo("type", type);
 				if (skip != null) query.skip(skip);
 
-				query.find().then(function (results) {
+				query.descending("updatedAt").find().then(function (results) {
 					var $paperArea = $('.paper-area');
 					$paperArea.empty(); //先清空
 					var i;
-					/*if (results.length <= max) {
+					if (results.length <= max) {
 						max_now = results.length; //如果不到最大筆數 就印他的比數
 						skip_count = 0; //印到底了 將skip歸零
 					}
 					else{
 						skip_count = skip_count + max; //將下次要skip的筆數增加
-					}*/
+					}
 
-					for (i = 0; i < 8; i += 1) {
+					for (i = 0; i < max_now; i++ ) {
 						var result = results[i];
 						var $paper = $paperSample.clone();
 						var checkPaper = true;
@@ -66,6 +66,7 @@ var papers = [];
 						$paper.find('.description').text(result.get("description"));
 						$paper.find('img').attr('src', result.get("photo").url());
 						$paper.find('.author').text(result.get('owner').get('displayName'));
+						$paper.find('.done_status').text(change_done_status(result.get('done')) );
 						$paper.data("result", result);
 						//判斷有沒有相碰
 						while(checkPaper){
@@ -74,9 +75,9 @@ var papers = [];
 							/*var randomNumX = Math.random() * 100;
 							var randomNumY = Math.random() * 100;*/
                             var X = 0;
-                            var Y = 1/3*$paperArea.height();
+                            var Y = 7/24*$paperArea.height();
                             if(i==0){
-			                     X=X;
+			                     X=0;
 			                 }else if(i==1){
 				                    X=X+1/5*$paperArea.width();
 				                    Y=Y+1/4*$paperArea.height();
@@ -140,12 +141,15 @@ var papers = [];
 									commentCtn.appendTo($('.comment-list'));
 								}
 							};
+
 							detailModal
-								.setImgSrcBySelector('.picture', dream.get("photo").url())
+								.setImgSrcBySelector('.picture img', dream.get("photo").url())
 								.setHrefBySelector('.author a', '/other?UserId='+dream.get("owner").id)
 								.setTextBySelector('.author a', dream.get("owner").get('displayName'))
 								.setTextByClass('title', dream.get("title"))
 								.setTextByClass('description', dream.get("description"))
+								.setTextByClass('is_done', change_done_status( dream.get("done") ))
+								.setTextByClass('type', changeType(dream.get("type")) )        
 								.callFunction(addComments, dream)
 								.show();
 						});
@@ -153,6 +157,26 @@ var papers = [];
 					}
 				});
 			}
+			function change_done_status(isdone) {
+				var done_status;
+				if(isdone == "none") done_status = "未完成";
+				else if(isdone == "already") done_status = "進行中";
+				else if(isdone == "done") done_status = "已完成";
+				else done_status = "未完成";
+				return done_status;
+			}
+			function changeType(type) {
+			  	var result;
+				if(type == "travel") {result="旅遊";}
+				else if(type == "experience"){result="經驗";}
+				else if(type == "adventure"){result="冒險";}
+				else if(type == "skill"){result="技能";}
+				else if(type == "family"){result="家庭";}
+				else{result="其他";}
+
+			    return result;
+			}
+
 			function createComment(	DreamId, Content) {
 				$.ajax({
 					url: '/api/createComment',

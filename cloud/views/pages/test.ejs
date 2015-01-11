@@ -15,28 +15,133 @@
 </div>
 <script>
 	$(document).ready(function(){
-		var scrollEvent = function () {
+		var modalEvent = function () {
 			var modal = this;
-			var $mask = modal.DOMElement.find('.modal-mask');
-			var $uploadModal = modal.DOMElement.find('.upload-modal');
+			var modalEle = modal.DOMElement;
+			var $mask = modalEle.find('.modal-mask');
+			var $uploadModal = modalEle.find('.upload-modal');
 			$mask.data('uploadModal', $uploadModal);
 			$uploadModal.data('uploadModal', $uploadModal);
 			$mask[0].addEventListener('mousewheel', wheelfunc, false);
 			$uploadModal[0].addEventListener('mousewheel', wheelfunc, false);
 			
+			var $title = modalEle.find('.title');
+			var $description = modalEle.find('.description');
+			
+			$title.on('blur', trimText);
+			$title.on('keydown', confirmText);
+			$description.on('keydown', confirmText);
+			
+			var $file = modalEle.find('#file');
+			var $img = modalEle.find('.picture img');
+			$file.data('img', $img);
+			$file.on("change", setFile);
+			
+			var $type = modalEle.find('.type select');
+			$type.on('change', $uploadModal, changeTagColor);
+			
+			var $upload = modalEle.find('.upload');
+			$upload.on('click', modal, readyToUpload);
+			
+			$img.parent().on('click', function(){$('#file').click()});
+			
 			function wheelfunc (e) {
 				var $self = $(this);
+				if(e.target.tagName == 'TEXTAREA')
+					return;
 				var $uploadModal = $self.data('uploadModal');
 				var step = -(e.deltaY / 10);
-				if($(window).height() + $uploadModal.offset().top < 0 && step < 0)
+				if($(window).height() + $uploadModal.offset().top < 250 && step < 0)
 					return;
 				if($uploadModal.position().top >= 0 && step > 0)
 					return;
 				$uploadModal.css('top', '+='+step+'px');
 			}
+			
+			function confirmText (ev) {
+				if (ev.which==13){
+					$(this).blur();
+					return false;
+				}
+			}
+
+			function trimText (e) {
+				var $self = $(this);
+				var txt = $self.val()+"";
+				var len = calcLength(txt);
+				if(len > 20) {
+					var str = trimToTheRightSize(txt);
+					$self.val(str);
+				}
+				
+				function calcLength (str) {
+					var count = 0;
+					for (var i = 0, len = str.length; i < len; i++) {
+						count += str.charCodeAt(i) < 256 ? 1 : 2;
+					}
+					return count;
+				}
+				
+				function trimToTheRightSize (str) {
+					var temp = str.substring(0, str.length - 1);
+					var len = calcLength(temp);
+					if(len <= 20) {
+						return temp;
+					} else {
+						return trimToTheRightSize(temp);
+					}
+				}
+			}
+			
+			function setFile (e) {
+				var $self = $(this);
+                var files = e.target.files || e.dataTransfer.files;
+                $self.data('file', files[0]);
+				
+				var reader = new FileReader();
+				reader.onload = function (e) {
+					var $self = $(this);
+					var $img = $self.data('img');
+					var imgDURL = e.target.result;
+					$img.attr('src', imgDURL);
+				}.bind(this);
+				reader.readAsDataURL(files[0]);
+            }
+			
+			function changeTagColor (e) {
+				var $self = $(this);
+				var value = $self.val();
+				var uploadModal = e.data;
+				uploadModal.removeClass('ADVEN EXP SKILL TRAV FAMI OTHER');
+				if(value == 'adventure') uploadModal.addClass('ADVEN');
+				if(value == 'experience') uploadModal.addClass('EXP');
+				if(value == 'skill') uploadModal.addClass('SKILL');
+				if(value == 'travel') uploadModal.addClass('TRAV');
+				if(value == 'family') uploadModal.addClass('FAMI');
+				if(value == 'other') uploadModal.addClass('OTHER');
+			}
+			
+			function readyToUpload (e) {
+				var modal = e.data;
+				swal({
+						title: "確定要上傳嗎?",
+						text: "",
+						type: "warning",
+						showCancelButton: true,
+						confirmButtonColor: "#DD6B55",
+						confirmButtonText: "確定",
+						cancelButtonText: "取消",
+						closeOnConfirm: true
+					},
+					function(){
+						modal.reset().hide();
+					}
+				);
+			}
+
 		};
 		var modal = Modal().init({selector:'.upload-modal'});
-		modal.callFunction(scrollEvent, modal);
+		modal.callFunction(modalEvent, modal);
 		modal.show();
 	});
 </script>
