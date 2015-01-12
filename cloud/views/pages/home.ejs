@@ -41,9 +41,9 @@
 						<% if(i < result.get('Dreams').length) {%>
 						<div class="flex-1 dream-title-box">
 							<span class="dream-title setofont"><%= result.get('Dreams')[i].get('title') %></span>
-							<!--詳細按鈕-->
-						</div>
+						</div>					
 						<div class="flex-start">
+							<!--詳細按鈕-->								
 							<span class="fa-stack fa-lg detailBtn">
 							  <i class="fa fa-circle fa-stack-2x"></i>
 							  <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
@@ -51,7 +51,7 @@
 						</div>
 						<div class="flex-end">
 							<!--刪除按鈕-->
-							<span class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
+							<span class="fa-stack fa-lg delBtn">
 							  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
 							  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
 							</span>
