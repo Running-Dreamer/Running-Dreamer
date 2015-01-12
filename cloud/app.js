@@ -217,7 +217,28 @@ app.locals({
   getLocalTime  : function(d) {
 
     return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日' + d.getHours() + ':' + d.getMinutes();
-  },    
+  },  
+  //判斷是否已經追蹤過
+  isFollow	: function(userId) {
+  	var User = Parse.Object.extend("User");
+	var query = new Parse.Query(User);
+	query.equalTo("objectId", Parse.User.current().id);
+	query.include('Following');
+	return query.first().then(function(me){
+		var following = me.get("Following") || [];
+		
+		var isfollow = "false";
+		for(var i = 0; i<following.length; i++){
+			if(following[i].id == userId){
+				isfollow = "true";
+				break;
+			}
+		}
+		console.log(isfollow);
+		return isfollow;
+	});
+  },
+
 });
 // -------------------Function-------------------
 

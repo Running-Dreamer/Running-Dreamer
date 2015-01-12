@@ -27,9 +27,13 @@
 			<div class="flex-column flex-end">
 				<span class="date setofont" id="clock"></span>
 				<span class="weather"><span class="setofont">天氣</span><img src="core/images/Thermometer.svg"></span>
-				<% if(result.id != UserId) {%>
-				<button id="followBtn">follow</button>
-				<% }%>
+				<% if(result.id != UserId) { 
+				   	 if(isFollow(result.id) == "true"){
+					 %>
+					 <button>追隨中</button>
+					 <% } else{ %> 
+					 <button id="followBtn">追隨</button>
+				<% } } %>
 			</div>
         </div>
         <div class="flex-1 lines-container">
