@@ -62,8 +62,8 @@ app.get('/', function (req, res) {
 	if (Parse.User.current())
 		CLOUD.getMe().then(function (user) {
 			CLOUD.getUserDreams(user).then(function (dream) {
-				var foluser = user.get("Following");
-				console.log(foluser[0].get("displayName"));
+				/*var foluser = user.get("Following");
+				console.log("Following:"+foluser[0].get("displayName"));*/
 				user.set('Dreams', dream);
 				res.render('./pages/home', {
 					UserId: Parse.User.current().id,
@@ -85,7 +85,8 @@ app.get('/other', function (req, res) {
 				res.render('./pages/home', {
 					UserId: Parse.User.current().id,
 					page: 'home-page',
-					result: user
+					result: user,
+					following: user.get("Following"),
 				});
 			});
 		});
@@ -131,6 +132,24 @@ app.post('/api/followIt', function(req, res){
 			res.send("success");
 		},
 		function () {
+			res.send("error");
+		}
+	);
+});
+
+//get follower 暫時不需要用
+app.post('/api/getFollowList', function(req, res){
+	var userID = req.body.userID;
+	
+	CLOUD.getFollowList(userID).then(
+		function (users) {
+			var foluser = users[0].get("Following");
+			console.log("追隨的人(1):"+foluser[0].get("displayName"));
+			console.log("擁有者:"+users[0].get("displayName"));
+			res.send("success");
+		},
+		function () {
+			console.log("error");
 			res.send("error");
 		}
 	);

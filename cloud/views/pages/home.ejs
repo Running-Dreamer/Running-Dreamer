@@ -17,15 +17,19 @@
 			<div class="photo-outer flex-column flex-center">
 				<div class="photo-inner flex-1">
 					<img src='<%=result.get("fbPicture")%>'>
-					<img src='<%=following[0].get("fbPicture")%>'>
 				</div>
 				<div class="flex-center name_style setofont"><%= result.get('displayName') %></div>
+				<% for(var i = 0; i<following.length; i++) {%>
+					<div class="flex-center name_style setofont"><%= following[i].get('displayName') %></div>
+				<% }%>
 			</div>
             <h4 class="flex-1 flex-center setofont">Dreams</h4>
 			<div class="flex-column flex-end">
 				<span class="date setofont" id="clock"></span>
 				<span class="weather"><span class="setofont">天氣</span><img src="core/images/Thermometer.svg"></span>
+				<% if(result.id != UserId) {%>
 				<button id="followBtn">follow</button>
+				<% }%>
 			</div>
         </div>
         <div class="flex-1 lines-container">
@@ -73,6 +77,7 @@
             </div>
         </div>
 	</div>
+	<div id="userID" value="<%=result.id%>" hidden></div>
 	<% if(result.id == UserId) {%>
 	<div class="flex-column right-part">
 		<div class="flex-1 flex-row flex-center">

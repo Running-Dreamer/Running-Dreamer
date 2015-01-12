@@ -7,12 +7,14 @@ cloud.getMe = function () {
 	var userID = Parse.User.current().id;
 	var query = new Parse.Query("User");
 	query.equalTo("objectId", userID);
+	query.include('Following');
 	return query.first();
 };
 // 搜尋某人
 cloud.getUser = function (id) {
 	var query = new Parse.Query("User");
 	query.equalTo("objectId", id);
+	query.include('Following');
 	return query.first();
 };
 //搜尋某人的夢想
@@ -111,17 +113,29 @@ cloud.followIt = function (FollowerId) {
 	var follower = new User();
 	follower.id = FollowerId;
 
-	var me = Parse.User.current();
-	console.log(me.id);
-	var following = me.get("Following") || [];
-	following.push(follower);
-	me.set('Following', following);
-	return me.save();	
+	/*var me = Parse.User.current();
+	console.log(me.id);*/
+
+	var User = Parse.Object.extend("User");
+	var query = new Parse.Query(User);
+	query.equalTo("objectId", Parse.User.current().id);
+	query.include('Following');
+	return query.first().then(function(me){
+		var following = me.get("Following") || [];
+		following.push(follower);
+		me.set('Following', following);
+		return me.save();
+	});	
 };
 //get follow list
-/*cloud.getFollowList = function (userID) {
-	var User = Parse.Object.
-};*/
+cloud.getFollowList = function (userID) {
+	var User = Parse.Object.extend("User");
+	var query = new Parse.Query(User);
+	query.equalTo("objectId", userID);
+	query.include('Following');
+	//console.log(query.find());
+	return query.find();
+};
 
 
 //新增夢想

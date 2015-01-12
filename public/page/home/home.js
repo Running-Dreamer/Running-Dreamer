@@ -25,18 +25,33 @@
 
             //測試用follow按紐
             $('#followBtn').on('click', followIt);
-            function followIt() {
+            function followIt() { //測試追隨
+                var userID = $('#userID').attr('value'); //當下頁面的ID
+                //alert(userID);
                 $.ajax({
                     url: '/api/followIt',
                     type: 'POST',
                     data: {
-                        FollowerId: "LlSpA3xOez",
+                        FollowerId: userID,
                     }
                 }).then(function (results) {
                     //if(results == 'success')
                     alert(results);
                 });
             }
+            /*function getFollowList() { //測試取得追隨list
+                $.ajax({
+                    url: '/api/getFollowList',
+                    type: 'POST',
+                    data: {
+                        userID: "kV1UdWaGzp", //先塞我的ID
+                    }
+                }).then(function (results) {
+                    //if(results == 'success')
+                    alert(results);
+                });
+            }*/
+
 							   
             function change_done_status(isdone) {
                 var done_status;
