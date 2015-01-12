@@ -10,6 +10,7 @@
 <script src="core/js/weather.code.js"></script>
 <script src="core/js/default.photo.js"></script>
 
+
 <%- contentFor('body') %>
 <div class="flex-1 desktop flex-row <%= page%>">
 	<div class="flex-1 flex-column pic-notebook">
@@ -34,9 +35,9 @@
         <div class="flex-1 lines-container">
             <div class="lines"></div>
             <div id="flip_page" class="list" style="height: 300px;">
-				<% for(var j = 0; j < ((result.get('Dreams').length/7)>1?(result.get('Dreams').length/7):2); j ++) {%>
+				
 				<div class="page">
-					<% for(var i = j*7; i < (j+1)*7; i ++) {%>
+					<% for(var i = 0; i < result.get('Dreams').length; i ++) {%>
 					<div class="flex-row flex-start dream" for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>">
 						<% if(i < result.get('Dreams').length) {%>
 						<div class="flex-1 dream-title-box">
@@ -72,7 +73,10 @@
 					</div>
 					<% }%>
 				</div>
-				<% }%>
+				<div class="followers flex-center">
+                    <button>follow</button>
+                    <%for(i = 0; i < 2; i++) %>
+                </div>
             </div>
         </div>
 	</div>
