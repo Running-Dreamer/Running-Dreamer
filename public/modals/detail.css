@@ -115,6 +115,11 @@
 	width: 100%;
 	font-size: 1.5em;
 }
+.detail-modal .comment-area .comment-CurrentUser {
+	height:32px;
+	width:32px;
+}
+
 
 /*
 .detail-modal .comment-area > input {

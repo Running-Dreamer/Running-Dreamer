@@ -126,6 +126,8 @@
                 var addComments = function () {
                     var _dream = this;
                     var _comments = _dream.get("comment");
+                    var user = Parse.User.current();
+                    $('.comment-CurrentUser').attr('src', user.get('fbPicture'));     
                     $('.comment-list').empty();
                     if (!_comments) return;
                     var j, maxJ = _comments.length;
@@ -139,6 +141,7 @@
                         commentCtn.find('.comment-content').text(_comment.get("content"));
                         commentCtn.appendTo($('.comment-list'));
                     }
+
                 };
                 detailModal
                     .setImgSrcBySelector('.picture img', dream.get("photo").url())
