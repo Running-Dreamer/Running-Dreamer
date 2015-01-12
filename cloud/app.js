@@ -62,11 +62,14 @@ app.get('/', function (req, res) {
 	if (Parse.User.current())
 		CLOUD.getMe().then(function (user) {
 			CLOUD.getUserDreams(user).then(function (dream) {
+				var foluser = user.get("Following");
+				console.log(foluser[0].get("displayName"));
 				user.set('Dreams', dream);
 				res.render('./pages/home', {
 					UserId: Parse.User.current().id,
 					page: 'home-page',
-					result: user
+					result: user,
+					following: user.get("Following"),
 				});
 			});
 		});

@@ -25,13 +25,12 @@
 
             //測試用follow按紐
             $('#followBtn').on('click', followIt);
-
             function followIt() {
                 $.ajax({
                     url: '/api/followIt',
                     type: 'POST',
                     data: {
-                        FollowerId: "8sB4kWEG7k",
+                        FollowerId: "LlSpA3xOez",
                     }
                 }).then(function (results) {
                     //if(results == 'success')

@@ -118,6 +118,10 @@ cloud.followIt = function (FollowerId) {
 	me.set('Following', following);
 	return me.save();	
 };
+//get follow list
+/*cloud.getFollowList = function (userID) {
+	var User = Parse.Object.
+};*/
 
 
 //新增夢想
