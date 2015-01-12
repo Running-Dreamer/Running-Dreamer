@@ -182,6 +182,9 @@
     overflow-y: scroll;
     overflow-x: hidden;
 }
+.followers{
+    overflow: hidden;
+}
 .weather {
 	margin: 0 15px;
 	font-size: 1.5em;
