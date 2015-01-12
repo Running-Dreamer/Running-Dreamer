@@ -101,6 +101,13 @@ app.get('/browse', function (req, res) {
 // -------------------routing-------------------
 
 // -------------------API-------------------
+app.get('/autocomplete', function(req, res){
+	var displayName = req.query.displayName;
+	CLOUD.QueryUserName(displayName).then(function (result) {
+		res.send(result);
+	});
+});
+
 app.post('/api/getAllBrowseList', function(req, res){
 	var type = req.body.type;
 	var skip = req.body.skip;
