@@ -137,6 +137,7 @@
                         commentCtn.find('.comment-author a').attr('href', '/other?UserId=' + _creator.id).text(_creator.get("displayName"));
                         commentCtn.find('.comment-date').text(_comment.updatedAt.toLocaleString());
                         commentCtn.find('.comment-content').text(_comment.get("content"));
+//						if(_comment.get(''))
                         commentCtn.appendTo($('.comment-list'));
                     }
                 };
