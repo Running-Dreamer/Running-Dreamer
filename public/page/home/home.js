@@ -151,7 +151,7 @@
 							else
 								$bestComment.remove()
 						}
-						else {
+						else if ($('main').hasClass('home-page')) {
 							var data = {c_id: _comment.id, d_id:_dream.id};
 							$bestComment.data('data', data);
 							$bestComment.removeClass('HIDE').on("click", function(){

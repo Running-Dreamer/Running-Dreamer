@@ -84,7 +84,7 @@ app.get('/other', function (req, res) {
 				user.set('Dreams', dream);
 				res.render('./pages/home', {
 					UserId: Parse.User.current().id,
-					page: 'home-page',
+					page: 'other-page',
 					result: user,
 					following: user.get("Following") || [],
 				});
