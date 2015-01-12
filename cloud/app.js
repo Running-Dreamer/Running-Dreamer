@@ -69,7 +69,7 @@ app.get('/', function (req, res) {
 					UserId: Parse.User.current().id,
 					page: 'home-page',
 					result: user,
-					following: user.get("Following"),
+					following: user.get("Following") || [],
 				});
 			});
 		});
@@ -86,7 +86,7 @@ app.get('/other', function (req, res) {
 					UserId: Parse.User.current().id,
 					page: 'home-page',
 					result: user,
-					following: user.get("Following"),
+					following: user.get("Following") || [],
 				});
 			});
 		});
