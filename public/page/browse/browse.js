@@ -219,7 +219,7 @@ var papers = [];
 				        if(type == 'skill') $paper.addClass('SKILL');
 				        if(type == 'travel') $paper.addClass('TRAV');
 				        if(type == 'family') $paper.addClass('FAMI');
-				        if(type == 'other') $paper.addClass('OTHER');
+				        if(type == 'others') $paper.addClass('OTHER');
             }
 		});
 	}
