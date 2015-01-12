@@ -6,6 +6,9 @@
     function start() {
         $(document).ready(function () {
 			getWeather();
+            //判斷是否有追隨過
+            isFollow();
+
 			setInterval(function(){getWeather();},1000*60*10);
 			$('#flip_page').turn({}).turn("display", "single");
             var uploadModal = Modal().init({selector:'.upload-modal'});
@@ -26,6 +29,9 @@
             //測試用follow按紐
             $('#followBtn').on('click', followIt);
             function followIt() { //測試追隨
+                $('#followBtn').text('追隨中').attr("disabled","disabled")
+                            .removeClass('followBtn');
+
                 var userID = $('#userID').attr('value'); //當下頁面的ID
                 //alert(userID);
                 $.ajax({
@@ -36,9 +42,12 @@
                     }
                 }).then(function (results) {
                     //if(results == 'success')
-                    alert(results);
+                    //alert(results);
                 });
             }
+            
+            
+
             /*function getFollowList() { //測試取得追隨list
                 $.ajax({
                     url: '/api/getFollowList',
@@ -52,7 +61,36 @@
                 });
             }*/
 
-							   
+            //判斷是否有追隨過
+			function isFollow(){
+                var userId = $('#userID').attr('value');
+                if(userId != Parse.User.current.id){
+                    var User = Parse.Object.extend("User");
+                    var query = new Parse.Query(User);
+                    query.equalTo("objectId", Parse.User.current().id);
+                    query.include('Following');
+                    query.first().then(function(me){
+                        var following = me.get("Following") || [];
+                        
+                        var isfollow = "false";
+                        for(var i = 0; i<following.length; i++){
+                            if(following[i].id == userId){
+                                isfollow = "true";
+                                break;
+                            }
+                        }
+                        console.log(isfollow);
+                        if(isfollow == "true"){
+                            $('#followBtn').text('追隨中').attr("disabled","disabled")
+                            .removeClass('followBtn');
+                        }
+                        else{
+
+                        }
+                    });
+                }
+            }
+
             function change_done_status(isdone) {
                 var done_status;
                 if(isdone == "none") done_status = "未完成";
