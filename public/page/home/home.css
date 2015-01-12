@@ -189,3 +189,7 @@
 	width: 61px;
 	height: 34px;
 }
+
+.dream-title-box {
+	overflow: hidden;
+}

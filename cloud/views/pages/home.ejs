@@ -34,9 +34,11 @@
 					<% for(var i = j*7; i < (j+1)*7; i ++) {%>
 					<div class="flex-row flex-start dream" for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>">
 						<% if(i < result.get('Dreams').length) {%>
-						<div class="flex-1">
+						<div class="flex-1 dream-title-box">
 							<span class="dream-title setofont"><%= result.get('Dreams')[i].get('title') %></span>
 							<!--詳細按鈕-->
+						</div>
+						<div class="flex-start">
 							<span class="fa-stack fa-lg detailBtn">
 							  <i class="fa fa-circle fa-stack-2x"></i>
 							  <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
