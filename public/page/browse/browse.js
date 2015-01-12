@@ -138,7 +138,6 @@ var papers = [];
 						//存絕對位置
 						var thisPaper = {"x" : parseFloat($paper.css('left')), "y" : parseFloat($paper.css('top'))};
 						papers.push(thisPaper);
-                        
 
 						$paper.on("click", function () {
 							var $self = $(this);
@@ -156,6 +155,10 @@ var papers = [];
 								var _comments = _dream.get("comment");
 								$('.comment-list').empty();
 								if (!_comments) return;
+								var bestComment = _dream.get('bestComment');
+								var hasBestComment = false;
+								if(bestComment)
+									hasBestComment = true;
 								var j, maxJ = _comments.length;
 								for (j = 0; j < maxJ; j += 1) {
 									var _comment = _comments[j];
@@ -166,6 +169,16 @@ var papers = [];
 									commentCtn.find('.comment-date').text(_comment.updatedAt.toLocaleString());
 									commentCtn.find('.comment-content').text(_comment.get("content"));
 									commentCtn.appendTo($('.comment-list'));
+									var $bestComment = commentCtn.find('.best-comment');
+
+									if(hasBestComment) {
+										if(_comment.get('bestComment')) {
+											$bestComment.parent().append($('<i class="fa fa-star"></i>'));
+											$bestComment.remove();
+										}
+										else
+											$bestComment.remove()
+									}
 								}
 							};
 
