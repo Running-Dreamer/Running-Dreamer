@@ -22,6 +22,37 @@
                 $('.delBtn').toggleClass("SHOW");
             });
             $('.detailBtn').on('click', showDetail);
+            $('.delBtn').on('click', delDream);
+
+            //測試用follow按紐
+            $('#followBtn').on('click', followIt);
+            function followIt() { //測試追隨
+                var userID = $('#userID').attr('value'); //當下頁面的ID
+                //alert(userID);
+                $.ajax({
+                    url: '/api/followIt',
+                    type: 'POST',
+                    data: {
+                        FollowerId: userID,
+                    }
+                }).then(function (results) {
+                    //if(results == 'success')
+                    alert(results);
+                });
+            }
+            /*function getFollowList() { //測試取得追隨list
+                $.ajax({
+                    url: '/api/getFollowList',
+                    type: 'POST',
+                    data: {
+                        userID: "kV1UdWaGzp", //先塞我的ID
+                    }
+                }).then(function (results) {
+                    //if(results == 'success')
+                    alert(results);
+                });
+            }*/
+
 							   
             function change_done_status(isdone) {
                 var done_status;
@@ -83,6 +114,40 @@
                     .show();
             }
 
+            function delDream () {
+                var $self = $(this);
+                var dream = mapDreamIDtoDream[$self.closest('.dream').attr('for')];
+
+                    swal({
+                            title: "確定要刪除嗎?",
+                            text: "",
+                            type: "warning",
+                            showCancelButton: true,
+                            confirmButtonColor: "#DD6B55",
+                            confirmButtonText: "確定",
+                            cancelButtonText: "取消",
+                            closeOnConfirm: false
+                        },
+                        function() {
+                            $.ajax({
+                                url: '/api/delDream',
+                                type: 'POST',
+                                data: {
+                                    DreamId: dream.id
+                                }
+                            }).then(function (results) {
+                                if (results == "success") {
+                                    swal("刪除夢想成功~", "", "success")
+                                    $self.parent().parent().remove();
+                                }
+                                else{
+                                    swal("刪除夢想失敗...", "", "error")
+                                }
+                            });                            
+                        }
+                    );                
+
+            }
 
             function getAllDreamDetail() {
                 var dreams = $('.dream');
@@ -313,7 +378,8 @@
 					mapDreamIDtoDream[dream.id] = dream;
 					debugger;
 					$dreamSample.attr('for', dream.id);
-					$dreamSample.find('.delBtn').attr('onclick', 'delDream("'+dream.id+'")');
+					//$dreamSample.find('.delBtn').attr('onclick', 'delDream("'+dream.id+'")');
+                    $dreamSample.find('.delBtn').on('click', delDream);
 					$dreamSample.find('.dream-title').text(dream.get('title'));
 					$dreamSample.find('.detailBtn').on('click', showDetail);
 					$('.page.p1').prepend($dreamSample);
@@ -324,6 +390,7 @@
     }
 })()
 
+/*
 function delDream(DreamId) {
     $.ajax({
         url: '/api/delDream',
@@ -335,7 +402,7 @@ function delDream(DreamId) {
         alert("刪除成功!");
         location.reload();
     });
-}
+}*/
 
 function createComment(	DreamId, Content) {
 	$.ajax({

@@ -19,11 +19,21 @@
 					<img src='<%=result.get("fbPicture")%>'>
 				</div>
 				<div class="flex-center name_style setofont"><%= result.get('displayName') %></div>
+				<% for(var i = 0; i<following.length; i++) {%>
+					<div class="flex-center name_style setofont"><%= following[i].get('displayName') %></div>
+				<% }%>
 			</div>
             <h4 class="flex-1 flex-center setofont">Dreams</h4>
 			<div class="flex-column flex-end">
 				<span class="date setofont" id="clock"></span>
 				<span class="weather"><span class="setofont">天氣</span><img src="core/images/Thermometer.svg"></span>
+				<% if(result.id != UserId) { 
+				   	 if(isFollow(result.id) == "true"){
+					 %>
+					 <button>追隨中</button>
+					 <% } else{ %> 
+					 <button id="followBtn">追隨</button>
+				<% } } %>
 			</div>
         </div>
         <div class="flex-1 lines-container">
@@ -34,9 +44,11 @@
 					<% for(var i = j*7; i < (j+1)*7; i ++) {%>
 					<div class="flex-row flex-start dream" for="<%= result.get('Dreams')[i] ? result.get('Dreams')[i].id : ''%>">
 						<% if(i < result.get('Dreams').length) {%>
-						<div class="flex-1">
+						<div class="flex-1 dream-title-box">
 							<span class="dream-title setofont"><%= result.get('Dreams')[i].get('title') %></span>
-							<!--詳細按鈕-->
+						</div>					
+						<div class="flex-start">
+							<!--詳細按鈕-->								
 							<span class="fa-stack fa-lg detailBtn">
 							  <i class="fa fa-circle fa-stack-2x"></i>
 							  <i class="fa fa-ellipsis-h fa-stack-1x fa-inverse"></i>
@@ -44,7 +56,7 @@
 						</div>
 						<div class="flex-end">
 							<!--刪除按鈕-->
-							<span class="fa-stack fa-lg delBtn"  onclick=<%= "delDream('"+result.get('Dreams')[i].id+"')" %>>
+							<span class="fa-stack fa-lg delBtn">
 							  <i class="fa fa-circle fa-stack-2x" style="color: rgb(199, 10, 10);"></i>
 							  <i class="fa fa-trash fa-stack-1x fa-inverse"></i>
 							</span>
@@ -69,6 +81,7 @@
             </div>
         </div>
 	</div>
+	<div id="userID" value="<%=result.id%>" hidden></div>
 	<% if(result.id == UserId) {%>
 	<div class="flex-column right-part">
 		<div class="flex-1 flex-row flex-center">

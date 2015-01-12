@@ -62,11 +62,14 @@ app.get('/', function (req, res) {
 	if (Parse.User.current())
 		CLOUD.getMe().then(function (user) {
 			CLOUD.getUserDreams(user).then(function (dream) {
+				/*var foluser = user.get("Following");
+				console.log("Following:"+foluser[0].get("displayName"));*/
 				user.set('Dreams', dream);
 				res.render('./pages/home', {
 					UserId: Parse.User.current().id,
 					page: 'home-page',
-					result: user
+					result: user,
+					following: user.get("Following") || [],
 				});
 			});
 		});
@@ -82,7 +85,8 @@ app.get('/other', function (req, res) {
 				res.render('./pages/home', {
 					UserId: Parse.User.current().id,
 					page: 'home-page',
-					result: user
+					result: user,
+					following: user.get("Following") || [],
 				});
 			});
 		});
@@ -118,6 +122,39 @@ app.post('/api/createComment', function(req, res){
 		}
 	);
 });
+
+app.post('/api/followIt', function(req, res){
+	var FollowerId = req.body.FollowerId;
+	console.log(FollowerId);
+	
+	CLOUD.followIt(FollowerId).then(
+		function () {
+			res.send("success");
+		},
+		function () {
+			res.send("error");
+		}
+	);
+});
+
+//get follower 暫時不需要用
+app.post('/api/getFollowList', function(req, res){
+	var userID = req.body.userID;
+	
+	CLOUD.getFollowList(userID).then(
+		function (users) {
+			var foluser = users[0].get("Following");
+			console.log("追隨的人(1):"+foluser[0].get("displayName"));
+			console.log("擁有者:"+users[0].get("displayName"));
+			res.send("success");
+		},
+		function () {
+			console.log("error");
+			res.send("error");
+		}
+	);
+});
+
 app.post('/api/createDream', function(req, res){
 	console.log("createDream");
 	//要塞預設的none
@@ -180,7 +217,28 @@ app.locals({
   getLocalTime  : function(d) {
 
     return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日' + d.getHours() + ':' + d.getMinutes();
-  },    
+  },  
+  //判斷是否已經追蹤過
+  isFollow	: function(userId) {
+  	var User = Parse.Object.extend("User");
+	var query = new Parse.Query(User);
+	query.equalTo("objectId", Parse.User.current().id);
+	query.include('Following');
+	return query.first().then(function(me){
+		var following = me.get("Following") || [];
+		
+		var isfollow = "false";
+		for(var i = 0; i<following.length; i++){
+			if(following[i].id == userId){
+				isfollow = "true";
+				break;
+			}
+		}
+		console.log(isfollow);
+		return isfollow;
+	});
+  },
+
 });
 // -------------------Function-------------------
 
