@@ -179,7 +179,7 @@
 }
 .page {
 	background: #f5f5f5;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
 }
 .followers{
