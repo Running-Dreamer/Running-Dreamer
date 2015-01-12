@@ -96,13 +96,32 @@
 	font-style: italic;
 }
 .detail-modal .comment-area {
-	margin-bottom: 5px;
-}
-.detail-modal .comment-area > input {
-	height: 24px;
-	width: 100%;
+	margin-bottom: 3px;
 	margin-left: 5px;
+	margin-right: 5px;
 }
+.detail-modal .comment-area .sendComment-box {
+	width: 100%;
+	margin-left: 8px;
+	margin-bottom: 2px;
+	border: 1px solid rgb(46, 93, 250);
+	border-image-source: initial;
+	border-image-slice: initial;
+	border-image-width: initial;
+	border-image-outset: initial;
+	border-image-repeat: initial;
+}
+.detail-modal .comment-area .sendComment {
+	width: 100%;
+	font-size: 1.5em;
+}
+
+/*
+.detail-modal .comment-area > input {
+	width: 100%;
+	margin-left: 8px;
+	font-size: 1.7em;
+}*/
 .detail-modal .comment-area > button {
 	height: 30px;
 }
