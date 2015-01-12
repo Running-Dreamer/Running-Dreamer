@@ -90,7 +90,7 @@ var papers = [];
 				                    Y=Y+3/10*$paperArea.height();
 			                 }else if(i==4){
 				                    X=X+19/48*$paperArea.width();
-				                    Y=Y-1/4*$paperArea.height();
+				                    Y=Y-13/48*$paperArea.height();
                              }else if(i==5){
 				                    X=X+3/5*$paperArea.width()
 				                    Y=Y+1/4*$paperArea.height();
