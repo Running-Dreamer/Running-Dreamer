@@ -79,26 +79,50 @@ var papers = [];
                             var Y = 7/24*$paperArea.height();
                             if(i==0){
 			                     X=0;
+                                 $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass('fadeInRight animated');
+    });
 			                 }else if(i==1){
 				                    X=X+1/5*$paperArea.width();
 				                    Y=Y+1/4*$paperArea.height();
+                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass('fadeInLeft animated');
+    });
 			                 }else if(i==2){
 				                    X=X+1/5*$paperArea.width();
 				                    Y=Y-1/6*$paperArea.height();
+                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass('fadeInLeft animated');
+    });
 			                 }else if(i==3){
 				                    X=X+19/48*$paperArea.width();
 				                    Y=Y+3/10*$paperArea.height();
+                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass('fadeInRight animated');
+    });
 			                 }else if(i==4){
 				                    X=X+19/48*$paperArea.width();
 				                    Y=Y-13/48*$paperArea.height();
+                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass('fadeInRight animated');
+    });
                              }else if(i==5){
 				                    X=X+3/5*$paperArea.width()
 				                    Y=Y+1/4*$paperArea.height();
+                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass('fadeInDown animated');
+    });
 			                 }else if(i==6){
 				                    X=X+3/5*$paperArea.width()
 				                    Y=Y-1/6*$paperArea.height();
+                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInTop animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass('fadeInTop animated');
+    });
 			                 }else{
 				                    X=X+4/5*$paperArea.width();
+                                  $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
+      $(this).removeClass('fadeInRight animated');
+    });
 			                 }
 							var j = 0;
 							for(var i=0; i<papers.length; i++){
