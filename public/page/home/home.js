@@ -128,6 +128,10 @@
                     var _comments = _dream.get("comment");
                     $('.comment-list').empty();
                     if (!_comments) return;
+					var bestComment = _dream.get('bestComment');
+					var hasBestComment = false;
+					if(bestComment)
+						hasBestComment = true;
                     var j, maxJ = _comments.length;
                     for (j = 0; j < maxJ; j += 1) {
                         var _comment = _comments[j];
@@ -137,6 +141,36 @@
                         commentCtn.find('.comment-author a').attr('href', '/other?UserId=' + _creator.id).text(_creator.get("displayName"));
                         commentCtn.find('.comment-date').text(_comment.updatedAt.toLocaleString());
                         commentCtn.find('.comment-content').text(_comment.get("content"));
+						var $bestComment = commentCtn.find('.best-comment');
+						
+						if(hasBestComment) {
+							if(_comment.get('bestComment')) {
+								$bestComment.parent().append($('<i class="fa fa-star"></i>'));
+								$bestComment.remove();
+							}
+							else
+								$bestComment.remove()
+						}
+						else {
+							var data = {c_id: _comment.id, d_id:_dream.id};
+							$bestComment.data('data', data);
+							$bestComment.removeClass('HIDE').on("click", function(){
+								var data = $(this).data('data');
+								$.ajax({
+									url: '/api/chooseBestComment',
+									type: 'POST',
+									data: data,
+									success: function (result) {
+										console.debug(result);
+										$(this).parent().append($('<i class="fa fa-star"></i>'));
+										$('.comment .best-comment').remove();
+									}.bind(this),
+									error: function (err) {
+										console.debug(err);
+									}
+								})
+							});
+						}
 //						if(_comment.get(''))
                         commentCtn.appendTo($('.comment-list'));
                     }
@@ -182,9 +216,9 @@
                                 else{
                                     swal("刪除夢想失敗...", "", "error")
                                 }
-                            });                            
+                            });
                         }
-                    );                
+                    );
 
             }
 

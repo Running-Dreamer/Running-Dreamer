@@ -175,7 +175,22 @@ cloud.createDream = function(title,description,photo,type) {
 
 //刪除某筆夢想
 cloud.delDream = function (Dream) {
-	return Dream.destroy();	
+	return Dream.destroy();
+};
+
+// 最佳留言
+cloud.chooseBestComment = function (d_id, c_id) {
+	var Dream = Parse.Object.extend("Dream");
+	var dream = new Dream();
+	var Comment = Parse.Object.extend("Comment");
+	var comment = new Comment();
+	dream.id = d_id;
+	comment.id = c_id;
+	comment.set('bestComment', true);
+	return comment.save().then(function(comment){
+		dream.set('bestComment', comment);
+		return dream.save();
+	});
 };
 
 // 讓整個app可以用到

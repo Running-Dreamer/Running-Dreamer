@@ -189,6 +189,13 @@ app.post('/api/delDream', function(req, res){
 		});
 	});
 });
+app.post('/api/chooseBestComment', function(req, res){
+	var DreamId = req.body.d_id;
+	var CommentId = req.body.c_id;
+	CLOUD.chooseBestComment(DreamId, CommentId).then(function () {
+		res.send('success');
+	});
+});
 // -------------------API-------------------
 
 
