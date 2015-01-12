@@ -70,8 +70,8 @@ var papers = [];
 						$paper.find('.done_status').text(change_done_status(result.get('done')) );
 						$paper.data("result", result);
                         //按分類換顏色
-                        var type1 = $(this).attr('type');
-                        changecolor(type1);
+                        var type1 = result.get('type');
+                        changecolor(type1, $paper);
 						//判斷有沒有相碰
 						while(checkPaper){
 							if(papers.length<1){checkPaper = false;}
@@ -212,14 +212,14 @@ var papers = [];
 				return (absX && absY);
 			}*/
             //夢想分類
-            function changecolor(type){
-                        var category = $('.category');
-                        if(type == 'adventure') category.addClass('ADV');
-				        if(type == 'experience') category.addClass('EXP');
-				        if(type == 'skill') category.addClass('SKI');
-				        if(type == 'travel') category.addClass('TRAV');
-				        if(type == 'family') category.addClass('FAM');
-				        if(type == 'other') category.addClass('OTH');
+            function changecolor(type, $paper){
+						$paper.removeClass('ADVEN EXP SKILL TRAV FAMI OTHER');
+                        if(type == 'adventure') $paper.addClass('ADVEN');
+				        if(type == 'experience') $paper.addClass('EXP');
+				        if(type == 'skill') $paper.addClass('SKILL');
+				        if(type == 'travel') $paper.addClass('TRAV');
+				        if(type == 'family') $paper.addClass('FAMI');
+				        if(type == 'other') $paper.addClass('OTHER');
             }
 		});
 	}

@@ -53,73 +53,45 @@
     box-shadow: 13px 14px 6px -1px rgba(0,0,0,0.75);
 
 }
-.ADV {
-    position: absolute;
-    border-width: 20px;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-left-color: red;
-    border-top-color: red;
-    border-right-color: white;
-    border-bottom-color: white;
-    z-index: 1;
+.paper::after {
+	content: "";
+	width: 0;
+	height: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-width: 20px;
+	border-style: solid;
+	border-top-left-radius: 10px;
+	border-left-color: yellow;
+	border-top-color: yellow;
+	border-right-color: white;
+	border-bottom-color: white;
 }
-.EXP {
-    position: absolute;
-    border-width: 20px;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-left-color: orange;
-    border-top-color: orange;
-    border-right-color: white;
-    border-bottom-color: white;
-    z-index: 1;
+.paper.ADVEN::after {
+	border-left-color: red;
+	border-top-color: red;
 }
-.SKI {
-    position: absolute;
-    border-width: 20px;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-left-color: yellow;
-    border-top-color: yellow;
-    border-right-color: white;
-    border-bottom-color: white;
-    z-index: 1;
+.paper.EXP::after {
+	border-left-color: orange;
+	border-top-color: orange;
 }
-.TRAV {
-    position: absolute;
-    border-width: 20px;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-left-color: green;
-    border-top-color: green;
-    border-right-color: white;
-    border-bottom-color: white;
-    z-index: 1;
+.paper.SKILL::after {
+	border-left-color: green;
+	border-top-color: green;
 }
-.FAM {
-    position: absolute;
-    border-width: 20px;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-left-color: blue;
-    border-top-color: blue;
-    border-right-color: white;
-    border-bottom-color: white;
-    z-index: 1;
+.paper.TRAV::after {
+	border-left-color: #00baff;
+	border-top-color: #00baff;
 }
-.OTH {
-    position: absolute;
-    border-width: 20px;
-    border-style: solid;
-    border-top-left-radius: 10px;
-    border-left-color: purple;
-    border-top-color: purple;
-    border-right-color: white;
-    border-bottom-color: white;
-    z-index: 1;
+.paper.FAMI::after {
+	border-left-color: blue;
+	border-top-color: blue;
 }
-
+.paper.OTHER::after {
+	border-left-color: purple;
+	border-top-color: purple;
+}
 .dream{
     font-family: Sancreek;
     font-size: 30px;
