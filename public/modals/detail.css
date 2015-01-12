@@ -100,7 +100,7 @@
 	margin-left: 5px;
 	margin-right: 5px;
 }
-.detail-modal .comment-area .title-box {
+.detail-modal .comment-area .sendComment-box {
 	width: 100%;
 	margin-left: 8px;
 	margin-bottom: 2px;
@@ -111,7 +111,7 @@
 	border-image-outset: initial;
 	border-image-repeat: initial;
 }
-.detail-modal .comment-area .title {
+.detail-modal .comment-area .sendComment {
 	width: 100%;
 	font-size: 1.5em;
 }
