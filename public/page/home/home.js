@@ -423,6 +423,7 @@
 								dream.set("description", description);
 								dream.set("photo", file);
 								dream.set("type", type);
+								dream.set("done", "none");
 								dream.save().then(function (dream) {
 									//user那邊的Dreams關聯要更新
 									var query = new Parse.Query(User);
