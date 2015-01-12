@@ -298,9 +298,9 @@
 				$file.data('img', $img);
 				$file.on("change", setFile);
 
-				var $type = modal.find('.type select');
+				var $type = modal.find('select.type');
 				$type.on('change', $uploadModal, changeTagColor);
-
+				
 				var $upload = modal.find('.upload');
 				$upload.on('click', self, readyToUpload);
 
@@ -452,7 +452,6 @@
 				
 				function addDreamToUI (dream) {
 					mapDreamIDtoDream[dream.id] = dream;
-					debugger;
 					$dreamSample.attr('for', dream.id);
 					//$dreamSample.find('.delBtn').attr('onclick', 'delDream("'+dream.id+'")');
                     $dreamSample.find('.delBtn').on('click', delDream);
