@@ -193,6 +193,15 @@ cloud.chooseBestComment = function (d_id, c_id) {
 	});
 };
 
+//以關鍵字搜尋有沒有這個名字
+cloud.QueryUserName = function (displayName) {
+	var User = Parse.Object.extend("User");
+	var query = new Parse.Query(User);	
+	query.startsWith("displayName",displayName);
+	query.select("displayName", "id");
+	return query.find();
+};
+
 // 讓整個app可以用到
 exports.getCLOUD = function () {
 	return cloud;
