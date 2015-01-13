@@ -50,7 +50,6 @@
 			function setFlipPage () {
 				var height = $('.lines-container').height();
 				$('.page').height(height-10);
-				debugger;
 			}
 
             /*function getFollowList() { //測試取得追隨list
