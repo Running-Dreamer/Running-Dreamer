@@ -49,8 +49,6 @@
 	height: 240px;
 	word-break: break-all;
     cursor: pointer;
-    -webkit-box-shadow: 13px 14px 6px -1px rgba(0,0,0,0.75);
-    -moz-box-shadow: 13px 14px 6px -1px rgba(0,0,0,0.75);
     box-shadow: 13px 14px 6px -1px rgba(0,0,0,0.75);
 }
 .paper::after {
@@ -113,8 +111,13 @@
 	height: 90px;
     z-index: 2;
 }
+.paper {
+	-webkit-transition: all 1s linear;
+	transition: all 1s linear;
+}
+/*
 
-.left{
+.paper.left{
     -webkit-transform: translateX(-100%) scale(0);
 	-ms-transform: translateX(-100%) scale(0);
 	transform: translateX(-100%) scale(0);
@@ -122,13 +125,7 @@
     -webkit-transition: all 1s linear;
 	transition: all 1s linear;
 }
-.left::after{
-    -webkit-transform: translateX(0) scale(1);
-	-ms-transform: translateX(0) scale(1);
-	transform: translateX(0) scale(1);
-    opacity: 1;
-}
-.top-left{
+.paper.top-left{
     -webkit-transform: translateX(100%) translatY(50%) scale(0);
 	-ms-transform: translateX(100%) translatY(50%) scale(0);
 	transform: translateX(100%) translatY(50%) scale(0);
@@ -136,13 +133,7 @@
     -webkit-transition: all 1s linear;
 	transition: all 1s linear;
 }
-.top-left::after{
-    -webkit-transform: translateX(0) translatY(0) scale(1);
-	-ms-transform: translateX(0) translatY(0) scale(1);
-	transform: translateX(0) translatY(0) scale(1);
-    opacity: 1;
-}
-.bottom-left{
+.paper.bottom-left{
     -webkit-transform: translateX(100%) translatY(-50%) scale(0);
 	-ms-transform: translateX(100%) translatY(-50%) scale(0);
 	transform: translateX(100%) translatY(-50%) scale(0);
@@ -150,13 +141,7 @@
     -webkit-transition: all 1s linear;
 	transition: all 1s linear;
 }
-.bottom-left::after{
-    -webkit-transform: translateX(0) translatY(0) scale(1);
-	-ms-transform: translateX(0) translatY(0) scale(1);
-	transform: translateX(0) translatY(0) scale(1);
-    opacity: 1;
-}
-.top{
+.paper.top{
     -webkit-transform: translateY(50%) scale(0);
 	-ms-transform: translateY(50%) scale(0);
 	transform: translateY(50%) scale(0);
@@ -164,13 +149,7 @@
     -webkit-transition: all 1s linear;
 	transition: all 1s linear;
 }
-.top::after{
-    -webkit-transform: translateY(0) scale(1);
-	-ms-transform: translateY(0) scale(1);
-	transform: translateY(0) scale(1);
-    opacity: 1;
-}
-.bottom{
+.paper.bottom{
     -webkit-transform: translateY(-50%) scale(0);
 	-ms-transform: translateY(-50%) scale(0);
 	transform: translateY(-50%) scale(0);
@@ -178,13 +157,7 @@
     -webkit-transition: all 1s linear;
 	transition: all 1s linear;
 }
-.bottom::after{
-    -webkit-transform: translateY(0) scale(1);
-	-ms-transform: translateY(0) scale(1);
-	transform: translateY(0) scale(1);
-    opacity: 1;
-}
-.right{
+.paper.right{
     -webkit-transform: translateX(-100%) scale(0);
 	-ms-transform: translateX(-100%) scale(0);
 	transform: translateX(-100%) scale(0);
@@ -192,13 +165,7 @@
     -webkit-transition: all 1s linear;
 	transition: all 1s linear;
 }
-.right::after{
-    -webkit-transform: translateX(0) scale(1);
-	-ms-transform: translateX(0) scale(1);
-	transform: translateX(0) scale(1);
-    opacity: 1;
-}
-.top-right{
+.paper.top-right{
     -webkit-transform: translateX(-100%) translatY(50%) scale(0);
 	-ms-transform: translateX(-100%) translatY(50%) scale(0);
 	transform: translateX(-100%) translatY(50%) scale(0);
@@ -206,23 +173,11 @@
     -webkit-transition: all 1s linear;
 	transition: all 1s linear;
 }
-.top-right::after{
-    -webkit-transform: translateX(0) translatY(0) scale(1);
-	-ms-transform: translateX(0) translatY(0) scale(1);
-	transform: translateX(0) translatY(0) scale(1);
-    opacity: 1;
-}
-.bottom-right{
+.paper.bottom-right{
     -webkit-transform: translateX(-100%) translatY(-50%) scale(0);
 	-ms-transform: translateX(-100%) translatY(-50%) scale(0);
 	transform: translateX(-100%) translatY(-50%) scale(0);
     opacity: 0;
     -webkit-transition: all 1s linear;
 	transition: all 1s linear;
-}
-.bottom-right::after{
-    -webkit-transform: translateX(0) translatY(0) scale(1);
-	-ms-transform: translateX(0) translatY(0) scale(1);
-	transform: translateX(0) translatY(0) scale(1);
-    opacity: 1;
-}
+}*/
