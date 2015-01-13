@@ -26,7 +26,7 @@ app.use(express.cookieParser('the big fish'));
 // cookie session
 app.use(express.cookieSession());
 // cookie session
-app.use(parseExpressCookieSession({cookie: {maxAge: 3600000}}));
+app.use(parseExpressCookieSession({cookie: {maxAge: 36000000}}));
 // 設定layout為index.ejs
 app.set('layout', 'index');
 // 使用ejs layout
