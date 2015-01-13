@@ -20,9 +20,6 @@
 					<img src='<%=result.get("fbPicture")%>'>
 				</div>
 				<div class="flex-center name_style setofont"><%= result.get('displayName') %></div>
-				<% for(var i = 0; i<following.length; i++) {%>
-					<div class="flex-center name_style setofont"><%= following[i].get('displayName') %></div>
-				<% }%>
 			</div>
             <h4 class="flex-1 flex-center setofont">Dreams</h4>
 			<div class="flex-column flex-end">
@@ -75,8 +72,9 @@
 					<% }%>
 				</div>
 				<div class="page followers flex-center">
-                    <button>follow</button>
-                    <%for(i = 0; i < 2; i++) %>
+                    <% for(var i = 0; i<following.length; i++) {%>
+						<div><%= following[i].get('displayName') %></div>
+					<% }%>
                 </div>
             </div>
         </div>
