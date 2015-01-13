@@ -16,6 +16,7 @@ html, body {
 /* main */
 main {
 	position: relative;
+    overflow: hidden;
 }
 main > div {
 	width: 100%;

@@ -1,6 +1,7 @@
 .desktop {
     background-image: url("./images/bg-small.png");
     background-size: cover;
+    overflow: hidden;
 }
 .right-part {
     width: 300px;
