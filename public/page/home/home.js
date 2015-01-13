@@ -186,6 +186,8 @@
                     .setTextByClass('description', dream.get("description"))
                     .setTextByClass('is_done', change_done_status( dream.get("done") ))
                     .setTextByClass('type', changeType(dream.get("type")))
+					.changeClassByClass('is_done', 'list-', 'list-'+dream.get("done"))
+					.changeClassByClass('type', 'list-', 'list-'+dream.get("type"))
                     .callFunction(addComments, dream)
                     .show();
             }

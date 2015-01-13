@@ -122,6 +122,19 @@
 				}
 				return self;
 			},
+			changeClassByClass: function(className, CLASS1, CLASS2) {
+				var self = this;
+				var eles = self.mapEle['content'].find('.'+className);
+				eles.removeClassPrefix(CLASS1);
+				eles.addClass(CLASS2);
+				return self;
+			},
+			addClassByClass: function(className, CLASS) {
+				var self = this;
+				var eles = self.mapEle['content'].find('.'+className);
+				eles.addClass(CLASS);
+				return self;
+			},
 			// call 傳入的function帶入傳入的參數
 			callFunction: function () {
 				var self = this;

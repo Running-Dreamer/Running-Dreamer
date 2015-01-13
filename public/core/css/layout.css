@@ -20,6 +20,10 @@ main {
 main > div {
 	width: 100%;
 }
+a {
+	text-decoration: none;
+	color: black;
+}
 /* header */
 .header {
 	height: 50px;

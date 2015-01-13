@@ -47,6 +47,7 @@
 	background: -webkit-linear-gradient(top, rgba(122, 188, 255, 1) 0%, rgba(96, 171, 248, 1) 44%, rgba(64, 150, 238, 1) 100%);
 	background: linear-gradient(to bottom, rgba(122, 188, 255, 1) 0%, rgba(96, 171, 248, 1) 44%, rgba(64, 150, 238, 1) 100%);
 	filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#7abcff', endColorstr='#4096ee', GradientType=0);
+	position: relative;
 }
 .detail-modal .splitter-r .splitter-d {
 	background: rgb(252, 255, 244);
@@ -165,4 +166,46 @@
 .detail-modal .best-commentn:active {
 	position: relative;
 	top: 1px;
+}
+.detail-modal .type-box {
+	position: absolute;
+	top: 5px;
+	left: 5px;
+	background-color: white;
+	border-radius: 5px;
+}
+.detail-modal .is_done-box {
+	position: absolute;
+	top: 5px;
+	right: 10px;
+	background-color: white;
+	border-radius: 5px;
+}
+.list-none ,.list-undefined{
+    color: #888;
+}
+.list-already {
+    color: #100BD0;
+}
+.list-done{
+    color: #E51C1C;
+}
+
+.list-adventure{
+    color: red;
+}
+.list-experience {
+    color: orange;
+}
+.list-skill{
+    color: green;
+}
+.list-travel{
+    color: rgb(0, 186, 255);
+}
+.list-family {
+    color:  rgb(0, 0, 255);
+}
+.list-others{
+    color: rgb(128, 0, 128);
 }
