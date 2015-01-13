@@ -45,7 +45,7 @@ var papers = [];
 				var query = new Parse.Query(Dream);
 				query.include('owner');
 				query.include('comment');
-				query.notEqualTo("owner", Parse.User.current());
+//				query.notEqualTo("owner", Parse.User.current());
 				query.include('comment.creator');
 				//如果type不為空 or all 只搜尋那個型別
 				if (type != null && type != "all" && type != "follow") 

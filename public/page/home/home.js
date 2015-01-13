@@ -14,7 +14,7 @@
             $('.page').css('visibility','visible');
             var uploadModal = Modal().init({selector:'.upload-modal'});
 			uploadModal.callFunction(uploadModalEvent, uploadModal);
-            var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail', closeByBtn: true});
+            var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail'});
             var $commentSample = vs.$commentSample = $('.comment').clone();
 			var $dreamSample = vs.$dreamSample = $('.dream-sample').children().first().clone();
             var mapDreamIDtoDream = {};
