@@ -26,7 +26,7 @@
 				<span class="date setofont" id="clock"></span>
 				<span class="weather"><span class="setofont">天氣</span><img src="core/images/Thermometer.svg"></span>
 				<% if(result.id != UserId) {%>
-					 <button id="followBtn">追隨</button>
+					 <a href="javascript: void(0)" class="followbtn" id="followBtn">追隨</a>
 				<% }%>
 			</div>
         </div>
@@ -72,6 +72,8 @@
 					<% }%>
 				</div>
 				<div class="page followers">
+					<div class="flex-row flex-start follow"></div>
+
                     <% for(var i = 0; i<following.length; i++) {%>
                     	<div class="flex-row flex-start follow">
                     		<div class="follow-title"></div>

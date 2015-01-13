@@ -32,8 +32,8 @@
             //測試用follow按紐
             $('#followBtn').on('click', followIt);
             function followIt() { //測試追隨
-                $('#followBtn').text('追隨中').attr("disabled","disabled")
-                            .removeClass('followBtn');
+                $('#followBtn').text('追隨中').attr('onclick','').unbind('click')
+                            .removeClass('followbtn').addClass('followbtn_already');
 
                 var userID = $('#userID').attr('value'); //當下頁面的ID
                 //alert(userID);
@@ -87,12 +87,13 @@
                         }
                         console.log(isfollow);
                         if(isfollow == "true"){
-                            $('#followBtn').text('追隨中').attr("disabled","disabled")
-                            .removeClass('followBtn');
+                            $('#followBtn').text('追隨中').attr('onclick','').unbind('click')
+                            .removeClass('followbtn').addClass('followbtn_already');
                         }
                         else{
 
                         }
+                        $('#followBtn').css('visibility','visible');
                     });
                 }
             }

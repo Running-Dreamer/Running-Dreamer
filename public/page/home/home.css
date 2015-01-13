@@ -221,3 +221,30 @@
 .dream-title-box {
 	overflow: hidden;
 }
+
+.followbtn {
+    visibility: hidden;
+    margin-top: 10px;
+   background: #ae4d18;
+   padding: 8px 16px;
+   color: white;
+   font-size: 16px;
+   font-family: "W3";
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.followbtn:hover{
+   border-top-color: #693c05;
+   background: #693c05;
+   color: #ccc;
+   }
+.followbtn_already{
+    margin-top: 10px;
+   padding: 8px 16px;
+   color: #ccc;
+   font-size: 16px;
+   font-family: "W3";
+   text-decoration: none;
+   vertical-align: middle;
+   background: #693c05;
+}
