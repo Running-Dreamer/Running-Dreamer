@@ -232,6 +232,13 @@ app.locals({
 
     return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日' + d.getHours() + ':' + d.getMinutes();
   },  
+  getGender  : function(sex) {
+  	var gender;
+  	if(sex == "male") gender="男子漢";
+  	else if(sex == "female") gender="女人花";
+  	else gender="秘密";
+    return gender;
+  }, 
   //判斷是否已經追蹤過
   isFollow	: function(userId) {
   	var User = Parse.Object.extend("User");

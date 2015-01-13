@@ -254,3 +254,21 @@
 	-webkit-box-flex: 7;
 	flex: 7;
 }
+.flex-8 {
+	-webkit-flex: 8;
+	-ms-flex: 8;
+	-webkit-box-flex: 8;
+	flex: 8;
+}
+.flex-9 {
+	-webkit-flex: 9;
+	-ms-flex: 9;
+	-webkit-box-flex: 9;
+	flex: 9;
+}
+.flex-10 {
+	-webkit-flex: 10;
+	-ms-flex: 10;
+	-webkit-box-flex: 10;
+	flex: 10;
+}

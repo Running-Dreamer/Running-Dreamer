@@ -76,9 +76,14 @@
                     	<div class="flex-row flex-start follow">
                     		<div class="follow-title"></div>
                     		<div class="follow-photo">
-								<img src='<%=following[i].get("fbPicture")%>'>
+								<img src='<%=following[i].get("fbPicture")%>'>	
 							</div>
 							<span class=""><a href="/other?UserId=<%=following[i].id%>"><%= following[i].get('displayName') %></a></span>
+							
+							<!--<div class="flex-end">
+								<span class="list-type"><%= getGender(following[i].get('gender')) %></span>
+								<span class="list-date"><%= following[i].get('birthday') %></span>
+							</div>-->
 						</div>
 					<% }%>
                 </div>
