@@ -16,7 +16,7 @@
 			uploadModal.callFunction(uploadModalEvent, uploadModal);
             var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail', closeByBtn: true});
             var $commentSample = vs.$commentSample = $('.comment').clone();
-			var $dreamSample = vs.$dreamSample = $('.dream').first().clone();
+			var $dreamSample = vs.$dreamSample = $('.dream-sample').children().first().clone();
             var mapDreamIDtoDream = {};
             getAllDreamDetail();
             $('.pencil').on('click', function () {
@@ -491,12 +491,21 @@
 				
 				function addDreamToUI (dream) {
 					mapDreamIDtoDream[dream.id] = dream;
-					$dreamSample.attr('for', dream.id);
-					//$dreamSample.find('.delBtn').attr('onclick', 'delDream("'+dream.id+'")');
-                    $dreamSample.find('.delBtn').on('click', delDream);
-					$dreamSample.find('.dream-title').text(dream.get('title'));
-					$dreamSample.find('.detailBtn').on('click', showDetail);
-					$('.page.p1').prepend($dreamSample);
+					var $dream = $dreamSample.clone();
+					$dream.removeClass('HIDE');
+					$dream.attr('for', dream.id);
+                    $dream.find('.delBtn').on('click', delDream);
+					$dream.find('.dream-title').text(dream.get('title'));
+					$dream.find('.done').text(change_done_status(dream.get('done'))).addClass('list-'+dream.get("done"));
+					$dream.find('.list-type').text(changeType(dream.get('type'))).addClass('list-'+dream.get("type"));
+					$dream.find('.detailBtn').on('click', showDetail);
+					$dream.find('.list-date').text(getLocalTime(dream.createdAt));
+					$('.page.p1').prepend($dream);
+				}
+				
+				function getLocalTime (d) {
+
+    				return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日' + d.getHours() + ':' + d.getMinutes();
 				}
 
 			};
