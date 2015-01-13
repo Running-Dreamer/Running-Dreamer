@@ -104,6 +104,11 @@
     letter-spacing: 3px;
     z-index: 2;
 }
+.aut{
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+    
 .des{
     margin-top: 3px;
     margin-bottom: 3px;
