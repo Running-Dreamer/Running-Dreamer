@@ -141,6 +141,7 @@
 }
 
 
+
 .modal .new-dream-modal {
 	max-width: 100%;
 	max-height: 100%;
@@ -181,10 +182,32 @@
 	background: #f5f5f5;
     overflow-x: hidden;
 	overflow-y: auto;
+    visibility: hidden;
 }
+
+
 .followers{
     overflow: hidden;
 }
+.list .follow {
+    border-bottom: 1px dotted #ccc;
+    height: 50px;
+}
+.list .follow-title {
+    border-left: double #FFAA9F;
+    height: 25px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-left: 40px;
+}
+.list .follow-photo img {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+}
+
+
 .weather {
 	margin: 0 15px;
 	font-size: 1.5em;

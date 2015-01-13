@@ -20,9 +20,6 @@
 					<img src='<%=result.get("fbPicture")%>'>
 				</div>
 				<div class="flex-center name_style setofont"><%= result.get('displayName') %></div>
-				<% for(var i = 0; i<following.length; i++) {%>
-					<div class="flex-center name_style setofont"><%= following[i].get('displayName') %></div>
-				<% }%>
 			</div>
             <h4 class="flex-1 flex-center setofont">Dreams</h4>
 			<div class="flex-column flex-end">
@@ -74,9 +71,21 @@
 					</div>
 					<% }%>
 				</div>
-				<div class="page followers flex-center">
-                    <button>follow</button>
-                    <%for(i = 0; i < 2; i++) %>
+				<div class="page followers">
+                    <% for(var i = 0; i<following.length; i++) {%>
+                    	<div class="flex-row flex-start follow">
+                    		<div class="follow-title"></div>
+                    		<div class="follow-photo">
+								<img src='<%=following[i].get("fbPicture")%>'>	
+							</div>
+							<span class=""><a href="/other?UserId=<%=following[i].id%>"><%= following[i].get('displayName') %></a></span>
+							
+							<!--<div class="flex-end">
+								<span class="list-type"><%= getGender(following[i].get('gender')) %></span>
+								<span class="list-date"><%= following[i].get('birthday') %></span>
+							</div>-->
+						</div>
+					<% }%>
                 </div>
             </div>
         </div>

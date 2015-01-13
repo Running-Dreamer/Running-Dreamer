@@ -8,9 +8,10 @@
 			getWeather();
             //判斷是否有追隨過
             isFollow();
-			setFlipPage();
 			setInterval(function(){getWeather();},1000*60*10);
 			$('#flip_page').turn({}).turn("display", "single");
+            setFlipPage();
+            $('.page').css('visibility','visible');
             var uploadModal = Modal().init({selector:'.upload-modal'});
 			uploadModal.callFunction(uploadModalEvent, uploadModal);
             var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail', closeByBtn: true});
@@ -98,7 +99,7 @@
 
             function change_done_status(isdone) {
                 var done_status;
-                if(isdone == "none") done_status = "";
+                if(isdone == "none") done_status = "未完成";
                 else if(isdone == "already") done_status = "進行中";
                 else if(isdone == "done") done_status = "已完成";
                 else done_status = "未完成";
