@@ -8,7 +8,7 @@
 			getWeather();
             //判斷是否有追隨過
             isFollow();
-
+			setFlipPage();
 			setInterval(function(){getWeather();},1000*60*10);
 			$('#flip_page').turn({}).turn("display", "single");
             var uploadModal = Modal().init({selector:'.upload-modal'});
@@ -47,8 +47,11 @@
                     //alert(results);
                 });
             }
-            
-            
+			
+			function setFlipPage () {
+				var height = $('.lines-container').height();
+				$('.page').height(height-10);
+			}
 
             /*function getFollowList() { //測試取得追隨list
                 $.ajax({
