@@ -22,7 +22,6 @@ var papers = [];
 			var $change_dream = $("#change_dream");
 			center.top = $change_dream.offset().top - 50;
 			center.left = $change_dream.offset().left - 90;
-			debugger;
 			//轉換夢想
 			$change_dream.on('click',function() {
 				getDream(type_now, skip_count);
