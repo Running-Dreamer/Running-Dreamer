@@ -5,6 +5,8 @@
 	function start() {
 		// 登入
 		$('.facebook').on('click', login);
+		var introModal = Modal().init({selector:'.intro-modal'});
+		$('.step').on('click', openIntro);
 
 		function login() {
 			Parse.FacebookUtils.logIn('public_profile, email, user_birthday, user_friends', {
@@ -49,6 +51,45 @@
 					console.debug("User cancelled the Facebook login or did not fully authorize.");
 				}
 			});
+		}
+		
+		function openIntro () {
+			introModal.reset();
+			var index = $(this).index();
+			if(index == 0) {
+				var $img = $('.intro-modal img');
+				$img.attr('src','/core/images/intro/intro_1.png');
+				var $parent = $img.parent();
+				$parent.append($('<span class="add-new-dream">點擊鉛筆新增夢想!!</span>'));
+				$parent.append($('<span class="next-intro"><i class="fa fa-arrow-right"></i></span>').on('click', $img, function(e){
+					var $img = e.data;
+					var $parent = $img.parent();
+					$parent.children('.add-new-dream').remove();
+					$img.attr('src', '/core/images/intro/intro_2.png');
+					$(this).remove();
+				}));
+			}
+			if(index == 1) {
+				var $img = $('.intro-modal img');
+				$img.attr('src','/core/images/intro/intro_3.png');
+				var $parent = $img.parent();
+				$parent.append($('<span class="add-new-dream">點擊夢想查看詳細資訊!!</span>'));
+				$parent.append($('<span class="next-intro"><i class="fa fa-arrow-right"></i></span>').on('click', $img, function(e){
+					var $img = e.data;
+					var $parent = $img.parent();
+					$parent.children('.add-new-dream').remove();
+					$img.attr('src', '/core/images/intro/intro_4.png');
+					$(this).remove();
+				}));
+			}
+			
+			if(index == 2) {
+				var $img = $('.intro-modal img');
+				$img.attr('src','/core/images/intro/intro_5.png');
+				var $parent = $img.parent();
+				$parent.append($('<span class="add-new-dream adjust">選擇圓夢最佳留言!!</span>'));
+			}
+			setTimeout(function(introModal){introModal.show()}, 10, introModal);
 		}
 	}
 })()

@@ -1,0 +1,27 @@
+.intro-modal {
+	width: 600px;
+	height: 450px;
+	background-color: rgb(255, 255, 255);
+	border: 2px solid gray;
+	border-radius: 10px;
+	box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+}
+.intro-modal > img {
+	max-width: 100%;
+	max-height: 100%;
+}
+.intro-modal .add-new-dream {
+	position: absolute;
+	top: 50px;
+	font-size: 2em;
+	right: 75px;
+}
+.intro-modal .add-new-dream.adjust {
+	top: 25px;
+}
+.intro-modal .next-intro {
+	position: absolute;
+	bottom: 5px;
+	right: 5px;
+	font-size: 3em;
+}
