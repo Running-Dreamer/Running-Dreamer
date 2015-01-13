@@ -18,9 +18,13 @@ var papers = [];
 			var $commentSample = vs.$commentSample = $('.comment').clone();
 			getDream(type_now, skip_count);
 			var detailModal = Modal().init();
-
+			var center = {};
+			var $change_dream = $("#change_dream");
+			center.top = $change_dream.offset().top - 50;
+			center.left = $change_dream.offset().left - 90;
+			debugger;
 			//轉換夢想
-			$("#change_dream").on('click',function() {
+			$change_dream.on('click',function() {
 				getDream(type_now, skip_count);
 			});
 			//轉換分類
@@ -80,50 +84,34 @@ var papers = [];
                             var Y = 7/24*$paperArea.height();
                             if(i==0){
 			                     X=0;
-                                 $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-      $(this).removeClass('fadeInRight animated');
-    });
+                                $paper.addClass('left');
 			                 }else if(i==1){
 				                    X=X+1/5*$paperArea.width();
 				                    Y=Y+1/4*$paperArea.height();
-                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-      $(this).removeClass('fadeInLeft animated');
-    });
+                                    $paper.addClass('bottom-left');
 			                 }else if(i==2){
 				                    X=X+1/5*$paperArea.width();
 				                    Y=Y-1/6*$paperArea.height();
-                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-      $(this).removeClass('fadeInLeft animated');
-    });
+								 	$paper.addClass('top-left');
 			                 }else if(i==3){
 				                    X=X+19/48*$paperArea.width();
 				                    Y=Y+3/10*$paperArea.height();
-                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-      $(this).removeClass('fadeInRight animated');
-    });
+								 	$paper.addClass('bottom');
 			                 }else if(i==4){
 				                    X=X+19/48*$paperArea.width();
-				                    Y=Y-13/48*$paperArea.height();
-                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-      $(this).removeClass('fadeInRight animated');
-    });
-                             }else if(i==5){
+                                    Y=Y-13/48*$paperArea.height();
+								 	$paper.addClass('top');
+				             }else if(i==5){
 				                    X=X+3/5*$paperArea.width()
 				                    Y=Y+1/4*$paperArea.height();
-                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInDown animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-      $(this).removeClass('fadeInDown animated');
-    });
-			                 }else if(i==6){
+								 	$paper.addClass('bottom-right');
+                             }else if(i==6){
 				                    X=X+3/5*$paperArea.width()
 				                    Y=Y-1/6*$paperArea.height();
-                                    $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInTop animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-      $(this).removeClass('fadeInTop animated');
-    });
+								 	$paper.addClass('top-right');
 			                 }else{
 				                    X=X+4/5*$paperArea.width();
-                                  $('.paper').removeClass('fadeInRight fadeInTop fadeInDown fadeInLeft animated').addClass('fadeInRight animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-      $(this).removeClass('fadeInRight animated');
-    });
+								 	$paper.addClass('right');
 			                 }
 							var j = 0;
 							for(var i=0; i<papers.length; i++){
@@ -131,10 +119,18 @@ var papers = [];
 								if(papers.length == j)checkPaper = false;
 							}
 						}
-						$paper.css({
-							'left': /*randomNumX/100*$paperArea.width()*/ X + "px",
-							'top': /*randomNumY/100*$paperArea.height()*/ Y + "px"
-						});
+						$paperArea.append($paper.css({'left':center.left+"px", 'top':center.top+"px"}).show());
+						setTimeout(function(obj){
+							var X = obj.x;
+							var Y = obj.y;
+							var $paper = obj.p;
+							$paper.css({
+								'left': /*randomNumX/100*$paperArea.width()*/ X + "px",
+								'top': /*randomNumY/100*$paperArea.height()*/ Y + "px"
+							});
+						}, 10, {
+							x: X, y: Y, p: $paper});
+						
 						//存絕對位置
 						var thisPaper = {"x" : parseFloat($paper.css('left')), "y" : parseFloat($paper.css('top'))};
 						papers.push(thisPaper);
@@ -197,7 +193,6 @@ var papers = [];
 								.callFunction(addComments, dream)
 								.show();
 						});
-						$paperArea.append($paper.show());
 					}
 				});
 			}
