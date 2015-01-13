@@ -78,26 +78,32 @@ app.get('/', function (req, res) {
 });
 // 其他人的夢想列表home
 app.get('/other', function (req, res) {
-	var UserId = req.query.UserId;
-	if(UserId == Parse.User.current().id) res.redirect('/');
-	CLOUD.getUser(UserId).then(function (user) {	
-		CLOUD.getUserDreams(user).then(function (dream) {
-			user.set('Dreams', dream);
-			res.render('./pages/home', {
-				UserId: Parse.User.current().id,
-				page: 'other-page',
-				result: user,
-				following: user.get("Following") || [],
+	if (Parse.User.current())
+		var UserId = req.query.UserId;
+		if(UserId == Parse.User.current().id) res.redirect('/');
+		CLOUD.getUser(UserId).then(function (user) {	
+			CLOUD.getUserDreams(user).then(function (dream) {
+				user.set('Dreams', dream);
+				res.render('./pages/home', {
+					UserId: Parse.User.current().id,
+					page: 'other-page',
+					result: user,
+					following: user.get("Following") || [],
+				});
 			});
 		});
-	});
+	else
+		res.redirect('/login');	
 });
 
 // 瀏覽夢想browse
 app.get('/browse', function (req, res) {
-	res.render('./pages/browse', {
-		page: 'browse-page'
-	});
+	if (Parse.User.current())
+		res.render('./pages/browse', {
+			page: 'browse-page'
+		});
+	else
+		res.redirect('/login');	
 });
 // -------------------routing-------------------
 
