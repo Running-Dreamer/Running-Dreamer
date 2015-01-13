@@ -59,7 +59,7 @@ app.get('/login', function (req, res) {
 });
 // 主頁面home
 app.get('/', function (req, res) {
-	if (Parse.User.current())
+	if (Parse.User.current()){
 		CLOUD.getMe().then(function (user) {
 			CLOUD.getUserDreams(user).then(function (dream) {
 				/*var foluser = user.get("Following");
@@ -73,12 +73,14 @@ app.get('/', function (req, res) {
 				});
 			});
 		});
-	else
-		res.redirect('/login');
+	}
+	else{
+		res.redirect('/login');		
+	}
 });
 // 其他人的夢想列表home
 app.get('/other', function (req, res) {
-	if (Parse.User.current())
+	if (Parse.User.current()){
 		var UserId = req.query.UserId;
 		if(UserId == Parse.User.current().id) res.redirect('/');
 		CLOUD.getUser(UserId).then(function (user) {	
@@ -92,18 +94,23 @@ app.get('/other', function (req, res) {
 				});
 			});
 		});
-	else
+	}
+	else{
 		res.redirect('/login');	
+	}
 });
 
 // 瀏覽夢想browse
 app.get('/browse', function (req, res) {
-	if (Parse.User.current())
+	if (Parse.User.current()){
 		res.render('./pages/browse', {
 			page: 'browse-page'
-		});
-	else
-		res.redirect('/login');	
+		});		
+	}
+	else{
+		res.redirect('/login');			
+	}
+
 });
 // -------------------routing-------------------
 
