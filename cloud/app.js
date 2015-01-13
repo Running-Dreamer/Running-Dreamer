@@ -78,18 +78,19 @@ app.get('/', function (req, res) {
 });
 // 其他人的夢想列表home
 app.get('/other', function (req, res) {
-		var UserId = req.query.UserId;
-		CLOUD.getUser(UserId).then(function (user) {	
-			CLOUD.getUserDreams(user).then(function (dream) {
-				user.set('Dreams', dream);
-				res.render('./pages/home', {
-					UserId: Parse.User.current().id,
-					page: 'other-page',
-					result: user,
-					following: user.get("Following") || [],
-				});
+	var UserId = req.query.UserId;
+	if(UserId == Parse.User.current().id) res.redirect('/');
+	CLOUD.getUser(UserId).then(function (user) {	
+		CLOUD.getUserDreams(user).then(function (dream) {
+			user.set('Dreams', dream);
+			res.render('./pages/home', {
+				UserId: Parse.User.current().id,
+				page: 'other-page',
+				result: user,
+				following: user.get("Following") || [],
 			});
 		});
+	});
 });
 
 // 瀏覽夢想browse
