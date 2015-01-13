@@ -112,8 +112,8 @@
     z-index: 2;
 }
 .paper {
-	-webkit-transition: all 1s linear;
-	transition: all 1s linear;
+	-webkit-transition: all .5s linear;
+	transition: all .5s linear;
 }
 /*
 

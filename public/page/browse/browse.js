@@ -84,34 +84,35 @@ var papers = [];
                             var Y = 7/24*$paperArea.height();
                             if(i==0){
 			                     X=0;
-                                $paper.addClass('left');
+                                $paper.css
+                                //$paper.addClass('left');
 			                 }else if(i==1){
 				                    X=X+1/5*$paperArea.width();
 				                    Y=Y+1/4*$paperArea.height();
-                                    $paper.addClass('bottom-left');
+                                    //$paper.addClass('bottom-left');
 			                 }else if(i==2){
 				                    X=X+1/5*$paperArea.width();
 				                    Y=Y-1/6*$paperArea.height();
-								 	$paper.addClass('top-left');
+								 	//$paper.addClass('top-left');
 			                 }else if(i==3){
 				                    X=X+19/48*$paperArea.width();
 				                    Y=Y+3/10*$paperArea.height();
-								 	$paper.addClass('bottom');
+								 	//$paper.addClass('bottom');
 			                 }else if(i==4){
 				                    X=X+19/48*$paperArea.width();
                                     Y=Y-13/48*$paperArea.height();
-								 	$paper.addClass('top');
+								 	//$paper.addClass('top');
 				             }else if(i==5){
 				                    X=X+3/5*$paperArea.width()
 				                    Y=Y+1/4*$paperArea.height();
-								 	$paper.addClass('bottom-right');
+								 	//$paper.addClass('bottom-right');
                              }else if(i==6){
 				                    X=X+3/5*$paperArea.width()
 				                    Y=Y-1/6*$paperArea.height();
-								 	$paper.addClass('top-right');
+								 	//$paper.addClass('top-right');
 			                 }else{
 				                    X=X+4/5*$paperArea.width();
-								 	$paper.addClass('right');
+								 	//$paper.addClass('right');
 			                 }
 							var j = 0;
 							for(var i=0; i<papers.length; i++){
@@ -119,16 +120,17 @@ var papers = [];
 								if(papers.length == j)checkPaper = false;
 							}
 						}
-						$paperArea.append($paper.css({'left':center.left+"px", 'top':center.top+"px"}).show());
+						$paperArea.append($paper.css({'left':center.left+"px", 'top':center.top+"px", 'opacity': 0}).show());
 						setTimeout(function(obj){
 							var X = obj.x;
 							var Y = obj.y;
 							var $paper = obj.p;
 							$paper.css({
 								'left': /*randomNumX/100*$paperArea.width()*/ X + "px",
-								'top': /*randomNumY/100*$paperArea.height()*/ Y + "px"
+								'top': /*randomNumY/100*$paperArea.height()*/ Y + "px",
+                                'opacity': 1
 							});
-						}, 10, {
+						}, 100*i, {
 							x: X, y: Y, p: $paper});
 						
 						//存絕對位置
