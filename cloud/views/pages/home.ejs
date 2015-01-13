@@ -78,7 +78,7 @@
                     		<div class="follow-photo">
 								<img src='<%=following[i].get("fbPicture")%>'>
 							</div>
-							<span class=""><%= following[i].get('displayName') %></span>
+							<span class=""><a href="/other?UserId=<%=following[i].id%>"><%= following[i].get('displayName') %></a></span>
 						</div>
 					<% }%>
                 </div>

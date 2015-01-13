@@ -11,6 +11,7 @@
 			setInterval(function(){getWeather();},1000*60*10);
 			$('#flip_page').turn({}).turn("display", "single");
             setFlipPage();
+            $('.page').css('visibility','visible');
             var uploadModal = Modal().init({selector:'.upload-modal'});
 			uploadModal.callFunction(uploadModalEvent, uploadModal);
             var detailModal = Modal().init({selector: '.detail-modal', transition: 'modal-transition-detail', closeByBtn: true});
