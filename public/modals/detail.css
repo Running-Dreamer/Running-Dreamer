@@ -209,3 +209,24 @@
 .list-others{
     color: rgb(128, 0, 128);
 }
+.detail-modal .edit {
+	position: absolute;
+	left: -40px;
+	top: -30px;
+	display: none;
+}
+.home-page .detail-modal .edit {
+	display: inline-block;
+}
+.detail-modal .fa-stack-1x {
+	color: white;
+}
+.detail-modal .confirm-edit {
+	position: absolute;
+	left: -40px;
+	top: 35px;
+	display: none;
+}
+.home-page .detail-modal .confirm-edit {
+	display: inline-block;
+}

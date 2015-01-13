@@ -5,13 +5,13 @@
 	<% include ./partials/head %>
 </head>
 
-<body class="flex-column">
+<body class="flex-column <%= page%>">
 
 	<header>
 		<% include ./partials/header %>
 	</header>
 
-	<main class="flex-1 flex-column <%= page%>">
+	<main class="flex-1 flex-column">
 		<% include ./partials/menu %>
 		<%-body%>
 	</main>

@@ -26,7 +26,8 @@
             });
             $('.detailBtn').on('click', showDetail);
             $('.delBtn').on('click', delDream);
-
+			
+			$('.edit').on('click', editDream);
             //測試用follow按紐
             $('#followBtn').on('click', followIt);
             function followIt() { //測試追隨
@@ -94,7 +95,7 @@
 
             function change_done_status(isdone) {
                 var done_status;
-                if(isdone == "none") done_status = "未完成";
+                if(isdone == "none") done_status = "";
                 else if(isdone == "already") done_status = "進行中";
                 else if(isdone == "done") done_status = "已完成";
                 else done_status = "未完成";
@@ -153,7 +154,7 @@
 							else
 								$bestComment.remove()
 						}
-						else if ($('main').hasClass('home-page')) {
+						else if ($('body').hasClass('home-page')) {
 							var data = {c_id: _comment.id, d_id:_dream.id};
 							$bestComment.data('data', data);
 							$bestComment.removeClass('HIDE').on("click", function(){
@@ -178,6 +179,7 @@
                     }
 
                 };
+				$('.detail-modal').data('dream', dream);
                 detailModal
                     .setImgSrcBySelector('.picture img', dream.get("photo").url())
 					.setHrefBySelector('.author a', '/other?UserId='+dream.get("owner").id)
@@ -226,6 +228,35 @@
                     );
 
             }
+			
+			function editDream () {
+				var $self = $(this);
+				var $confirm = $self.siblings('.confirm-edit').removeClass('HIDE');
+				var $detailModal = $self.parent();
+				var $is_done = $detailModal.find('.is_done');
+				var $org_is_done = $is_done.clone();
+				var $select = $('<select><option value="none">未完成</option><option value="already">進行中</option><option value="done">已完成</option></select>')
+				$is_done.parent().append($select);
+				$is_done.remove();
+				$confirm.off().on('click', $org_is_done, function(e){
+					var $org_is_done = e.data;
+					var $self = $(this);
+					var $detailModal = $self.parent();
+					var $select = $detailModal.find('select');
+					var value = $select.val();
+					var text = $select.children(':selected').text();
+					$org_is_done.text(text);
+					$org_is_done.removeClassPrefix('list-').addClass('list-'+value);
+					$select.parent().append($org_is_done);
+					$select.remove();
+					var dream = $detailModal.data('dream');
+					dream.set('done', value);
+					$('.dream[for='+dream.id+'] .done').text(text).removeClassPrefix('list-').addClass('list-'+value);
+					dream.save().then(function(dream){
+						$(this).addClass("HIDE");
+					}.bind(this));
+				});
+			}
 
             function getAllDreamDetail() {
                 var dreams = $('.dream');
