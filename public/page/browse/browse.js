@@ -17,6 +17,7 @@ var papers = [];
 			var $paperSample = $('.paper').clone();
 			var $commentSample = vs.$commentSample = $('.comment').clone();
 			getDream(type_now, skip_count);
+			getFollowing();
 			var detailModal = Modal().init();
 			var center = {};
 			var $change_dream = $("#change_dream");
@@ -47,8 +48,13 @@ var papers = [];
 				query.notEqualTo("owner", Parse.User.current());
 				query.include('comment.creator');
 				//如果type不為空 or all 只搜尋那個型別
-				if (type != null && type != "all") query.equalTo("type", type);
-				if (skip != null) query.skip(skip);
+				if (type != null && type != "all" && type != "follow") 
+					query.equalTo("type", type);
+				if (skip != null) 
+					query.skip(skip);
+				if (type == "follow") {
+					query.containedIn("owner", rdvs.following || []);
+				}
 
 				query.descending("updatedAt").find().then(function (results) {
 					var $paperArea = $('.paper-area');
@@ -193,6 +199,13 @@ var papers = [];
 								.show();
 						});
 					}
+				});
+			}
+			
+			function getFollowing () {
+				Parse.User.current().fetch().then(function(user){
+					var vs = rdvs;
+					vs.following = user.get('Following');
 				});
 			}
 			function change_done_status(isdone) {
