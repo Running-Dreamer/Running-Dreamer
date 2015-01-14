@@ -244,7 +244,10 @@ app.locals({
   },  
   getLocalTime  : function(d) {
 
-    return d.getFullYear() + '年' + (d.getMonth()+1) + '月' + d.getDate() + '日' + d.getHours() + ':' + d.getMinutes();
+	var date2 = new Date();
+	date2.setTime(d.getTime() + (8*60*60*1000));
+	//return date2.getFullYear() + "-" + (+date2.getMonth()+1) + "-" + date2.getDate() + " " + date2.getHours() + ":" + date2.getMinutes() + ":" + date2.getSeconds() + "." + date2.getMilliseconds();
+   	return date2.getFullYear() + '年' + (date2.getMonth()+1) + '月' + date2.getDate() + '日' + date2.getHours() + ':' + date2.getMinutes();
   },  
   getGender  : function(sex) {
   	var gender;
