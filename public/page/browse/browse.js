@@ -145,13 +145,22 @@ var papers = [];
 						$paper.on("click", function () {
 							var $self = $(this);
 							var dream = $self.data('result');
-
+							
+							
+							$('.comment-area').off().on('keypress', function() {
+								if(event.which == 13) {
+									event.preventDefault();
+									$('.send-comment').click();
+								}
+							});
 							//發送訊息
 							var $sendBtn = $('.send-comment').off('click');
 							$sendBtn.on("click", function () {
 								$sendBtn.attr('disabled', true);
-								var conetnt = $('.comment-area').find('input').val();
-								createComment(dream.id, conetnt);
+								var content = $('.comment-area').find('input').val();
+								if(content == "" || content.trim() == "")
+									return;
+								createComment(dream.id, content);
 							});
 							var addComments = function () {
 								var _dream = this;
