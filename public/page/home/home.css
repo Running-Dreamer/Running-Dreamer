@@ -185,11 +185,6 @@
 	overflow-y: auto;
     visibility: hidden;
 }
-
-
-.followers{
-    overflow: hidden;
-}
 .list .follow {
     border-bottom: 1px dotted #ccc;
     height: 50px;
