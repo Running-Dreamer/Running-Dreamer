@@ -248,9 +248,9 @@ var papers = [];
 						Content: Content
 					}
 				}).then(function (results) {
-					if(results == 'success')
-						successComment();
+//					if(results == 'success')
 				});
+				successComment();
 			}
 
 			function successComment() {
