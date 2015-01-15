@@ -66,6 +66,7 @@
 					var $parent = $img.parent();
 					$parent.children('.add-new-dream').remove();
 					$img.attr('src', '/core/images/intro/intro_2.png');
+					$parent.append($('<span class="add-new-dream adjust2">點<br>擊<br>即<br>可<br>快<br>速<br>上<br>傳<br>!!</span>'));
 					$(this).remove();
 				}));
 			}

@@ -19,6 +19,11 @@
 .intro-modal .add-new-dream.adjust {
 	top: 25px;
 }
+.intro-modal .add-new-dream.adjust2 {
+	top: 90px;
+	right: 55px;
+	line-height: 1em;
+}
 .intro-modal .next-intro {
 	position: absolute;
 	bottom: 5px;
