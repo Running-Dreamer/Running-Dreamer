@@ -78,6 +78,14 @@ cloud.createComment = function (DreamId, CreatorId, Content) {
 		var comments = dream.get("comment") || [];
 		comments.push(comment);
 		dream.set('comment', comments);
+		if(comment.get("creator").id != dream.get("owner").id) {
+			var Unread = Parse.Object.extend("Unread");
+			var unread = new Unread();
+			unread.set('ownerId', dream.get("owner").id);
+			unread.set('dream', dream);
+			unread.save();
+			dream.increment("unread");
+		}
 		return dream.save();
 	});
 };

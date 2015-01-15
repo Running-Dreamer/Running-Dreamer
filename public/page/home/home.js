@@ -127,6 +127,7 @@
 						$('.send-comment').click();
 					}
 				});
+				deleteUnread(dream.id);
                 //發送訊息
                 var $sendBtn = $('.send-comment').off('click');
                 $sendBtn.on("click", function () {
@@ -205,6 +206,17 @@
                     .callFunction(addComments, dream)
                     .show();
             }
+			
+			function deleteUnread (dreamid) {
+				var Dream = Parse.Object.extend('Dream');
+				var dream = new Dream();
+				dream.id = dreamid;
+				dream.set('unread', 0)
+				dream.save();
+				var unread = $('.dream[for='+dream.id+'] .unread');
+				unread.removeClass('show');
+				unread.find('.txt').text("0");
+			}
 
             function delDream () {
                 var $self = $(this);
@@ -294,7 +306,33 @@
                         });
                     }
                 });
+				if($('body').hasClass('home-page'))
+					setInterval(function(){
+						getUnreadComment();
+					}, 10000);
             }
+			
+			function getUnreadComment() {
+				var Unread = Parse.Object.extend("Unread");
+				var query = new Parse.Query(Unread);
+				query.include('dream');
+				query.include('dream.owner');
+				query.include('dream.comment');
+				query.include('dream.comment.creator')
+				query.equalTo('ownerId', Parse.User.current().id);
+				query.find().then(function(unread){
+					for(var i = 0; i < unread.length; i ++) {
+						var dream = unread[i].get('dream');
+						var undreadSpan = $('.dream[for='+dream.id+'] .unread');
+						var txt =  undreadSpan.find('.txt');
+						var text = txt.text();
+						if(!undreadSpan.hasClass('show')) undreadSpan.addClass('show');
+						txt.text(+text+1);
+						mapDreamIDtoDream[dream.id] = dream;
+						unread[i].destroy();
+					}
+				});
+			}
 			
 			function getWeather() {
 				navigator.geolocation.getCurrentPosition(function (position) {
