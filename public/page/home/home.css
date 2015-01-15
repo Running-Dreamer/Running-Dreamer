@@ -244,3 +244,10 @@
    vertical-align: middle;
    background: #693c05;
 }
+.unread {
+	display: none;
+	color: red;
+}
+.home-page .unread.show {
+	display: block;
+}
